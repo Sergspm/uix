@@ -10,7 +10,8 @@
   ],
   "types": "dist/index.d.ts",
   "scripts": {
-    "rollup": "rollup -c"
+    "rollup": "rollup -c",
+    "build": "npm run rollup"
   },
   "engines": {
     "npm": "9.6.7",
