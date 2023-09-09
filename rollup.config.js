@@ -2,9 +2,12 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
-import css from 'rollup-plugin-import-css';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import postcss from 'rollup-plugin-postcss';
+import { createRequire } from 'node:module';
 
-import packageJson from './package.json' assert { type: 'json' };
+const require = createRequire(import.meta.url);
+const packageJson = require('./package.json');
 
 export default [
   {
@@ -22,10 +25,16 @@ export default [
       },
     ],
     plugins: [
+      peerDepsExternal(),
       resolve(),
       commonjs(),
-      css(),
-      typescript({ tsconfig: './tsconfig.json' }),
+      typescript({
+        tsconfig: './tsconfig.json',
+      }),
+      postcss({
+        plugins: [],
+        extract: true,
+      }),
     ],
   },
   {

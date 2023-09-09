@@ -1,3 +1,7 @@
+.uix-buttons-button-circle {
+  display: inline-flex;
+}
+
 .uix-buttons-button-rectangle {
   display: inline-flex;
 }
