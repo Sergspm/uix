@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  border: none;
+  background: transparent;
+  line-height: 100%;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+html,
+body {
+  width: 100vw;
+  min-height: 100vh;
+  font-style: normal;
+  font-weight: 400;
+}
