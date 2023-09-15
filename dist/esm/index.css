@@ -1,7 +1,65 @@
-.uix-buttons-button-circle {
-  display: inline-flex;
+:root {
+  --uix-buttons-button-width: auto;
+  --uix-buttons-button-height: auto;
+  --uix-buttons-button-padding-x: 0;
+  --uix-buttons-button-border-radius: 0;
+  --uix-buttons-button-border: none;
+  --uix-buttons-button-border-hover: none;
+  --uix-buttons-button-border-active: var(--uix-buttons-button-border-hover);
+  --uix-buttons-button-border-disabled: none;
+  --uix-buttons-button-color: #000;
+  --uix-buttons-button-color-hover: #000;
+  --uix-buttons-button-color-active: var(--uix-buttons-button-color-hover);
+  --uix-buttons-button-color-disabled: #000;
+  --uix-buttons-button-background: transparent;
+  --uix-buttons-button-background-hover: transparent;
+  --uix-buttons-button-background-active: var(--uix-buttons-button-background-hover);
+  --uix-buttons-button-background-disabled: transparent;
+  --uix-buttons-button-cursor: pointer;
+  --uix-buttons-button-transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+  --uix-buttons-button-font-family: inherit;
+  --uix-buttons-button-font-size: inherit;
+  --uix-buttons-button-font-weight: inherit;
+  --uix-buttons-button-text-transform: initial;
 }
 
-.uix-buttons-button-rectangle {
+.uix-buttons-button {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--uix-buttons-button-width);
+  height: var(--uix-buttons-button-height);
+  padding: 0 var(--uix-buttons-button-padding-x);
+  border: var(--uix-buttons-button-border);
+  border-radius: var(--uix-buttons-button-border-radius);
+  color: var(--uix-buttons-button-color);
+  background: var(--uix-buttons-button-background);
+  cursor: var(--uix-buttons-button-cursor);
+  transition: var(--uix-buttons-button-transition);
+  font-family: var(--uix-buttons-button-font-family);
+  font-size: var(--uix-buttons-button-font-size);
+  font-weight: var(--uix-buttons-button-font-weight);
+  text-transform: var(--uix-buttons-button-text-transform);
+}
+
+.uix-buttons-button:hover {
+  border: var(--uix-buttons-button-border-hover);
+  color: var(--uix-buttons-button-color-hover);
+  background: var(--uix-buttons-button-background-hover);
+}
+
+.uix-buttons-button:active,
+.uix-buttons-button--active {
+  border: var(--uix-buttons-button-border-active);
+  color: var(--uix-buttons-button-color-active);
+  background: var(--uix-buttons-button-background-active);
+}
+
+.uix-buttons-button:disabled,
+.uix-buttons-button--disabled {
+  border: var(--uix-buttons-button-border-disabled);
+  color: var(--uix-buttons-button-color-disabled);
+  background: var(--uix-buttons-button-background-disabled);
+  cursor: default;
+  pointer-events: none;
 }

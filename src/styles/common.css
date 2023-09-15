@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  line-height: 100%;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  text-decoration: none;
+  color: inherit;
+  list-style-type: none;
+}
+
+html,
+body {
+  width: 100vw;
+  min-height: 100vh;
+  font-style: normal;
+  font-weight: 400;
+  scroll-behavior: smooth;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px inherit inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

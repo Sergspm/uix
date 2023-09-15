@@ -1,0 +1,112 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "google",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "react",
+    "react-hooks",
+    "eslint-plugin-import",
+    "testing-library",
+    "typescript-sort-keys",
+    "sort-destructure-keys"
+  ],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "(^_)|(^React$)",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/sort-type-constituents": "off",
+    "curly": ["error", "all"],
+    "import/no-unused-modules": [
+      1,
+      {
+        "unusedExports": true
+      }
+    ],
+    "no-case-declarations": 0,
+    "no-unused-vars": "off",
+    "padding-line-between-statements": [
+      "warn",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": ["return"]
+      },
+      {
+        "blankLine": "always",
+        "prev": ["const", "let", "var"],
+        "next": "*"
+      },
+      {
+        "blankLine": "any",
+        "prev": ["const", "let", "var"],
+        "next": ["const", "let", "var"]
+      }
+    ],
+    "react/boolean-prop-naming": [
+      "error",
+      {
+        "rule": "^(is|has)[A-Z]([A-Za-z0-9]?)+"
+      }
+    ],
+    "react/jsx-newline": [
+      "warn",
+      {
+        "prevent": false
+      }
+    ],
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "callbacksLast": false,
+        "shorthandFirst": false,
+        "shorthandLast": false,
+        "multiline": "last",
+        "ignoreCase": true,
+        "noSortAlphabetically": false,
+        "reservedFirst": true
+      }
+    ],
+    "require-jsdoc": 0,
+    "sort-destructure-keys/sort-destructure-keys": [
+      "error",
+      {
+        "caseSensitive": false
+      }
+    ],
+    "typescript-sort-keys/interface": "error",
+    "typescript-sort-keys/string-enum": "error"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

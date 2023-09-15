@@ -1,6 +1,6 @@
-import { ReactHTML, FC, ReactNode, MouseEvent } from 'react';
-
-interface IButtonProps {
+import { FC, MouseEvent, ReactHTML, ReactNode } from 'react';
+import './Button.css';
+export interface IButtonProps {
     element?: keyof ReactHTML | FC<any>;
     children?: ReactNode;
     className?: string;
@@ -9,6 +9,4 @@ interface IButtonProps {
     disabled?: boolean;
     onClick?: (e: MouseEvent) => void;
 }
-declare const Button: FC<IButtonProps>;
-
-export { Button, type IButtonProps };
+export declare const Button: FC<IButtonProps>;
