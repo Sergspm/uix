@@ -19,9 +19,11 @@ const Button = (props) => {
         // @ts-ignore
         href: props.href,
         disabled: props.disabled,
+        // @ts-ignore
+        target: props.target,
         onClick: props.onClick
     }, props.children);
 };
 
 export { Button };
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=buttons.js.map

@@ -15,6 +15,7 @@ type TNextLinkProps = TCommonProps & {
 type TAnchorElementProps = TCommonProps & {
     element: 'a';
     href?: string;
+    target?: '_blank';
 };
 type TButtonElementProps = TCommonProps & {
     element: 'button';

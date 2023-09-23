@@ -2,8 +2,6 @@
   "name": "uix",
   "version": "0.1.0",
   "description": "UI eXtended library",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
   "type": "module",
   "files": [
     "dist"
@@ -17,8 +15,7 @@
     "lint:fix": "eslint ./src --fix"
   },
   "engines": {
-    "npm": "8.3.1 || 8.5.5 || 8.11.0 || 8.15.0 || 9.5.1 || 9.6.7",
-    "node": "16.13.0 || 16.15.0 || 16.15.1 || 16.17.1 || 18.7.0 || 18.16.0 || 18.17.1"
+    "node": ">=16"
   },
   "repository": {
     "type": "git",

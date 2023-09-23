@@ -20,6 +20,7 @@ type TNextLinkProps = TCommonProps & {
 type TAnchorElementProps = TCommonProps & {
   element: 'a';
   href?: string;
+  target?: '_blank';
 };
 
 type TButtonElementProps = TCommonProps & {
@@ -61,6 +62,8 @@ export const Button: FC<TButtonProps> = (props) => {
       // @ts-ignore
       href: props.href,
       disabled: props.disabled,
+      // @ts-ignore
+      target: props.target,
       onClick: props.onClick
     },
     props.children
