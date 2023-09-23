@@ -1,26 +1,66 @@
-import { FC, MouseEvent, ReactHTML, ReactNode, createElement } from 'react';
+import { FC, MouseEvent, ReactNode, createElement } from 'react';
+
+import type { TLink, Url } from '../../types/nextjs/link';
 
 import './Button.css';
 
-export interface IButtonProps {
-  element?: keyof ReactHTML | FC<any>;
+type TCommonProps = {
   children?: ReactNode;
   className?: string;
-  elementProps?: Record<PropertyKey, any>;
   active?: boolean;
   disabled?: boolean;
   onClick?: (e: MouseEvent) => void;
-}
+};
 
-export const Button: FC<IButtonProps> = (props) => {
+type TNextLinkProps = TCommonProps & {
+  element: TLink;
+  href: Url;
+};
+
+type TAnchorElementProps = TCommonProps & {
+  element: 'a';
+  href?: string;
+};
+
+type TButtonElementProps = TCommonProps & {
+  element: 'button';
+  type?: 'submit' | 'reset' | 'button';
+};
+
+type TUnknownProps = TCommonProps & {
+  type?: 'submit' | 'reset' | 'button';
+};
+
+export type TButtonProps =
+  | TUnknownProps
+  | TNextLinkProps
+  | TAnchorElementProps
+  | TButtonElementProps;
+
+export const Button: FC<TButtonProps> = (props) => {
+  let className = 'uix-buttons-button';
+  // @ts-ignore
+  const element = props.element ?? 'button';
+
+  if (props.active) {
+    className += ' uix-buttons-button--active';
+  }
+
+  if (props.disabled) {
+    className += ' uix-buttons-button--disabled';
+  }
+
+  if (props.className) {
+    className += ' ' + props.className;
+  }
+
   return createElement(
-    props.element ?? 'button',
+    element,
     {
-      ...props.elementProps,
-      className: `uix-buttons-button ${props.active ? 'uix-buttons-button--active' : ''} ${
-        props.disabled ? 'uix-buttons-button--disabled' : ''
-      } ${props.className || ''}`,
-      disabled: Boolean(props.disabled),
+      className,
+      // @ts-ignore
+      href: props.href,
+      disabled: props.disabled,
       onClick: props.onClick
     },
     props.children

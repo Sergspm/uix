@@ -1,8 +1,7 @@
 /// <reference types="node" />
-import React, { FC, ReactNode, MouseEvent } from 'react';
+import React from 'react';
 import { UrlObject } from 'url';
-
-type Url = string | UrlObject;
+export type Url = string | UrlObject;
 type InternalLinkProps = {
     /**
      * The path or URL to navigate to. It can also be an object.
@@ -72,36 +71,11 @@ type InternalLinkProps = {
      */
     onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 };
+export type LinkProps<RouteInferType = any> = InternalLinkProps;
 /**
  * React Component that enables client-side transitions between routes.
  */
-type TLink = React.ForwardRefExoticComponent<Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof InternalLinkProps> & InternalLinkProps & {
+export type TLink = React.ForwardRefExoticComponent<Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof InternalLinkProps> & InternalLinkProps & {
     children?: React.ReactNode;
 } & React.RefAttributes<HTMLAnchorElement>>;
-
-type TCommonProps = {
-    children?: ReactNode;
-    className?: string;
-    active?: boolean;
-    disabled?: boolean;
-    onClick?: (e: MouseEvent) => void;
-};
-type TNextLinkProps = TCommonProps & {
-    element: TLink;
-    href: Url;
-};
-type TAnchorElementProps = TCommonProps & {
-    element: 'a';
-    href?: string;
-};
-type TButtonElementProps = TCommonProps & {
-    element: 'button';
-    type?: 'submit' | 'reset' | 'button';
-};
-type TUnknownProps = TCommonProps & {
-    type?: 'submit' | 'reset' | 'button';
-};
-type TButtonProps = TUnknownProps | TNextLinkProps | TAnchorElementProps | TButtonElementProps;
-declare const Button: FC<TButtonProps>;
-
-export { Button, type TButtonProps };
+export {};

@@ -1,12 +1,28 @@
-import { FC, MouseEvent, ReactHTML, ReactNode } from 'react';
+import { FC, MouseEvent, ReactNode } from 'react';
+import type { TLink, Url } from '../../types/nextjs/link';
 import './Button.css';
-export interface IButtonProps {
-    element?: keyof ReactHTML | FC<any>;
+type TCommonProps = {
     children?: ReactNode;
     className?: string;
-    elementProps?: Record<PropertyKey, any>;
     active?: boolean;
     disabled?: boolean;
     onClick?: (e: MouseEvent) => void;
-}
-export declare const Button: FC<IButtonProps>;
+};
+type TNextLinkProps = TCommonProps & {
+    element: TLink;
+    href: Url;
+};
+type TAnchorElementProps = TCommonProps & {
+    element: 'a';
+    href?: string;
+};
+type TButtonElementProps = TCommonProps & {
+    element: 'button';
+    type?: 'submit' | 'reset' | 'button';
+};
+type TUnknownProps = TCommonProps & {
+    type?: 'submit' | 'reset' | 'button';
+};
+export type TButtonProps = TUnknownProps | TNextLinkProps | TAnchorElementProps | TButtonElementProps;
+export declare const Button: FC<TButtonProps>;
+export {};
