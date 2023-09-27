@@ -5,14 +5,14 @@
   outline: none;
   border: none;
   background-color: transparent;
-  line-height: 100%;
+  line-height: inherit;
   font-size: inherit;
   font-style: inherit;
   font-weight: inherit;
   font-family: inherit;
   text-decoration: none;
   color: inherit;
-  list-style-type: none;
+  list-style: none;
 }
 
 html,
