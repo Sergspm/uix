@@ -1,10 +1,9 @@
-import React, { FC, ReactNode, SyntheticEvent } from 'react';
+import React, { FC, SyntheticEvent } from 'react';
 import './TextFieldSimple.css';
 import { AlertCircleIcon } from './icons/AlertCircleIcon';
 import { CheckIcon } from './icons/CheckIcon';
 
 type TCommonProps = {
-  children?: ReactNode;
   className?: string;
   placeholder?: string;
   label?: string;
