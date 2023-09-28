@@ -1,12 +1,7 @@
-.uix-inputs-input-v1 {
-  padding: var(--uix-inputs-input-v1-padding-x);
-}
+.uix-inputs-text-field-simple {
+  padding: 0 var(--uix-inputs-text-field-simple-padding-x);
+  border: var(--uix-inputs-text-field-simple-border, none);
+  height: var(--uix-inputs-text-field-simple-height, auto);
 
-.uix-inputs-input-v1-children {
-  background: #000;
-  padding: 200px;
-}
-:root {
-  --uix-inputs-input-v1-padding-x: 20px;
-  /* padding: var(--uix-inputs-input-v1-padding-x); */
+  margin-top: var(--uix-inputs-text-field-simple-margin-top, 0);
 }

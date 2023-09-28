@@ -2,11 +2,7 @@
   padding: var(--uix-inputs-input-v1-padding-x);
 }
 
-.uix-inputs-input-v1-children {
-  background: #000;
-  padding: 200px;
-}
 :root {
-  --uix-inputs-input-v1-padding-x: 20px;
+  --uix-inputs-input-v1-padding-y: 20px;
   /* padding: var(--uix-inputs-input-v1-padding-x); */
 }

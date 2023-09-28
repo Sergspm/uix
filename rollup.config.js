@@ -7,14 +7,14 @@ import postcss from 'rollup-plugin-postcss';
 
 export default [
   {
-    // input: 'src/components/buttons/index.ts',
+    input: 'src/components/buttons/index.ts',
     input: 'src/components/inputs/index.ts',
     output: [
-      // {
-      //   file: 'components/buttons.js',
-      //   format: 'esm',
-      //   sourcemap: true
-      // },
+      {
+        file: 'components/buttons.js',
+        format: 'esm',
+        sourcemap: true
+      },
 
       {
         file: 'components/inputs.js',
@@ -30,12 +30,12 @@ export default [
       postcss({ plugins: [], extract: true })
     ]
   },
-  // {
-  //   input: 'components/types/components/buttons/index.d.ts',
-  //   output: [{ file: 'components/buttons.d.ts', format: 'esm' }],
-  //   plugins: [dts(), resolve()],
-  //   external: [/\.css$/]
-  // },
+  {
+    input: 'components/types/components/buttons/index.d.ts',
+    output: [{ file: 'components/buttons.d.ts', format: 'esm' }],
+    plugins: [dts(), resolve()],
+    external: [/\.css$/]
+  },
 
   {
     input: 'components/types/components/inputs/index.d.ts',
