@@ -23,4 +23,4 @@ const InputV1 = (props) => {
 };
 
 export { InputV1 };
-//# sourceMappingURL=buttons.js.map
+//# sourceMappingURL=inputs.js.map
