@@ -1,24 +1,20 @@
-import { FC, SyntheticEvent, createElement } from 'react';
-
+import React, { FC, ReactNode, SyntheticEvent } from 'react';
 import './InputV1.css';
 
 type TCommonProps = {
+  children?: ReactNode;
   className?: string;
+  placeholder?: string;
+  label?: string;
   active?: boolean;
   disabled?: boolean;
   onClick?: (event: SyntheticEvent<HTMLInputElement>) => void;
 };
 
-type TInputElementProps = TCommonProps & {
-  element: 'input';
-};
-
-export type TInputProps = TInputElementProps;
+export type TInputProps = TCommonProps;
 
 export const InputV1: FC<TInputProps> = (props) => {
   let className = 'uix-inputs-input-v1';
-
-  const element = props.element;
 
   if (props.active) {
     className += ' uix-inputs-input-v1--active';
@@ -32,12 +28,27 @@ export const InputV1: FC<TInputProps> = (props) => {
     className += ' ' + props.className;
   }
 
-  return createElement(element, {
-    className,
-    // @ts-ignore
-    href: props.href,
-    disabled: props.disabled,
-    // @ts-ignore
-    onClick: props.onClick
-  });
+  return (
+    <>
+      {props.label || props.children ? (
+        <div className="uix-inputs-input-v1-wrapper">
+          <label>{props.label}</label>
+          <input
+            placeholder={props.placeholder}
+            className={className}
+            disabled={props.disabled}
+            onClick={props.onClick}
+          />
+          <div className="uix-inputs-input-v1-children">{props.children}</div>
+        </div>
+      ) : (
+        <input
+          placeholder={props.placeholder}
+          className={className}
+          disabled={props.disabled}
+          onClick={props.onClick}
+        />
+      )}
+    </>
+  );
 };

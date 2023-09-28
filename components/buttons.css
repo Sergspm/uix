@@ -1,5 +1,4 @@
-:root {
-  --uix-inputs-input-width: auto;
-  --uix-inputs-input-height: auto;
-  --uix-inputs-input-padding-x: 0;
+.uix-inputs-input-v1 {
+  background: var(--uix-inputs-input-v1-background-color, #000);
+  padding: var(--uix-inputs-input-v1-padding, 300px);
 }

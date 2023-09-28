@@ -15,7 +15,6 @@ const InputV1 = (props) => {
     return createElement(element, {
         className,
         // @ts-ignore
-        href: props.href,
         disabled: props.disabled,
         // @ts-ignore
         onClick: props.onClick

@@ -1,5 +1,12 @@
+.uix-inputs-input-v1 {
+  padding: var(--uix-inputs-input-v1-padding-x);
+}
+
+.uix-inputs-input-v1-children {
+  background: #000;
+  padding: 200px;
+}
 :root {
-  --uix-inputs-input-width: auto;
-  --uix-inputs-input-height: auto;
-  --uix-inputs-input-padding-x: 0;
+  --uix-inputs-input-v1-padding-x: 20px;
+  /* padding: var(--uix-inputs-input-v1-padding-x); */
 }

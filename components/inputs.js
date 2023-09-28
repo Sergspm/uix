@@ -1,8 +1,7 @@
-import { createElement } from 'react';
+import React from 'react';
 
 const InputV1 = (props) => {
     let className = 'uix-inputs-input-v1';
-    const element = props.element;
     if (props.active) {
         className += ' uix-inputs-input-v1--active';
     }
@@ -12,14 +11,10 @@ const InputV1 = (props) => {
     if (props.className) {
         className += ' ' + props.className;
     }
-    return createElement(element, {
-        className,
-        // @ts-ignore
-        href: props.href,
-        disabled: props.disabled,
-        // @ts-ignore
-        onClick: props.onClick
-    });
+    return (React.createElement(React.Fragment, null, props.label || props.children ? (React.createElement("div", { className: "uix-inputs-input-v1-wrapper" },
+        React.createElement("label", null, props.label),
+        React.createElement("input", { placeholder: props.placeholder, className: className, disabled: props.disabled, onClick: props.onClick }),
+        React.createElement("div", { className: "uix-inputs-input-v1-children" }, props.children))) : (React.createElement("input", { placeholder: props.placeholder, className: className, disabled: props.disabled, onClick: props.onClick }))));
 };
 
 export { InputV1 };
