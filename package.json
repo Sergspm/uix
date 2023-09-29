@@ -10,7 +10,7 @@
   "scripts": {
     "rollup": "rollup -c",
     "build": "npm run clean && npm run rollup",
-    "clean": "rm -rf components",
+    "clean": "rm -rf components types utils.d.ts utils.js utils.js.map",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix"
   },

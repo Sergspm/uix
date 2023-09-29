@@ -37,5 +37,18 @@ const getQueryStringParam = (params, param) => {
     return typeof value === 'string' ? value : null;
 };
 
-export { copyToClipboard, getQueryStringParam };
+let IP_WHITE_LIST = [];
+const configureWhiteIPList = (whiteIps) => {
+    IP_WHITE_LIST = whiteIps;
+};
+const isIpAvailable = (req) => {
+    var _a;
+    let ip = (_a = req.socket.remoteAddress) !== null && _a !== void 0 ? _a : '';
+    if (ip.indexOf('::') === 0 && typeof req.headers['x-real-ip'] === 'string') {
+        ip = req.headers['x-real-ip'];
+    }
+    return IP_WHITE_LIST.includes(ip);
+};
+
+export { configureWhiteIPList, copyToClipboard, getQueryStringParam, isIpAvailable };
 //# sourceMappingURL=utils.js.map
