@@ -51,4 +51,4 @@ const isIpAvailable = (req) => {
 };
 
 export { configureWhiteIPList, copyToClipboard, getQueryStringParam, isIpAvailable };
-//# sourceMappingURL=utils.js.map
+//# sourceMappingURL=index.js.map

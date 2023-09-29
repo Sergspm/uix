@@ -1,7 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
-import dts from 'rollup-plugin-dts';
+// import dts from 'rollup-plugin-dts';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 
@@ -28,7 +28,7 @@ export default [
     input: 'src/utils/index.ts',
     output: [
       {
-        file: 'utils.js',
+        file: 'utils/index.js',
         format: 'esm',
         sourcemap: true
       }
@@ -39,9 +39,9 @@ export default [
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' })
     ]
-  },
+  }
 
-  {
+  /* {
     input: 'types/components/buttons/index.d.ts',
     output: [{ file: 'components/buttons.d.ts', format: 'esm' }],
     plugins: [dts(), resolve()],
@@ -50,8 +50,7 @@ export default [
 
   {
     input: 'types/utils/index.d.ts',
-    output: [{ file: 'utils.d.ts', format: 'esm' }],
-    plugins: [dts(), resolve()],
-    external: [/\.css$/]
-  }
+    output: [{ file: 'utils/index.d.ts', format: 'esm' }],
+    plugins: [dts(), resolve()]
+  } */
 ];
