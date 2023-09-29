@@ -10,8 +10,8 @@
   "scripts": {
     "rollup": "rollup -c",
     "build": "npm run clean:before && npm run rollup && npm run clean:after",
-    "clean:before": "rm -rf components utils",
-    "clean:after": "rm -rf components/types utils/types",
+    "clean:before": "rm -rf components utils widgets",
+    "clean:after": "rm -rf components/types utils/types widgets/types",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix"
   },
