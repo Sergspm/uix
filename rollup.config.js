@@ -23,9 +23,34 @@ export default [
       postcss({ plugins: [], extract: true })
     ]
   },
+
   {
-    input: 'components/types/components/buttons/index.d.ts',
+    input: 'src/utils/index.ts',
+    output: [
+      {
+        file: 'utils.js',
+        format: 'esm',
+        sourcemap: true
+      }
+    ],
+    plugins: [
+      peerDepsExternal(),
+      resolve(),
+      commonjs(),
+      typescript({ tsconfig: './tsconfig.json' })
+    ]
+  },
+
+  {
+    input: 'types/components/buttons/index.d.ts',
     output: [{ file: 'components/buttons.d.ts', format: 'esm' }],
+    plugins: [dts(), resolve()],
+    external: [/\.css$/]
+  },
+
+  {
+    input: 'types/utils/index.d.ts',
+    output: [{ file: 'utils.d.ts', format: 'esm' }],
     plugins: [dts(), resolve()],
     external: [/\.css$/]
   }
