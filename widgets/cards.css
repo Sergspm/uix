@@ -1,0 +1,43 @@
+/**
+// List of available variables with default values:
+
+:root {
+  --uix-widget-card-simple-width: 100%;
+  --uix-widget-card-simple-border-width: 0;
+  --uix-widget-card-simple-border-style: solid;
+  --uix-widget-card-simple-border-color: transparent;
+  --uix-widget-card-simple-border-radius: 0;
+  --uix-widget-card-simple-padding: 0;
+  --uix-widget-card-simple-background: transparent;
+
+  --uix-widget-card-simple-header-font-family: inherit;
+  --uix-widget-card-simple-header-font-size: inherit;
+  --uix-widget-card-simple-header-font-weight: inherit;
+  --uix-widget-card-simple-header-line-height: initial;
+  --uix-widget-card-simple-header-text-align: inherit;
+  --uix-widget-card-simple-header-margin-bottom: 0;
+  --uix-widget-card-simple-header-color: inherit;
+}
+*/
+
+.uix-widget-card-simple {
+  display: block;
+  width: var(--uix-widget-card-simple-width, 100%);
+  border-width: var(--uix-widget-card-simple-border-width, 0);
+  border-style: var(--uix-widget-card-simple-border-style, solid);
+  border-color: var(--uix-widget-card-simple-border-color, transparent);
+  border-radius: var(--uix-widget-card-simple-border-radius, 0);
+  padding: var(--uix-widget-card-simple-padding, 0);
+  background: var(--uix-widget-card-simple-background, transparent);
+}
+
+.uix-widget-card-simple__header {
+  display: block;
+  font-family: var(--uix-widget-card-simple-header-font-family, inherit);
+  font-size: var(--uix-widget-card-simple-header-font-size, inherit);
+  font-weight: var(--uix-widget-card-simple-header-font-weight, inherit);
+  line-height: var(--uix-widget-card-simple-header-line-height, initial);
+  text-align: var(--uix-widget-card-simple-header-text-align, inherit);
+  margin-bottom: var(--uix-widget-card-simple-header-margin-bottom, 0);
+  color: var(--uix-widget-card-simple-header-color, inherit);
+}

@@ -1,7 +1,77 @@
-.uix-inputs-text-field-simple {
-  padding: 0 var(--uix-inputs-text-field-simple-padding-x);
-  border: var(--uix-inputs-text-field-simple-border, none);
-  height: var(--uix-inputs-text-field-simple-height, auto);
+/**
+// List of available variables with default values:
 
-  margin-top: var(--uix-inputs-text-field-simple-margin-top, 0);
+:root {
+  --uix-buttons-button-width: auto; +
+  --uix-buttons-button-height: auto; +
+  --uix-buttons-button-padding-x: 0; +
+  --uix-buttons-button-border-radius: 0; +
+  --uix-buttons-button-border: none;
+  --uix-buttons-button-border-hover: none;
+  --uix-buttons-button-border-active: var(--uix-buttons-button-border-hover);
+  --uix-buttons-button-border-disabled: none;
+  --uix-buttons-button-color: #000;
+  --uix-buttons-button-color-hover: #000;
+  --uix-buttons-button-color-active: var(--uix-buttons-button-color-hover);
+  --uix-buttons-button-color-disabled: #000;
+  --uix-buttons-button-background: transparent;
+  --uix-buttons-button-background-hover: transparent;
+  --uix-buttons-button-background-active: var(--uix-buttons-button-background-hover);
+  --uix-buttons-button-background-disabled: transparent;
+  --uix-buttons-button-cursor: pointer;
+  --uix-buttons-button-transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+  --uix-buttons-button-font-family: inherit;
+  --uix-buttons-button-font-size: inherit;
+  --uix-buttons-button-font-weight: inherit;
+  --uix-buttons-button-text-transform: initial;
+}
+*/
+
+.uix-buttons-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--uix-buttons-button-width, auto);
+  height: var(--uix-buttons-button-height, auto);
+  padding: 0 var(--uix-buttons-button-padding-x, 0);
+  border: var(--uix-buttons-button-border, none);
+  border-radius: var(--uix-buttons-button-border-radius, 0);
+  color: var(--uix-buttons-button-color, #000);
+  background: var(--uix-buttons-button-background, transparent);
+  cursor: var(--uix-buttons-button-cursor, pointer);
+  transition: var(
+    --uix-buttons-button-transition,
+    color 0.3s,
+    background-color 0.3s,
+    border-color 0.3s
+  );
+  font-family: var(--uix-buttons-button-font-family, inherit);
+  font-size: var(--uix-buttons-button-font-size, inherit);
+  font-weight: var(--uix-buttons-button-font-weight, inherit);
+  text-transform: var(--uix-buttons-button-text-transform, initial);
+}
+
+.uix-buttons-button:hover {
+  border: var(--uix-buttons-button-border-hover, none);
+  color: var(--uix-buttons-button-color-hover, #000);
+  background: var(--uix-buttons-button-background-hover, transparent);
+}
+
+.uix-buttons-button:active,
+.uix-buttons-button--active {
+  border: var(--uix-buttons-button-border-active, var(--uix-buttons-button-border-hover, none));
+  color: var(--uix-buttons-button-color-active, var(--uix-buttons-button-color-hover, #000));
+  background: var(
+    --uix-buttons-button-background-active,
+    var(--uix-buttons-button-background-hover, transparent)
+  );
+}
+
+.uix-buttons-button:disabled,
+.uix-buttons-button--disabled {
+  border: var(--uix-buttons-button-border-disabled, none);
+  color: var(--uix-buttons-button-color-disabled, #555);
+  background: var(--uix-buttons-button-background-disabled, transparent);
+  cursor: default;
+  pointer-events: none;
 }

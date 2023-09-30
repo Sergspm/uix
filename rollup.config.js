@@ -8,16 +8,9 @@ import postcss from 'rollup-plugin-postcss';
 export default [
   {
     input: 'src/components/buttons/index.ts',
-    input: 'src/components/inputs/index.ts',
     output: [
       {
         file: 'components/buttons.js',
-        format: 'esm',
-        sourcemap: true
-      },
-
-      {
-        file: 'components/inputs.js',
         format: 'esm',
         sourcemap: true
       }
@@ -31,6 +24,59 @@ export default [
     ]
   },
   {
+    input: 'src/components/inputs/index.ts',
+    output: [
+      {
+        file: 'components/TextFieldSimple.js',
+        format: 'esm',
+        sourcemap: true
+      }
+    ],
+    plugins: [
+      peerDepsExternal(),
+      resolve(),
+      commonjs(),
+      typescript({ tsconfig: './tsconfig.json' }),
+      postcss({ plugins: [], extract: true })
+    ]
+  },
+
+  {
+    input: 'src/widgets/cards/index.ts',
+    output: [
+      {
+        file: 'widgets/cards.js',
+        format: 'esm',
+        sourcemap: true
+      }
+    ],
+    plugins: [
+      peerDepsExternal(),
+      resolve(),
+      commonjs(),
+      typescript({ tsconfig: './tsconfig.json' }),
+      postcss({ plugins: [], extract: true })
+    ]
+  },
+
+  {
+    input: 'src/utils/index.ts',
+    output: [
+      {
+        file: 'utils/index.js',
+        format: 'esm',
+        sourcemap: true
+      }
+    ],
+    plugins: [
+      peerDepsExternal(),
+      resolve(),
+      commonjs(),
+      typescript({ tsconfig: './tsconfig.json' })
+    ]
+  },
+
+  {
     input: 'components/types/components/buttons/index.d.ts',
     output: [{ file: 'components/buttons.d.ts', format: 'esm' }],
     plugins: [dts(), resolve()],
@@ -39,8 +85,21 @@ export default [
 
   {
     input: 'components/types/components/inputs/index.d.ts',
-    output: [{ file: 'components/inputs.d.ts', format: 'esm' }],
+    output: [{ file: 'components/buttons.d.ts', format: 'esm' }],
     plugins: [dts(), resolve()],
     external: [/\.css$/]
+  },
+
+  {
+    input: 'widgets/types/widgets/cards/index.d.ts',
+    output: [{ file: 'widgets/cards.d.ts', format: 'esm' }],
+    plugins: [dts(), resolve()],
+    external: [/\.css$/]
+  },
+
+  {
+    input: 'utils/types/utils/index.d.ts',
+    output: [{ file: 'utils/index.d.ts', format: 'esm' }],
+    plugins: [dts(), resolve()]
   }
 ];

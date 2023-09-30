@@ -1,0 +1,63 @@
+:root {
+  --primary-b-900: #1d1e20;
+  --primary-bl-500: #266df0;
+  --primary-gr-400: #646567;
+  --primary-w-100: #fbfbfb;
+  --secondary-bl-300: #cbd9f4;
+  --secondary-bl-600: #0f52cf;
+  --secondary-gr-200: #ebebeb;
+}
+
+/* === Buttons === */
+
+.uix-x-button-primary,
+.uix-x-button-secondary {
+  --uix-buttons-button-height: 41px;
+  --uix-buttons-button-padding-x: 16px;
+  --uix-buttons-button-border-radius: 8px;
+  --uix-buttons-button-border: 2px solid var(--primary-bl-500);
+  --uix-buttons-button-border-hover: 2px solid var(--secondary-bl-600);
+  --uix-buttons-button-border-active: 2px solid var(--secondary-bl-600);
+  --uix-buttons-button-border-disabled: 2px solid var(--secondary-bl-300);
+  --uix-buttons-button-font-family: var(--fontPrimary);
+  --uix-buttons-button-font-size: 18px;
+}
+
+.uix-x-button-primary {
+  --uix-buttons-button-color: var(--primary-w-100);
+  --uix-buttons-button-color-hover: var(--primary-w-100);
+  --uix-buttons-button-color-active: var(--primary-w-100);
+  --uix-buttons-button-color-disabled: var(--primary-w-100);
+  --uix-buttons-button-background: var(--primary-bl-500);
+  --uix-buttons-button-background-hover: var(--primary-bl-500);
+  --uix-buttons-button-background-active: var(--primary-bl-500);
+  --uix-buttons-button-background-disabled: var(--secondary-bl-300);
+}
+
+.uix-x-button-secondary {
+  --uix-buttons-button-color: var(--primary-b-900);
+  --uix-buttons-button-color-hover: var(--secondary-bl-600);
+  --uix-buttons-button-color-active: var(--secondary-bl-600);
+  --uix-buttons-button-color-disabled: var(--primary-gr-400);
+  --uix-buttons-button-background: var(--primary-w-100);
+  --uix-buttons-button-background-hover: var(--primary-w-100);
+  --uix-buttons-button-background-active: var(--primary-w-100);
+  --uix-buttons-button-background-disabled: var(--primary-w-100);
+}
+
+/* === Cards === */
+
+.uix-x-card-side {
+  --uix-widget-card-simple-border-width: 2px;
+  --uix-widget-card-simple-border-color: var(--secondary-gr-200);
+  --uix-widget-card-simple-border-radius: 16px;
+  --uix-widget-card-simple-padding: 24px;
+  --uix-widget-card-simple-background: var(--primary-w-100);
+  --uix-widget-card-simple-header-font-family: var(--font-primary, sans-serif);
+  --uix-widget-card-simple-header-font-size: 18px;
+  --uix-widget-card-simple-header-font-weight: 600;
+  --uix-widget-card-simple-header-line-height: 140%;
+  --uix-widget-card-simple-header-text-align: left;
+  --uix-widget-card-simple-header-margin-bottom: 24px;
+  --uix-widget-card-simple-header-color: var(--primary-b-900);
+}
