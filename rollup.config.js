@@ -85,7 +85,7 @@ export default [
 
   {
     input: 'components/types/components/inputs/index.d.ts',
-    output: [{ file: 'components/buttons.d.ts', format: 'esm' }],
+    output: [{ file: 'components/TextFieldSimple.d.ts', format: 'esm' }],
     plugins: [dts(), resolve()],
     external: [/\.css$/]
   },

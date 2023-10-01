@@ -1,14 +1,13 @@
-:root {
+/* :root {
   --uix-inputs-text-field-simple-padding-x: 20px;
   --uix-inputs-text-field-simple-border: 1px solid black;
   --uix-inputs-text-field-simple-height: 200px;
   --uix-inputs-text-field-simple-margin-top: 20px;
-}
-/* 
+} */
+
 .uix-inputs-text-field-simple {
   padding: 0 var(--uix-inputs-text-field-simple-padding-x);
   border: var(--uix-inputs-text-field-simple-border, none);
   height: var(--uix-inputs-text-field-simple-height, auto);
-
   margin-top: var(--uix-inputs-text-field-simple-margin-top, 0);
-} */
+}

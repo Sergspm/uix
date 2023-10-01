@@ -1,21 +1,20 @@
-import React, { FC, SyntheticEvent } from 'react';
+import React, { ChangeEvent, FC, SyntheticEvent } from 'react';
 import './TextFieldSimple.css';
 
-type TCommonProps = {
+type TTextFieldSimple = {
   className?: string;
   placeholder?: string;
   label?: string;
   value?: string;
-  onChange?: (e: SyntheticEvent<HTMLInputElement>) => void;
+  onChange?: (value: string | null, event: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: SyntheticEvent<HTMLInputElement>) => void;
   onFocus?: (e: SyntheticEvent<HTMLInputElement>) => void;
   onClick?: (e: SyntheticEvent<HTMLInputElement>) => void;
 };
 
-export type TInputProps = TCommonProps;
-
-export const TextFieldSimple: FC<TInputProps> = (props) => {
+export const TextFieldSimple: FC<TTextFieldSimple> = (props) => {
   let className = 'uix-inputs-text-field-simple';
+  let classNameLabel = 'uix-inputs-text-field-simple-label';
 
   if (props.className) {
     className += ' ' + props.className;
@@ -23,13 +22,17 @@ export const TextFieldSimple: FC<TInputProps> = (props) => {
 
   return (
     <div className="uix-inputs-text-field-simple-wrapper">
-      <label>{props.label}</label>
+      {!!props.label && <label className={classNameLabel}>{props.label}</label>}
       <input
         placeholder={props.placeholder}
-        className={className}
+        className={`uix-inputs-text-field-simple ${className}`}
         onBlur={props.onBlur}
         onFocus={props.onFocus}
-        onChange={props.onChange}
+        onChange={(e) => {
+          if (props.onChange) {
+            props.onChange(e.target.value || null, e);
+          }
+        }}
         onClick={props.onClick}
       />
     </div>

@@ -1,5 +1,5 @@
-import { ChangeEvent, FC, SyntheticEvent } from 'react';
-import './TextFieldSimple.css';
+import { FC, ChangeEvent, SyntheticEvent } from 'react';
+
 type TTextFieldSimple = {
     className?: string;
     placeholder?: string;
@@ -10,5 +10,6 @@ type TTextFieldSimple = {
     onFocus?: (e: SyntheticEvent<HTMLInputElement>) => void;
     onClick?: (e: SyntheticEvent<HTMLInputElement>) => void;
 };
-export declare const TextFieldSimple: FC<TTextFieldSimple>;
-export {};
+declare const TextFieldSimple: FC<TTextFieldSimple>;
+
+export { TextFieldSimple };

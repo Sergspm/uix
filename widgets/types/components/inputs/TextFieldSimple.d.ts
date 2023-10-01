@@ -1,15 +1,14 @@
-import { FC, SyntheticEvent } from 'react';
+import { ChangeEvent, FC, SyntheticEvent } from 'react';
 import './TextFieldSimple.css';
-type TCommonProps = {
+type TTextFieldSimple = {
     className?: string;
     placeholder?: string;
     label?: string;
     value?: string;
-    onChange?: (e: SyntheticEvent<HTMLInputElement>) => void;
+    onChange?: (value: string | null, event: ChangeEvent<HTMLInputElement>) => void;
     onBlur?: (e: SyntheticEvent<HTMLInputElement>) => void;
     onFocus?: (e: SyntheticEvent<HTMLInputElement>) => void;
     onClick?: (e: SyntheticEvent<HTMLInputElement>) => void;
 };
-export type TInputProps = TCommonProps;
-export declare const TextFieldSimple: FC<TInputProps>;
+export declare const TextFieldSimple: FC<TTextFieldSimple>;
 export {};

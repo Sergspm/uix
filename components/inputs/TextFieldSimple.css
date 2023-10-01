@@ -1,8 +1,0 @@
-.uix-inputs-input-v1 {
-  padding: var(--uix-inputs-input-v1-padding-x);
-}
-
-:root {
-  --uix-inputs-input-v1-padding-y: 20px;
-  /* padding: var(--uix-inputs-input-v1-padding-x); */
-}

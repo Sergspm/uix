@@ -1,7 +1,0 @@
-.uix-inputs-text-field-simple {
-  padding: 0 var(--uix-inputs-text-field-simple-padding-x);
-  border: var(--uix-inputs-text-field-simple-border, none);
-  height: var(--uix-inputs-text-field-simple-height, auto);
-
-  margin-top: var(--uix-inputs-text-field-simple-margin-top, 0);
-}
