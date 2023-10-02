@@ -1,0 +1,21 @@
+/* :root {
+  --uix-steps-step-padding
+  --uix-steps-step-background
+  --uix-steps-step-border-radius
+  --uix-steps-step-border
+  --uix-steps-step-font-family: inherit;
+  --uix-steps-step-font-size: inherit;
+  --uix-steps-step-font-weight: inherit;
+  --uix-steps-step-text-transform: initial;
+} */
+
+.uix-steps-step-wrapper {
+  padding: var(--uix-steps-step-padding, 0);
+  background: var(--uix-steps-step-background, none);
+  border-radius: var(--uix-steps-step-border-radius, 0);
+  border: var(--uix-steps-step-border, none);
+  font-family: var(--uix-steps-step-font-family, inherit);
+  font-size: var(--uix-steps-step-font-size, inherit);
+  font-weight: var(--uix-steps-step-font-weight, inherit);
+  text-transform: var(--uix-steps-step-text-transform, initial);
+}
