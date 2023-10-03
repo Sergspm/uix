@@ -24,10 +24,10 @@ export default [
     ]
   },
   {
-    input: 'src/components/steps/index.ts',
+    input: 'src/components/testimonials/index.ts',
     output: [
       {
-        file: 'components/step.js',
+        file: 'components/testimonialstep.js',
         format: 'esm',
         sourcemap: true
       }
@@ -83,8 +83,8 @@ export default [
     external: [/\.css$/]
   },
   {
-    input: 'components/types/components/steps/index.d.ts',
-    output: [{ file: 'components/step.d.ts', format: 'esm' }],
+    input: 'components/types/components/testimonials/index.d.ts',
+    output: [{ file: 'components/testimonialstep.d.ts', format: 'esm' }],
     plugins: [dts(), resolve()],
     external: [/\.css$/]
   },

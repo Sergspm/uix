@@ -79,20 +79,27 @@ type TLink = React.ForwardRefExoticComponent<Omit<React.AnchorHTMLAttributes<HTM
     children?: React.ReactNode;
 } & React.RefAttributes<HTMLAnchorElement>>;
 
-type TCommonStep = {
-    children?: React.ReactNode;
+type TCommonTestimonials = {
+    nonActiveIcon?: React.ReactNode;
+    activeIcon?: React.ReactNode;
+    className?: string;
+    theme?: 'Делать' | 'Завершенный';
+    themeActive?: string;
+    description?: 'Подпишите контракт';
+    descriptionActive?: string;
+    active?: boolean;
     onClick?: (e: React.MouseEvent) => void;
 };
-type TNextLinkProps = TCommonStep & {
-    element: TLink;
-    href: Url;
+type TNextLinkProps = TCommonTestimonials & {
+    element?: TLink;
+    href?: Url;
 };
-type TAnchorElementProps = TCommonStep & {
+type TAnchorElementProps = TCommonTestimonials & {
     element?: 'a';
     href?: string;
     target?: '_blank';
 };
-type TStep = TNextLinkProps | TAnchorElementProps;
-declare const Step: React.FC<TStep>;
+type TTestimonials = TNextLinkProps | TAnchorElementProps;
+declare const TestimonialStep: React.FC<TTestimonials>;
 
-export { Step, type TStep };
+export { type TTestimonials, TestimonialStep };
