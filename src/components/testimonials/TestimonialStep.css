@@ -1,14 +1,3 @@
-/* :root {
-  --uix-testimonial-step-padding
-  --uix-testimonial-step-background
-  --uix-testimonial-step-border-radius
-  --uix-testimonial-step-border
-  --uix-testimonial-step-font-family: inherit;
-  --uix-testimonial-step-font-size: inherit;
-  --uix-testimonial-step-font-weight: inherit;
-  --uix-testimonial-step-text-transform: initial;
-} */
-
 .uix-testimonial-step-wrapper {
   padding: var(--uix-testimonial-step-padding, 0);
   background: var(--uix-testimonial-step-background, none);
