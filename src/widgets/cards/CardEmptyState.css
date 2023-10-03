@@ -5,11 +5,12 @@
   justify-content: center;
   width: var(--uix-widget-card-empty-state-width, 100%);
   height: var(--uix-widget-card-empty-state-height, auto);
+  padding: var(--uix-widget-card-empty-state-padding, 0);
+  margin: var(--uix-widget-card-empty-state-margin, 0);
   border-width: var(--uix-widget-card-empty-state-border-width, 0);
   border-style: var(--uix-widget-card-empty-state-border-style, solid);
   border-color: var(--uix-widget-card-empty-state-border-color, transparent);
   border-radius: var(--uix-widget-card-empty-state-border-radius, 0);
-  padding: var(--uix-widget-card-empty-state-padding, 0);
   background: var(--uix-widget-card-empty-state-background, transparent);
 }
 
