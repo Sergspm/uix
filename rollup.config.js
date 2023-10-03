@@ -23,6 +23,23 @@ export default [
       postcss({ plugins: [], extract: true })
     ]
   },
+  {
+    input: 'src/components/inputs/index.ts',
+    output: [
+      {
+        file: 'components/TextFieldSimple.js',
+        format: 'esm',
+        sourcemap: true
+      }
+    ],
+    plugins: [
+      peerDepsExternal(),
+      resolve(),
+      commonjs(),
+      typescript({ tsconfig: './tsconfig.json' }),
+      postcss({ plugins: [], extract: true })
+    ]
+  },
 
   {
     input: 'src/widgets/cards/index.ts',
@@ -62,6 +79,13 @@ export default [
   {
     input: 'components/types/components/buttons/index.d.ts',
     output: [{ file: 'components/buttons.d.ts', format: 'esm' }],
+    plugins: [dts(), resolve()],
+    external: [/\.css$/]
+  },
+
+  {
+    input: 'components/types/components/inputs/index.d.ts',
+    output: [{ file: 'components/TextFieldSimple.d.ts', format: 'esm' }],
     plugins: [dts(), resolve()],
     external: [/\.css$/]
   },
