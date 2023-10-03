@@ -15,34 +15,25 @@
   --uix-buttons-button-height: 41px;
   --uix-buttons-button-padding-x: 16px;
   --uix-buttons-button-border-radius: 8px;
-  --uix-buttons-button-border: 2px solid var(--primary-bl-500);
-  --uix-buttons-button-border-hover: 2px solid var(--secondary-bl-600);
-  --uix-buttons-button-border-active: 2px solid var(--secondary-bl-600);
-  --uix-buttons-button-border-disabled: 2px solid var(--secondary-bl-300);
+  --uix-buttons-button-border-width: 2px;
+  --uix-buttons-button-border-color: var(--primary-bl-500);
+  --uix-buttons-button-border-color-hover: var(--secondary-bl-600);
+  --uix-buttons-button-border-color-disabled: var(--secondary-bl-300);
   --uix-buttons-button-font-family: var(--fontPrimary);
   --uix-buttons-button-font-size: 18px;
 }
 
 .uix-x-button-primary {
   --uix-buttons-button-color: var(--primary-w-100);
-  --uix-buttons-button-color-hover: var(--primary-w-100);
-  --uix-buttons-button-color-active: var(--primary-w-100);
-  --uix-buttons-button-color-disabled: var(--primary-w-100);
   --uix-buttons-button-background: var(--primary-bl-500);
-  --uix-buttons-button-background-hover: var(--primary-bl-500);
-  --uix-buttons-button-background-active: var(--primary-bl-500);
   --uix-buttons-button-background-disabled: var(--secondary-bl-300);
 }
 
 .uix-x-button-secondary {
   --uix-buttons-button-color: var(--primary-b-900);
   --uix-buttons-button-color-hover: var(--secondary-bl-600);
-  --uix-buttons-button-color-active: var(--secondary-bl-600);
   --uix-buttons-button-color-disabled: var(--primary-gr-400);
   --uix-buttons-button-background: var(--primary-w-100);
-  --uix-buttons-button-background-hover: var(--primary-w-100);
-  --uix-buttons-button-background-active: var(--primary-w-100);
-  --uix-buttons-button-background-disabled: var(--primary-w-100);
 }
 
 /* === Cards === */

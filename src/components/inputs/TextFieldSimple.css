@@ -1,13 +1,67 @@
-/* :root {
-  --uix-inputs-text-field-simple-padding-x: 20px;
-  --uix-inputs-text-field-simple-border: 1px solid black;
-  --uix-inputs-text-field-simple-height: 200px;
-  --uix-inputs-text-field-simple-margin-top: 20px;
-} */
+/*
+// List of available variables with default values:
+
+:root {
+  --uix-inputs-text-field-simple-width: 100%;
+  --uix-inputs-text-field-simple-padding-x: 0;
+  --uix-inputs-text-field-simple-border-width: 0;
+  --uix-inputs-text-field-simple-border-style: solid;
+  --uix-inputs-text-field-simple-border-color: transparent;
+  --uix-inputs-text-field-simple-border-color-focus: transparent;
+  --uix-inputs-text-field-simple-height: auto;
+
+  --uix-inputs-text-field-simple-label-font-family: inherit;
+  --uix-inputs-text-field-simple-label-font-size: inherit;
+  --uix-inputs-text-field-simple-label-font-weight: inherit;
+  --uix-inputs-text-field-simple-label-margin-bottom: 0;
+
+  --uix-inputs-text-field-simple-input-background: transparent;
+  --uix-inputs-text-field-simple-input-font-family: inherit;
+  --uix-inputs-text-field-simple-input-font-size: inherit;
+  --uix-inputs-text-field-simple-input-font-weight: inherit;
+  --uix-inputs-text-field-simple-input-color: #000;
+  --uix-inputs-text-field-simple-input-color-focus: #000;
+  --uix-inputs-text-field-simple-input-color-placeholder: #000;
+}
+*/
 
 .uix-inputs-text-field-simple {
-  padding: 0 var(--uix-inputs-text-field-simple-padding-x);
-  border: var(--uix-inputs-text-field-simple-border, none);
+  display: block;
+  width: var(--uix-inputs-text-field-simple-width, 100%);
+}
+
+.uix-inputs-text-field-simple__label {
+  width: 100%;
+  display: block;
+  font-family: var(--uix-inputs-text-field-simple-label-font-family, inherit);
+  font-size: var(--uix-inputs-text-field-simple-label-font-size, inherit);
+  font-weight: var(--uix-inputs-text-field-simple-label-font-weight, inherit);
+  margin-bottom: var(--uix-inputs-text-field-simple-label-margin-bottom, 0);
+}
+
+.uix-inputs-text-field-simple__input {
+  width: 100%;
+  display: block;
+  padding: 0 var(--uix-inputs-text-field-simple-padding-x, 0);
   height: var(--uix-inputs-text-field-simple-height, auto);
-  margin-top: var(--uix-inputs-text-field-simple-margin-top, 0);
+  border-width: var(--uix-inputs-text-field-simple-border-width, 0);
+  border-style: var(--uix-inputs-text-field-simple-border-style, solid);
+  border-color: var(--uix-inputs-text-field-simple-border-color, transparent);
+  background: var(--uix-inputs-text-field-simple-input-background, transparent);
+  font-family: var(--uix-inputs-text-field-simple-input-font-family, inherit);
+  font-size: var(--uix-inputs-text-field-simple-input-font-size, inherit);
+  font-weight: var(--uix-inputs-text-field-simple-input-font-weight, inherit);
+  color: var(--uix-inputs-text-field-simple-input-color, #000);
+  transition:
+    color 0.3s,
+    border-color 0.3s;
+}
+
+.uix-inputs-text-field-simple__input:focus {
+  border-color: var(--uix-inputs-text-field-simple-border-color-focus, transparent);
+  color: var(--uix-inputs-text-field-simple-input-color-focus, #000);
+}
+
+.uix-inputs-text-field-simple__input::placeholder {
+  color: var(--uix-inputs-text-field-simple-input-color-placeholder, #00000077);
 }
