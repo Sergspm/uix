@@ -26,4 +26,3 @@ const Button = (props) => {
 };
 
 export { Button };
-//# sourceMappingURL=buttons.js.map

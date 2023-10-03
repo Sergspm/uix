@@ -5,100 +5,50 @@ import dts from 'rollup-plugin-dts';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 
-export default [
-  {
-    input: 'src/components/buttons/index.ts',
-    output: [
-      {
-        file: 'components/buttons.js',
-        format: 'esm',
-        sourcemap: true
-      }
-    ],
-    plugins: [
-      peerDepsExternal(),
-      resolve(),
-      commonjs(),
-      typescript({ tsconfig: './tsconfig.json' }),
-      postcss({ plugins: [], extract: true })
-    ]
-  },
-  {
-    input: 'src/components/testimonials/index.ts',
-    output: [
-      {
-        file: 'components/testimonialstep.js',
-        format: 'esm',
-        sourcemap: true
-      }
-    ],
-    plugins: [
-      peerDepsExternal(),
-      resolve(),
-      commonjs(),
-      typescript({ tsconfig: './tsconfig.json' }),
-      postcss({ plugins: [], extract: true })
-    ]
-  },
+const buildSections = [
+  { input: 'src/components/buttons/index.ts', output: 'components/buttons.js' },
+  { input: 'src/components/inputs/index.ts', output: 'components/inputs.js' },
+  { input: 'src/components/testimonials/index.ts', output: 'components/testimonials.js' },
+  { input: 'src/icons/index.ts', output: 'icons/inputs.js' },
+  { input: 'src/widgets/cards/index.ts', output: 'widgets/cards.js' },
+  { input: 'src/utils/index.ts', output: 'utils/index.js' }
+];
 
-  {
-    input: 'src/widgets/cards/index.ts',
-    output: [
-      {
-        file: 'widgets/cards.js',
-        format: 'esm',
-        sourcemap: true
-      }
-    ],
-    plugins: [
-      peerDepsExternal(),
-      resolve(),
-      commonjs(),
-      typescript({ tsconfig: './tsconfig.json' }),
-      postcss({ plugins: [], extract: true })
-    ]
-  },
-
-  {
-    input: 'src/utils/index.ts',
-    output: [
-      {
-        file: 'utils/index.js',
-        format: 'esm',
-        sourcemap: true
-      }
-    ],
-    plugins: [
-      peerDepsExternal(),
-      resolve(),
-      commonjs(),
-      typescript({ tsconfig: './tsconfig.json' })
-    ]
-  },
-
-  {
-    input: 'components/types/components/buttons/index.d.ts',
-    output: [{ file: 'components/buttons.d.ts', format: 'esm' }],
-    plugins: [dts(), resolve()],
-    external: [/\.css$/]
-  },
+const buildDefinitions = [
+  { input: 'components/types/components/buttons/index.d.ts', output: 'components/buttons.d.ts' },
+  { input: 'components/types/components/inputs/index.d.ts', output: 'components/inputs.d.ts' },
   {
     input: 'components/types/components/testimonials/index.d.ts',
-    output: [{ file: 'components/testimonialstep.d.ts', format: 'esm' }],
+    output: 'components/testimonials.d.ts'
+  },
+  { input: 'components/types/icons/index.d.ts', output: 'icons/inputs.d.ts' },
+  { input: 'widgets/types/widgets/cards/index.d.ts', output: 'widgets/cards.d.ts' },
+  { input: 'utils/types/utils/index.d.ts', output: 'utils/index.d.ts' }
+];
+
+export default [
+  ...buildSections.map(({ input, output }) => ({
+    input,
+    output: [
+      {
+        file: output,
+        format: 'esm',
+        sourcemap: false
+      }
+    ],
+    plugins: [
+      peerDepsExternal(),
+      resolve(),
+      commonjs(),
+      typescript({ tsconfig: './tsconfig.json' }),
+      postcss({ plugins: [], extract: true })
+    ]
+  })),
+
+  ...buildDefinitions.map(({ input, output }) => ({
+    input,
+    output: [{ file: output, format: 'esm' }],
     plugins: [dts(), resolve()],
     external: [/\.css$/]
-  },
-
-  {
-    input: 'widgets/types/widgets/cards/index.d.ts',
-    output: [{ file: 'widgets/cards.d.ts', format: 'esm' }],
-    plugins: [dts(), resolve()],
-    external: [/\.css$/]
-  },
-
-  {
-    input: 'utils/types/utils/index.d.ts',
-    output: [{ file: 'utils/index.d.ts', format: 'esm' }],
-    plugins: [dts(), resolve()]
-  }
+  }))
 ];

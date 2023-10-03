@@ -11,4 +11,3 @@ const CardSimple = (props) => {
 };
 
 export { CardSimple };
-//# sourceMappingURL=cards.js.map
