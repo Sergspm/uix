@@ -8,6 +8,7 @@ import postcss from 'rollup-plugin-postcss';
 const buildSections = [
   { input: 'src/components/buttons/index.ts', output: 'components/buttons.js' },
   { input: 'src/components/inputs/index.ts', output: 'components/inputs.js' },
+  { input: 'src/components/testimonials/index.ts', output: 'components/testimonials.js' },
   { input: 'src/icons/index.ts', output: 'icons/inputs.js' },
   { input: 'src/widgets/cards/index.ts', output: 'widgets/cards.js' },
   { input: 'src/utils/index.ts', output: 'utils/index.js' }
@@ -16,6 +17,10 @@ const buildSections = [
 const buildDefinitions = [
   { input: 'components/types/components/buttons/index.d.ts', output: 'components/buttons.d.ts' },
   { input: 'components/types/components/inputs/index.d.ts', output: 'components/inputs.d.ts' },
+  {
+    input: 'components/types/components/testimonials/index.d.ts',
+    output: 'components/testimonials.d.ts'
+  },
   { input: 'components/types/icons/index.d.ts', output: 'icons/inputs.d.ts' },
   { input: 'widgets/types/widgets/cards/index.d.ts', output: 'widgets/cards.d.ts' },
   { input: 'utils/types/utils/index.d.ts', output: 'utils/index.d.ts' }

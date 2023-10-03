@@ -1,0 +1,46 @@
+/* :root {
+  --uix-testimonial-step-padding
+  --uix-testimonial-step-background
+  --uix-testimonial-step-border-radius
+  --uix-testimonial-step-border
+  --uix-testimonial-step-font-family: inherit;
+  --uix-testimonial-step-font-size: inherit;
+  --uix-testimonial-step-font-weight: inherit;
+  --uix-testimonial-step-text-transform: initial;
+} */
+
+.uix-testimonial-step-wrapper {
+  padding: var(--uix-testimonial-step-padding, 0);
+  background: var(--uix-testimonial-step-background, none);
+  border-radius: var(--uix-testimonial-step-border-radius, 0);
+  border: var(--uix-testimonial-step-border, none);
+  font-family: var(--uix-testimonial-step-font-family, inherit);
+  font-size: var(--uix-testimonial-step-font-size, inherit);
+  font-weight: var(--uix-testimonial-step-font-weight, inherit);
+  text-transform: var(--uix-testimonial-step-text-transform, initial);
+  display: var(--uix-testimonial-step-display, block);
+}
+
+.uix-testimonial-step-wrapper--active {
+  border: var(--uix-testimonial-step-border-active, none);
+}
+
+.uix-testimonial-step-theme {
+  color: var(--uix-testimonial-step-color, inherit);
+  margin-bottom: 0 0 var(--uix-testimonial-step-margin-bottom, 0) 0;
+}
+
+.uix-testimonial-step-theme--active {
+  color: var(--uix-testimonial-step-color, inherit);
+  margin-bottom: 0 0 var(--uix-testimonial-step-margin-bottom, 0) 0;
+}
+
+.uix-testimonial-step-description {
+  color: var(--uix-testimonial-step-color, inherit);
+  font-weight: var(--uix-testimonial-step-font-weight, inherit);
+}
+
+.uix-testimonial-step-description--active {
+  color: var(--uix-testimonial-step-color, inherit);
+  font-weight: var(--uix-testimonial-step-font-weight, inherit);
+}
