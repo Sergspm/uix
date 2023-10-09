@@ -1,0 +1,15 @@
+.uix-feature-market-amount-calculation-card-simple {
+  position: relative;
+}
+
+.uix-fm-amount-calculation-card__input {
+  margin-bottom: 1.5em;
+}
+
+.uix-fm-amount-calculation-card__calculation {
+  margin-bottom: 1em;
+}
+
+.uix-fm-amount-calculation-card__button {
+  width: 100%;
+}

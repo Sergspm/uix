@@ -3,7 +3,6 @@ import React from 'react';
 const TestimonialStep = (props) => {
     var _a;
     let className = 'uix-testimonial-step-wrapper';
-    // @ts-ignore
     const Element = (_a = props.element) !== null && _a !== void 0 ? _a : 'div';
     const href = props.href;
     if (props.active) {
@@ -11,7 +10,7 @@ const TestimonialStep = (props) => {
     }
     return (
     // @ts-ignore
-    React.createElement(Element, { href: href || '#', className: className, onClick: props.onClick },
+    React.createElement(Element, { className: className, href: href || '#', onClick: props.onClick },
         props.activeIcon && props.activeIcon,
         props.nonActiveIcon && props.nonActiveIcon,
         React.createElement("div", null,

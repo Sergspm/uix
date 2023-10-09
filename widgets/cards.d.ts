@@ -1,16 +1,16 @@
 import { ReactNode, FC } from 'react';
 
 type TCardEmptyStateProps = {
-    label?: ReactNode;
-    description?: ReactNode;
     className?: string;
+    description?: ReactNode;
+    label?: ReactNode;
 };
 declare const CardEmptyState: FC<TCardEmptyStateProps>;
 
 type TCardSimpleProps = {
     children?: ReactNode;
-    header?: ReactNode;
     className?: string;
+    header?: ReactNode;
 };
 declare const CardSimple: FC<TCardSimpleProps>;
 

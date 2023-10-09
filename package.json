@@ -10,8 +10,8 @@
   "scripts": {
     "rollup": "rollup -c",
     "build": "npm run clean:before && npm run rollup && npm run clean:after",
-    "clean:before": "rm -rf components utils widgets",
-    "clean:after": "rm -rf components/types icons/types utils/types widgets/types",
+    "clean:before": "rm -rf components features icons utils widgets",
+    "clean:after": "rm -rf components/types features/types icons/types utils/types widgets/types",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix"
   },
@@ -33,13 +33,13 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "25.0.4",
-    "@rollup/plugin-node-resolve": "15.2.1",
-    "@rollup/plugin-typescript": "11.1.4",
-    "@types/node": "20.8.2",
-    "@types/react": "18.2.24",
+    "@rollup/plugin-commonjs": "25.0.5",
+    "@rollup/plugin-node-resolve": "15.2.3",
+    "@rollup/plugin-typescript": "11.1.5",
+    "@types/node": "20.8.3",
+    "@types/react": "18.2.25",
     "@typescript-eslint/eslint-plugin": "6.7.4",
-    "eslint": "8.50.0",
+    "eslint": "8.51.0",
     "eslint-config-google": "0.14.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-import": "2.28.1",
@@ -53,8 +53,8 @@
     "prettier": "3.0.3",
     "prettier-plugin-organize-imports": "3.2.3",
     "react": "18.2.0",
-    "rollup": "3.29.4",
-    "rollup-plugin-dts": "6.0.2",
+    "rollup": "4.0.2",
+    "rollup-plugin-dts": "6.1.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "rollup-plugin-postcss": "4.0.2",
     "typescript": "5.2.2"

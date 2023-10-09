@@ -3,9 +3,9 @@ import React, { FC, ReactNode } from 'react';
 import './CardEmptyState.css';
 
 export type TCardEmptyStateProps = {
-  label?: ReactNode;
-  description?: ReactNode;
   className?: string;
+  description?: ReactNode;
+  label?: ReactNode;
 };
 
 export const CardEmptyState: FC<TCardEmptyStateProps> = (props) => {

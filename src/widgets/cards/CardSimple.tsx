@@ -4,8 +4,8 @@ import './CardSimple.css';
 
 export type TCardSimpleProps = {
   children?: ReactNode;
-  header?: ReactNode;
   className?: string;
+  header?: ReactNode;
 };
 
 export const CardSimple: FC<TCardSimpleProps> = (props) => {
