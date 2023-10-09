@@ -1,8 +1,7 @@
-import { useState, createElement } from 'react';
+import { createElement } from 'react';
 
 const Button = (props) => {
     var _a;
-    useState();
     let className = 'uix-buttons-button';
     // @ts-ignore
     const element = (_a = props.element) !== null && _a !== void 0 ? _a : 'button';

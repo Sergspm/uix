@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, useState } from 'react';
 
 import { Button } from '../../components/buttons';
 import { TextFieldSimple } from '../../components/inputs';
@@ -42,17 +42,14 @@ const calculate = (amountSelected: string, amountAvailable?: number, price?: num
   return null;
 };
 
-const preset = (name: string, props: Partial<TAmountCalculationCardProps>) => {
+export const preset = (name: string, props: Partial<TAmountCalculationCardProps>) => {
   presets[name] = props;
 };
 
-const amountSelected = '';
-const setAmountSelected = () => {};
+export const AmountCalculationCard: FC<TAmountCalculationCardProps> = (p) => {
+  const props = p.preset && p.preset in presets ? { ...presets[p.preset], ...p } : p;
 
-export const AmountCalculationCard: FC<TAmountCalculationCardProps> = (props) => {
-  // const [amountSelected, setAmountSelected] = useState('');
-
-  // const props = p.preset && p.preset in presets ? { ...presets[p.preset], ...p } : p;
+  const [amountSelected, setAmountSelected] = useState('');
 
   const calculation = calculate(amountSelected, props.amountAvailable, props.price);
 
@@ -76,9 +73,11 @@ export const AmountCalculationCard: FC<TAmountCalculationCardProps> = (props) =>
     <CardSimple className={className} header={props.header}>
       <TextFieldSimple
         className={classNameInput}
-        hideNumberArrows
         label={props.inputLabel}
-        onChange={setAmountSelected}
+        onChange={(v) => {
+          console.log('>>>>>>V', v);
+          setAmountSelected(v);
+        }}
         placeholder={props.inputPlaceholder}
         value={amountSelected}
       />

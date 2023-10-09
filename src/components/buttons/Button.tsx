@@ -1,4 +1,4 @@
-import { FC, MouseEvent, ReactNode, createElement, useState } from 'react';
+import { FC, MouseEvent, ReactNode, createElement } from 'react';
 
 import type { TLink, Url } from '../../types/nextjs/link';
 
@@ -39,7 +39,6 @@ export type TButtonProps =
   | TButtonElementProps;
 
 export const Button: FC<TButtonProps> = (props) => {
-  const [] = useState();
   let className = 'uix-buttons-button';
   // @ts-ignore
   const element = props.element ?? 'button';

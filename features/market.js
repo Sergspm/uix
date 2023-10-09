@@ -1,8 +1,7 @@
-import React, { useState, createElement } from 'react';
+import React, { createElement, useState } from 'react';
 
 const Button = (props) => {
     var _a;
-    useState();
     let className = 'uix-buttons-button';
     // @ts-ignore
     const element = (_a = props.element) !== null && _a !== void 0 ? _a : 'button';
@@ -58,6 +57,7 @@ const CardSimple = (props) => {
         props.children));
 };
 
+const presets = {};
 const calculate = (amountSelected, amountAvailable, price) => {
     if (amountSelected !== '' && amountAvailable && amountAvailable > 0 && price && price > 0) {
         const amountRaw = parseInt(amountSelected);
@@ -70,11 +70,12 @@ const calculate = (amountSelected, amountAvailable, price) => {
     }
     return null;
 };
-const amountSelected = '';
-const setAmountSelected = () => { };
-const AmountCalculationCard = (props) => {
-    // const [amountSelected, setAmountSelected] = useState('');
-    // const props = p.preset && p.preset in presets ? { ...presets[p.preset], ...p } : p;
+const preset = (name, props) => {
+    presets[name] = props;
+};
+const AmountCalculationCard = (p) => {
+    const props = p.preset && p.preset in presets ? Object.assign(Object.assign({}, presets[p.preset]), p) : p;
+    const [amountSelected, setAmountSelected] = useState('');
     const calculation = calculate(amountSelected, props.amountAvailable, props.price);
     let className = 'uix-fm-amount-calculation-card';
     let classNameInput = 'uix-fm-amount-calculation-card__input';
@@ -89,7 +90,10 @@ const AmountCalculationCard = (props) => {
         classNameButton += ' ' + props.classNameButton;
     }
     return (React.createElement(CardSimple, { className: className, header: props.header },
-        React.createElement(TextFieldSimple, { className: classNameInput, hideNumberArrows: true, label: props.inputLabel, onChange: setAmountSelected, placeholder: props.inputPlaceholder, value: amountSelected }),
+        React.createElement(TextFieldSimple, { className: classNameInput, label: props.inputLabel, onChange: (v) => {
+                console.log('>>>>>>V', v);
+                setAmountSelected(v);
+            }, placeholder: props.inputPlaceholder, value: amountSelected }),
         calculation && (React.createElement("div", { className: "uix-fm-amount-calculation-card__calculation" },
             React.createElement("div", { className: "uix-fm-amount-calculation-card__calculation-row" },
                 React.createElement("div", { className: "uix-fm-amount-calculation-card__calculation-label" }, props.amountLabel),
@@ -102,4 +106,4 @@ const AmountCalculationCard = (props) => {
         React.createElement(Button, { className: classNameButton, disabled: !calculation || !calculation.amount, onClick: props.onButtonClick }, props.buttonText)));
 };
 
-export { AmountCalculationCard };
+export { AmountCalculationCard, preset };
