@@ -3,9 +3,14 @@
   "version": "0.1.0",
   "description": "UI eXtended library",
   "type": "module",
-  "main": "components/inputs.js",
   "files": [
-    "dist"
+    "assets",
+    "components",
+    "features",
+    "icons",
+    "src",
+    "utils",
+    "widgets"
   ],
   "types": "dist/index.d.ts",
   "scripts": {
