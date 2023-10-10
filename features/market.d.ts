@@ -15,7 +15,6 @@ type TAmountCalculationCardProps = {
     price?: number;
     sumLabel?: string;
 };
-declare const preset: (name: string, props: Partial<TAmountCalculationCardProps>) => void;
 declare const AmountCalculationCard: FC<TAmountCalculationCardProps>;
 
-export { AmountCalculationCard, type TAmountCalculationCardProps, preset };
+export { AmountCalculationCard, type TAmountCalculationCardProps };

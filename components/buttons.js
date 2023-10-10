@@ -1,15 +1,17 @@
 import { createElement } from 'react';
 
-const Button = (props) => {
+const presetsButton = {};
+const Button = (p) => {
     var _a;
-    let className = 'uix-buttons-button';
+    const props = p.preset && p.preset in presetsButton ? Object.assign(Object.assign({}, presetsButton[p.preset]), p) : p;
+    let className = 'uix-component-button-button';
     // @ts-ignore
     const element = (_a = props.element) !== null && _a !== void 0 ? _a : 'button';
     if (props.active) {
-        className += ' uix-buttons-button--active';
+        className += ' uix-component-button-button--active';
     }
     if (props.disabled) {
-        className += ' uix-buttons-button--disabled';
+        className += ' uix-component-button-button--disabled';
     }
     if (props.className) {
         className += ' ' + props.className;
@@ -25,4 +27,4 @@ const Button = (props) => {
     }, props.children);
 };
 
-export { Button };
+export { Button, presetsButton };

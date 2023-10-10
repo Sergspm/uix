@@ -1,25 +1,27 @@
 import React from 'react';
 
-const TextFieldSimple = (props) => {
-    let className = 'uix-inputs-text-field-simple';
+const presetsTextField = {};
+const TextField = (p) => {
+    const props = p.preset && p.preset in presetsTextField ? Object.assign(Object.assign({}, presetsTextField[p.preset]), p) : p;
+    let className = 'uix-component-input-text-field';
     let inputType = props.type || 'text';
     if (props.disabled) {
-        className += ' uix-inputs-text-field-simple--disabled';
+        className += ' uix-component-input-text-field--disabled';
     }
     if (props.hideNumberArrows) {
-        className += ' uix-inputs-text-field-simple--without-arrows';
+        className += ' uix-component-input-text-field--without-arrows';
         inputType = 'number';
     }
     if (props.className) {
         className += ' ' + props.className;
     }
     return (React.createElement("div", { className: className },
-        Boolean(props.label) && (React.createElement("label", { className: "uix-inputs-text-field-simple__label" }, props.label)),
-        React.createElement("input", { className: "uix-inputs-text-field-simple__input", disabled: props.disabled, onBlur: props.onBlur, onClick: props.onClick, onFocus: props.onFocus, placeholder: props.placeholder, type: inputType, value: props.value, onChange: (e) => {
+        Boolean(props.label) && (React.createElement("label", { className: "uix-component-input-text-field__label" }, props.label)),
+        React.createElement("input", { className: "uix-component-input-text-field__input", disabled: props.disabled, onBlur: props.onBlur, onClick: props.onClick, onFocus: props.onFocus, placeholder: props.placeholder, type: inputType, value: props.value, onChange: (e) => {
                 if (props.onChange) {
                     props.onChange(e.target.value, e);
                 }
             } })));
 };
 
-export { TextFieldSimple };
+export { TextField };

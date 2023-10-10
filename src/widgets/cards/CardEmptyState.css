@@ -1,32 +1,24 @@
-.uix-widget-card-empty-state {
+.uix-widget-card-card-empty-state {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: var(--uix-widget-card-empty-state-width, 100%);
-  height: var(--uix-widget-card-empty-state-height, auto);
-  padding: var(--uix-widget-card-empty-state-padding, 0);
-  margin: var(--uix-widget-card-empty-state-margin, 0);
-  border-width: var(--uix-widget-card-empty-state-border-width, 0);
-  border-style: var(--uix-widget-card-empty-state-border-style, solid);
-  border-color: var(--uix-widget-card-empty-state-border-color, transparent);
-  border-radius: var(--uix-widget-card-empty-state-border-radius, 0);
-  background: var(--uix-widget-card-empty-state-background, transparent);
+  width: 100%;
 }
 
-.uix-widget-card-empty-state__label {
-  font-family: var(--uix-widget-card-empty-state-label-font-family, inherit);
-  font-size: var(--uix-widget-card-empty-state-label-font-size, inherit);
-  font-weight: var(--uix-widget-card-empty-state-label-font-weight, inherit);
-  line-height: var(--uix-widget-card-empty-state-label-line-height, initial);
-  margin-bottom: var(--uix-widget-card-empty-state-label-margin-bottom, 0);
-  color: var(--uix-widget-card-empty-state-label-color, inherit);
+.uix-widget-card-card-empty-state__label {
+  font-family: var(--label-font-family, inherit);
+  font-size: var(--label-font-size, inherit);
+  font-weight: var(--label-font-weight, inherit);
+  line-height: var(--label-line-height, initial);
+  margin-bottom: var(--label-margin-bottom, 0);
+  color: var(--label-color, inherit);
 }
 
-.uix-widget-card-empty-state__description {
-  font-family: var(--uix-widget-card-empty-state-description-font-family, inherit);
-  font-size: var(--uix-widget-card-empty-state-description-font-size, inherit);
-  font-weight: var(--uix-widget-card-empty-state-description-font-weight, inherit);
-  line-height: var(--uix-widget-card-empty-state-description-line-height, initial);
-  color: var(--uix-widget-card-empty-state-description-color, inherit);
+.uix-widget-card-card-empty-state__description {
+  font-family: var(--description-font-family, inherit);
+  font-size: var(--description-font-size, inherit);
+  font-weight: var(--description-font-weight, inherit);
+  line-height: var(--description-line-height, initial);
+  color: var(--description-color, inherit);
 }

@@ -1,197 +1,140 @@
-.uix-buttons-button {
+.uix-component-button-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--uix-buttons-button-width, auto);
-  height: var(--uix-buttons-button-height, auto);
-  padding: 0 var(--uix-buttons-button-padding-x, 0);
-  border-width: var(--uix-buttons-button-border-width, 0);
-  border-style: var(--uix-buttons-button-border-style, solid);
-  border-color: var(--uix-buttons-button-border-color, transparent);
-  border-radius: var(--uix-buttons-button-border-radius, 0);
-  color: var(--uix-buttons-button-color, #000);
-  background: var(--uix-buttons-button-background, transparent);
-  cursor: var(--uix-buttons-button-cursor, pointer);
-  transition: var(
-    --uix-buttons-button-transition,
+  width: fit-content;
+  border: none;
+  color: #000;
+  background: transparent;
+  cursor: pointer;
+  transition:
     color 0.3s,
     background-color 0.3s,
-    border-color 0.3s
-  );
-  font-family: var(--uix-buttons-button-font-family, inherit);
-  font-size: var(--uix-buttons-button-font-size, inherit);
-  font-weight: var(--uix-buttons-button-font-weight, inherit);
-  text-transform: var(--uix-buttons-button-text-transform, initial);
+    border-color 0.3s;
 }
 
-.uix-buttons-button:hover {
-  border-color: var(
-    --uix-buttons-button-border-color-hover,
-    var(--uix-buttons-button-border-color, transparent)
-  );
-  color: var(--uix-buttons-button-color-hover, var(--uix-buttons-button-color, #000));
-  background: var(
-    --uix-buttons-button-background-hover,
-    var(--uix-buttons-button-background, transparent)
-  );
+.uix-component-button-button:hover {
+  border: var(--border-hover, none);
+  color: var(--color-hover, #000);
+  background: var(--background-hover, transparent);
 }
 
-.uix-buttons-button:active,
-.uix-buttons-button--active {
-  border-color: var(
-    --uix-buttons-button-border-color-active,
-    var(
-      --uix-buttons-button-border-color-hover,
-      var(--uix-buttons-button-border-color, transparent)
-    )
-  );
-  color: var(
-    --uix-buttons-button-color-active,
-    var(--uix-buttons-button-color-hover, var(--uix-buttons-button-color, #000))
-  );
-  background: var(
-    --uix-buttons-button-background-active,
-    var(--uix-buttons-button-background-hover, var(--uix-buttons-button-background, transparent))
-  );
+.uix-component-button-button:active,
+.uix-component-button-button--active {
+  border: var(--border-active, var(--border-hover, none));
+  color: var(--color-active, var(--color-hover, #000));
+  background: var(--background-active, var(--background-hover, transparent));
 }
 
-.uix-buttons-button:disabled,
-.uix-buttons-button--disabled {
-  border-color: var(
-    --uix-buttons-button-border-color-disabled,
-    var(--uix-buttons-button-border-color, transparent)
-  );
-  color: var(--uix-buttons-button-color-disabled, var(--uix-buttons-button-color, #000));
-  background: var(
-    --uix-buttons-button-background-disabled,
-    var(--uix-buttons-button-background, transparent)
-  );
+.uix-component-button-button:disabled,
+.uix-component-button-button--disabled {
+  border: var(--border-disabled, transparent);
+  color: var(--color-disabled #000);
+  background: var(--background-disabled, transparent);
   cursor: default;
   pointer-events: none;
 }
 
-.uix-inputs-text-field-simple {
+.uix-component-input-text-field {
   display: block;
-  width: var(--uix-inputs-text-field-simple-width, 100%);
+  width: var(--width, 100%);
 }
 
-.uix-inputs-text-field-simple__label {
+.uix-component-input-text-field__label {
   width: 100%;
   display: block;
-  font-family: var(--uix-inputs-text-field-simple-label-font-family, inherit);
-  font-size: var(--uix-inputs-text-field-simple-label-font-size, inherit);
-  font-style: var(--uix-inputs-text-field-simple-label-font-style, inherit);
-  font-weight: var(--uix-inputs-text-field-simple-label-font-weight, inherit);
-  color: var(--uix-inputs-text-field-simple-label-color, #000);
-  margin-bottom: var(--uix-inputs-text-field-simple-label-margin-bottom, 0);
+  font-family: var(--label-font-family, inherit);
+  font-size: var(--label-font-size, inherit);
+  font-style: var(--label-font-style, inherit);
+  font-weight: var(--label-font-weight, inherit);
+  color: var(--label-color, #000);
+  margin-bottom: var(--label-margin-bottom, 0);
 }
 
-.uix-inputs-text-field-simple__input {
+.uix-component-input-text-field__input {
   width: 100%;
   display: block;
-  padding: 0 var(--uix-inputs-text-field-simple-padding-x, 0);
-  height: var(--uix-inputs-text-field-simple-height, auto);
-  border-width: var(--uix-inputs-text-field-simple-border-width, 0);
-  border-style: var(--uix-inputs-text-field-simple-border-style, solid);
-  border-color: var(--uix-inputs-text-field-simple-border-color, transparent);
-  border-radius: var(--uix-inputs-text-field-simple-border-radius, 0);
-  background: var(--uix-inputs-text-field-simple-background, transparent);
-  font-family: var(--uix-inputs-text-field-simple-font-family, inherit);
-  font-size: var(--uix-inputs-text-field-simple-font-size, inherit);
-  font-weight: var(--uix-inputs-text-field-simple-font-weight, inherit);
-  text-align: var(--uix-inputs-text-field-simple-text-align, left);
-  color: var(--uix-inputs-text-field-simple-color, #000);
+  padding: 0 var(--input-padding-x, 0);
+  height: var(--input-height, auto);
+  border: var(--input-border, none);
+  border-radius: var(--input-border-radius, 0);
+  background: var(--input-background, transparent);
+  font-family: var(--input-font-family, inherit);
+  font-size: var(--input-font-size, inherit);
+  font-weight: var(--input-font-weight, inherit);
+  text-align: var(--input-text-align, left);
+  color: var(--input-color, #000);
   transition:
     color 0.3s,
     border-color 0.3s;
 }
 
-.uix-inputs-text-field-simple__input:hover {
-  border-color: var(
-    --uix-inputs-text-field-simple-border-color-hover,
-    var(--uix-inputs-text-field-simple-border-color, transparent)
-  );
-  color: var(
-    --uix-inputs-text-field-simple-color-hover,
-    var(--uix-inputs-text-field-simple-color, #000)
-  );
+.uix-component-input-text-field__input:hover {
+  border: var(--input-border-hover, var(--input-border-focus, var(--input-border, none)));
+  color: var(--input-color-hover, var(--input-color-focus, var(--input-color, #000)));
 }
 
-.uix-inputs-text-field-simple__input:focus {
-  border-color: var(--uix-inputs-text-field-simple-border-color-focus, transparent);
-  color: var(--uix-inputs-text-field-simple-color-focus, #000);
+.uix-component-input-text-field__input:focus {
+  border: var(--input-border-focus, var(--input-border, none));
+  color: var(--input-color-focus, var(--input-color, #000));
 }
 
-.uix-inputs-text-field-simple__input::placeholder {
-  color: var(--uix-inputs-text-field-simple-color-placeholder, #00000077);
+.uix-component-input-text-field__input::placeholder {
+  color: var(--input-color-placeholder, #00000077);
 }
 
-.uix-inputs-text-field-simple--without-arrows .uix-inputs-text-field-simple__input {
+.uix-component-input-text-field--without-arrows .uix-component-input-text-field__input {
   -moz-appearance: textfield;
   appearance: textfield;
 }
 
-.uix-inputs-text-field-simple--without-arrows
-  .uix-inputs-text-field-simple__input::-webkit-outer-spin-button,
-.uix-inputs-text-field-simple--without-arrows
-  .uix-inputs-text-field-simple__input::-webkit-inner-spin-button {
+.uix-component-input-text-field--without-arrows
+  .uix-component-input-text-field__input::-webkit-outer-spin-button,
+.uix-component-input-text-field--without-arrows
+  .uix-component-input-text-field__input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.uix-widget-card-empty-state {
+.uix-widget-card-card {
+  display: block;
+  width: 100%;
+}
+
+.uix-widget-card-card__header {
+  display: block;
+  font-family: var(--header-font-family, inherit);
+  font-size: var(--header-font-size, inherit);
+  font-weight: var(--header-font-weight, inherit);
+  line-height: var(--header-line-height, initial);
+  text-align: var(--header-text-align, inherit);
+  margin-bottom: var(--header-margin-bottom, 0);
+  color: var(--header-color, inherit);
+}
+
+.uix-widget-card-card-empty-state {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: var(--uix-widget-card-empty-state-width, 100%);
-  height: var(--uix-widget-card-empty-state-height, auto);
-  padding: var(--uix-widget-card-empty-state-padding, 0);
-  margin: var(--uix-widget-card-empty-state-margin, 0);
-  border-width: var(--uix-widget-card-empty-state-border-width, 0);
-  border-style: var(--uix-widget-card-empty-state-border-style, solid);
-  border-color: var(--uix-widget-card-empty-state-border-color, transparent);
-  border-radius: var(--uix-widget-card-empty-state-border-radius, 0);
-  background: var(--uix-widget-card-empty-state-background, transparent);
+  width: 100%;
 }
 
-.uix-widget-card-empty-state__label {
-  font-family: var(--uix-widget-card-empty-state-label-font-family, inherit);
-  font-size: var(--uix-widget-card-empty-state-label-font-size, inherit);
-  font-weight: var(--uix-widget-card-empty-state-label-font-weight, inherit);
-  line-height: var(--uix-widget-card-empty-state-label-line-height, initial);
-  margin-bottom: var(--uix-widget-card-empty-state-label-margin-bottom, 0);
-  color: var(--uix-widget-card-empty-state-label-color, inherit);
+.uix-widget-card-card-empty-state__label {
+  font-family: var(--label-font-family, inherit);
+  font-size: var(--label-font-size, inherit);
+  font-weight: var(--label-font-weight, inherit);
+  line-height: var(--label-line-height, initial);
+  margin-bottom: var(--label-margin-bottom, 0);
+  color: var(--label-color, inherit);
 }
 
-.uix-widget-card-empty-state__description {
-  font-family: var(--uix-widget-card-empty-state-description-font-family, inherit);
-  font-size: var(--uix-widget-card-empty-state-description-font-size, inherit);
-  font-weight: var(--uix-widget-card-empty-state-description-font-weight, inherit);
-  line-height: var(--uix-widget-card-empty-state-description-line-height, initial);
-  color: var(--uix-widget-card-empty-state-description-color, inherit);
-}
-
-.uix-widget-card-simple {
-  display: block;
-  width: var(--uix-widget-card-simple-width, 100%);
-  border-width: var(--uix-widget-card-simple-border-width, 0);
-  border-style: var(--uix-widget-card-simple-border-style, solid);
-  border-color: var(--uix-widget-card-simple-border-color, transparent);
-  border-radius: var(--uix-widget-card-simple-border-radius, 0);
-  padding: var(--uix-widget-card-simple-padding, 0);
-  background: var(--uix-widget-card-simple-background, transparent);
-}
-
-.uix-widget-card-simple__header {
-  display: block;
-  font-family: var(--uix-widget-card-simple-header-font-family, inherit);
-  font-size: var(--uix-widget-card-simple-header-font-size, inherit);
-  font-weight: var(--uix-widget-card-simple-header-font-weight, inherit);
-  line-height: var(--uix-widget-card-simple-header-line-height, initial);
-  text-align: var(--uix-widget-card-simple-header-text-align, inherit);
-  margin-bottom: var(--uix-widget-card-simple-header-margin-bottom, 0);
-  color: var(--uix-widget-card-simple-header-color, inherit);
+.uix-widget-card-card-empty-state__description {
+  font-family: var(--description-font-family, inherit);
+  font-size: var(--description-font-size, inherit);
+  font-weight: var(--description-font-weight, inherit);
+  line-height: var(--description-line-height, initial);
+  color: var(--description-color, inherit);
 }
 
 .uix-feature-market-amount-calculation-card-simple {

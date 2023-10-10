@@ -1,8 +1,8 @@
 import React, { ChangeEvent, FC, SyntheticEvent } from 'react';
 
-import './TextFieldSimple.css';
+import './TextField.css';
 
-type TTextFieldSimpleProps = {
+type TTextFieldProps = {
   className?: string;
   disabled?: boolean;
   hideNumberArrows?: boolean;
@@ -14,18 +14,24 @@ type TTextFieldSimpleProps = {
   placeholder?: string;
   type?: 'text' | 'number';
   value?: string | number;
+  preset?: string;
 };
 
-export const TextFieldSimple: FC<TTextFieldSimpleProps> = (props) => {
-  let className = 'uix-inputs-text-field-simple';
+const presetsTextField: Record<string, Partial<TTextFieldProps>> = {};
+
+export const TextField: FC<TTextFieldProps> = (p) => {
+  const props =
+    p.preset && p.preset in presetsTextField ? { ...presetsTextField[p.preset], ...p } : p;
+
+  let className = 'uix-component-input-text-field';
   let inputType = props.type || 'text';
 
   if (props.disabled) {
-    className += ' uix-inputs-text-field-simple--disabled';
+    className += ' uix-component-input-text-field--disabled';
   }
 
   if (props.hideNumberArrows) {
-    className += ' uix-inputs-text-field-simple--without-arrows';
+    className += ' uix-component-input-text-field--without-arrows';
     inputType = 'number';
   }
 
@@ -36,11 +42,11 @@ export const TextFieldSimple: FC<TTextFieldSimpleProps> = (props) => {
   return (
     <div className={className}>
       {Boolean(props.label) && (
-        <label className="uix-inputs-text-field-simple__label">{props.label}</label>
+        <label className="uix-component-input-text-field__label">{props.label}</label>
       )}
 
       <input
-        className="uix-inputs-text-field-simple__input"
+        className="uix-component-input-text-field__input"
         disabled={props.disabled}
         onBlur={props.onBlur}
         onClick={props.onClick}

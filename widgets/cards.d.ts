@@ -1,5 +1,12 @@
 import { ReactNode, FC } from 'react';
 
+type TCardProps = {
+    children?: ReactNode;
+    className?: string;
+    header?: ReactNode;
+};
+declare const Card: FC<TCardProps>;
+
 type TCardEmptyStateProps = {
     className?: string;
     description?: ReactNode;
@@ -7,11 +14,4 @@ type TCardEmptyStateProps = {
 };
 declare const CardEmptyState: FC<TCardEmptyStateProps>;
 
-type TCardSimpleProps = {
-    children?: ReactNode;
-    className?: string;
-    header?: ReactNode;
-};
-declare const CardSimple: FC<TCardSimpleProps>;
-
-export { CardEmptyState, CardSimple, type TCardEmptyStateProps, type TCardSimpleProps };
+export { Card, CardEmptyState, type TCardEmptyStateProps, type TCardProps };

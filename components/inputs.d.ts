@@ -1,6 +1,6 @@
 import { FC, SyntheticEvent, ChangeEvent } from 'react';
 
-type TTextFieldSimpleProps = {
+type TTextFieldProps = {
     className?: string;
     disabled?: boolean;
     hideNumberArrows?: boolean;
@@ -12,7 +12,8 @@ type TTextFieldSimpleProps = {
     placeholder?: string;
     type?: 'text' | 'number';
     value?: string | number;
+    preset?: string;
 };
-declare const TextFieldSimple: FC<TTextFieldSimpleProps>;
+declare const TextField: FC<TTextFieldProps>;
 
-export { TextFieldSimple };
+export { TextField };

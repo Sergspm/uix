@@ -1,2 +1,2 @@
+export * from './Card';
 export * from './CardEmptyState';
-export * from './CardSimple';

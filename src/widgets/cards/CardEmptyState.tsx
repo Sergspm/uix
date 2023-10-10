@@ -9,7 +9,7 @@ export type TCardEmptyStateProps = {
 };
 
 export const CardEmptyState: FC<TCardEmptyStateProps> = (props) => {
-  let className = 'uix-widget-card-empty-state';
+  let className = 'uix-widget-card-card-empty-state';
 
   if (props.className) {
     className += ' ' + props.className;
@@ -17,10 +17,10 @@ export const CardEmptyState: FC<TCardEmptyStateProps> = (props) => {
 
   return (
     <section className={className}>
-      {props.label && <div className="uix-widget-card-empty-state__label">{props.label}</div>}
+      {props.label && <div className="uix-widget-card-card-empty-state__label">{props.label}</div>}
 
       {props.description && (
-        <div className="uix-widget-card-empty-state__description">{props.description}</div>
+        <div className="uix-widget-card-card-empty-state__description">{props.description}</div>
       )}
     </section>
   );

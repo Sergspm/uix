@@ -1,8 +1,8 @@
 import React, { FC, ReactNode, useState } from 'react';
 
 import { Button } from '../../components/buttons';
-import { TextFieldSimple } from '../../components/inputs';
-import { CardSimple } from '../../widgets/cards';
+import { TextField } from '../../components/inputs';
+import { Card } from '../../widgets/cards';
 
 import './AmountCalculationCard.css';
 
@@ -22,7 +22,7 @@ export type TAmountCalculationCardProps = {
   sumLabel?: string;
 };
 
-const presets: Record<string, Partial<TAmountCalculationCardProps>> = {};
+const presetsAmountCalculationCard: Record<string, Partial<TAmountCalculationCardProps>> = {};
 
 const calculate = (amountSelected: string, amountAvailable?: number, price?: number) => {
   if (amountSelected !== '' && amountAvailable && amountAvailable > 0 && price && price > 0) {
@@ -42,20 +42,19 @@ const calculate = (amountSelected: string, amountAvailable?: number, price?: num
   return null;
 };
 
-export const preset = (name: string, props: Partial<TAmountCalculationCardProps>) => {
-  presets[name] = props;
-};
-
 export const AmountCalculationCard: FC<TAmountCalculationCardProps> = (p) => {
-  const props = p.preset && p.preset in presets ? { ...presets[p.preset], ...p } : p;
+  const props =
+    p.preset && p.preset in presetsAmountCalculationCard
+      ? { ...presetsAmountCalculationCard[p.preset], ...p }
+      : p;
 
   const [amountSelected, setAmountSelected] = useState('');
 
   const calculation = calculate(amountSelected, props.amountAvailable, props.price);
 
-  let className = 'uix-fm-amount-calculation-card';
-  let classNameInput = 'uix-fm-amount-calculation-card__input';
-  let classNameButton = 'uix-fm-amount-calculation-card__button';
+  let className = 'uix-feature-market-amount-calculation-card';
+  let classNameInput = 'uix-feature-market-amount-calculation-card__input';
+  let classNameButton = 'uix-feature-market-amount-calculation-card__button';
 
   if (props.className) {
     className += ' ' + props.className;
@@ -70,8 +69,8 @@ export const AmountCalculationCard: FC<TAmountCalculationCardProps> = (p) => {
   }
 
   return (
-    <CardSimple className={className} header={props.header}>
-      <TextFieldSimple
+    <Card className={className} header={props.header}>
+      <TextField
         className={classNameInput}
         label={props.inputLabel}
         onChange={(v) => {
@@ -83,23 +82,23 @@ export const AmountCalculationCard: FC<TAmountCalculationCardProps> = (p) => {
       />
 
       {calculation && (
-        <div className="uix-fm-amount-calculation-card__calculation">
-          <div className="uix-fm-amount-calculation-card__calculation-row">
-            <div className="uix-fm-amount-calculation-card__calculation-label">
+        <div className="uix-feature-market-amount-calculation-card__calculation">
+          <div className="uix-feature-market-amount-calculation-card__calculation-row">
+            <div className="uix-feature-market-amount-calculation-card__calculation-label">
               {props.amountLabel}
             </div>
 
-            <div className="uix-fm-amount-calculation-card__calculation-value">
+            <div className="uix-feature-market-amount-calculation-card__calculation-value">
               {calculation.amount}
             </div>
           </div>
 
-          <div className="uix-fm-amount-calculation-card__calculation-row">
-            <div className="uix-fm-amount-calculation-card__calculation-label">
+          <div className="uix-feature-market-amount-calculation-card__calculation-row">
+            <div className="uix-feature-market-amount-calculation-card__calculation-label">
               {props.sumLabel}
             </div>
 
-            <div className="uix-fm-amount-calculation-card__calculation-value">
+            <div className="uix-feature-market-amount-calculation-card__calculation-value">
               ${calculation.sum}
             </div>
           </div>
@@ -113,6 +112,6 @@ export const AmountCalculationCard: FC<TAmountCalculationCardProps> = (p) => {
       >
         {props.buttonText}
       </Button>
-    </CardSimple>
+    </Card>
   );
 };

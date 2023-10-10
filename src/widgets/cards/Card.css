@@ -1,0 +1,15 @@
+.uix-widget-card-card {
+  display: block;
+  width: 100%;
+}
+
+.uix-widget-card-card__header {
+  display: block;
+  font-family: var(--header-font-family, inherit);
+  font-size: var(--header-font-size, inherit);
+  font-weight: var(--header-font-weight, inherit);
+  line-height: var(--header-line-height, initial);
+  text-align: var(--header-text-align, inherit);
+  margin-bottom: var(--header-margin-bottom, 0);
+  color: var(--header-color, inherit);
+}

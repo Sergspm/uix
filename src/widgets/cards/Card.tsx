@@ -1,15 +1,15 @@
 import React, { FC, ReactNode } from 'react';
 
-import './CardSimple.css';
+import './Card.css';
 
-export type TCardSimpleProps = {
+export type TCardProps = {
   children?: ReactNode;
   className?: string;
   header?: ReactNode;
 };
 
-export const CardSimple: FC<TCardSimpleProps> = (props) => {
-  let className = 'uix-widget-card-simple';
+export const Card: FC<TCardProps> = (props) => {
+  let className = 'uix-widget-card-card';
 
   if (props.className) {
     className += ' ' + props.className;
@@ -17,7 +17,7 @@ export const CardSimple: FC<TCardSimpleProps> = (props) => {
 
   return (
     <section className={className}>
-      {props.header && <div className="uix-widget-card-simple__header">{props.header}</div>}
+      {props.header && <div className="uix-widget-card-card__header">{props.header}</div>}
 
       {props.children}
     </section>

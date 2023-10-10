@@ -9,6 +9,7 @@ type TCommonProps = {
   children?: ReactNode;
   className?: string;
   disabled?: boolean;
+  preset?: string;
   onClick?: (e: MouseEvent) => void;
 };
 
@@ -38,17 +39,21 @@ export type TButtonProps =
   | TAnchorElementProps
   | TButtonElementProps;
 
-export const Button: FC<TButtonProps> = (props) => {
-  let className = 'uix-buttons-button';
+export const presetsButton: Record<string, Partial<TButtonProps>> = {};
+
+export const Button: FC<TButtonProps> = (p) => {
+  const props = p.preset && p.preset in presetsButton ? { ...presetsButton[p.preset], ...p } : p;
+
+  let className = 'uix-component-button-button';
   // @ts-ignore
   const element = props.element ?? 'button';
 
   if (props.active) {
-    className += ' uix-buttons-button--active';
+    className += ' uix-component-button-button--active';
   }
 
   if (props.disabled) {
-    className += ' uix-buttons-button--disabled';
+    className += ' uix-component-button-button--disabled';
   }
 
   if (props.className) {

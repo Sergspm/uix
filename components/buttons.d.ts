@@ -84,6 +84,7 @@ type TCommonProps = {
     children?: ReactNode;
     className?: string;
     disabled?: boolean;
+    preset?: string;
     onClick?: (e: MouseEvent) => void;
 };
 type TNextLinkProps = TCommonProps & {
@@ -103,6 +104,7 @@ type TUnknownProps = TCommonProps & {
     type?: 'submit' | 'reset' | 'button';
 };
 type TButtonProps = TUnknownProps | TNextLinkProps | TAnchorElementProps | TButtonElementProps;
+declare const presetsButton: Record<string, Partial<TButtonProps>>;
 declare const Button: FC<TButtonProps>;
 
-export { Button, type TButtonProps };
+export { Button, type TButtonProps, presetsButton };

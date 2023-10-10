@@ -1,15 +1,17 @@
 import React, { createElement, useState } from 'react';
 
-const Button = (props) => {
+const presetsButton = {};
+const Button = (p) => {
     var _a;
-    let className = 'uix-buttons-button';
+    const props = p.preset && p.preset in presetsButton ? Object.assign(Object.assign({}, presetsButton[p.preset]), p) : p;
+    let className = 'uix-component-button-button';
     // @ts-ignore
     const element = (_a = props.element) !== null && _a !== void 0 ? _a : 'button';
     if (props.active) {
-        className += ' uix-buttons-button--active';
+        className += ' uix-component-button-button--active';
     }
     if (props.disabled) {
-        className += ' uix-buttons-button--disabled';
+        className += ' uix-component-button-button--disabled';
     }
     if (props.className) {
         className += ' ' + props.className;
@@ -25,39 +27,41 @@ const Button = (props) => {
     }, props.children);
 };
 
-const TextFieldSimple = (props) => {
-    let className = 'uix-inputs-text-field-simple';
+const presetsTextField = {};
+const TextField = (p) => {
+    const props = p.preset && p.preset in presetsTextField ? Object.assign(Object.assign({}, presetsTextField[p.preset]), p) : p;
+    let className = 'uix-component-input-text-field';
     let inputType = props.type || 'text';
     if (props.disabled) {
-        className += ' uix-inputs-text-field-simple--disabled';
+        className += ' uix-component-input-text-field--disabled';
     }
     if (props.hideNumberArrows) {
-        className += ' uix-inputs-text-field-simple--without-arrows';
+        className += ' uix-component-input-text-field--without-arrows';
         inputType = 'number';
     }
     if (props.className) {
         className += ' ' + props.className;
     }
     return (React.createElement("div", { className: className },
-        Boolean(props.label) && (React.createElement("label", { className: "uix-inputs-text-field-simple__label" }, props.label)),
-        React.createElement("input", { className: "uix-inputs-text-field-simple__input", disabled: props.disabled, onBlur: props.onBlur, onClick: props.onClick, onFocus: props.onFocus, placeholder: props.placeholder, type: inputType, value: props.value, onChange: (e) => {
+        Boolean(props.label) && (React.createElement("label", { className: "uix-component-input-text-field__label" }, props.label)),
+        React.createElement("input", { className: "uix-component-input-text-field__input", disabled: props.disabled, onBlur: props.onBlur, onClick: props.onClick, onFocus: props.onFocus, placeholder: props.placeholder, type: inputType, value: props.value, onChange: (e) => {
                 if (props.onChange) {
                     props.onChange(e.target.value, e);
                 }
             } })));
 };
 
-const CardSimple = (props) => {
-    let className = 'uix-widget-card-simple';
+const Card = (props) => {
+    let className = 'uix-widget-card-card';
     if (props.className) {
         className += ' ' + props.className;
     }
     return (React.createElement("section", { className: className },
-        props.header && React.createElement("div", { className: "uix-widget-card-simple__header" }, props.header),
+        props.header && React.createElement("div", { className: "uix-widget-card-card__header" }, props.header),
         props.children));
 };
 
-const presets = {};
+const presetsAmountCalculationCard = {};
 const calculate = (amountSelected, amountAvailable, price) => {
     if (amountSelected !== '' && amountAvailable && amountAvailable > 0 && price && price > 0) {
         const amountRaw = parseInt(amountSelected);
@@ -70,16 +74,14 @@ const calculate = (amountSelected, amountAvailable, price) => {
     }
     return null;
 };
-const preset = (name, props) => {
-    presets[name] = props;
-};
 const AmountCalculationCard = (p) => {
-    const props = p.preset && p.preset in presets ? Object.assign(Object.assign({}, presets[p.preset]), p) : p;
+    const props = p.preset && p.preset in presetsAmountCalculationCard
+        ? Object.assign(Object.assign({}, presetsAmountCalculationCard[p.preset]), p) : p;
     const [amountSelected, setAmountSelected] = useState('');
     const calculation = calculate(amountSelected, props.amountAvailable, props.price);
-    let className = 'uix-fm-amount-calculation-card';
-    let classNameInput = 'uix-fm-amount-calculation-card__input';
-    let classNameButton = 'uix-fm-amount-calculation-card__button';
+    let className = 'uix-feature-market-amount-calculation-card';
+    let classNameInput = 'uix-feature-market-amount-calculation-card__input';
+    let classNameButton = 'uix-feature-market-amount-calculation-card__button';
     if (props.className) {
         className += ' ' + props.className;
     }
@@ -89,21 +91,21 @@ const AmountCalculationCard = (p) => {
     if (props.classNameButton) {
         classNameButton += ' ' + props.classNameButton;
     }
-    return (React.createElement(CardSimple, { className: className, header: props.header },
-        React.createElement(TextFieldSimple, { className: classNameInput, label: props.inputLabel, onChange: (v) => {
+    return (React.createElement(Card, { className: className, header: props.header },
+        React.createElement(TextField, { className: classNameInput, label: props.inputLabel, onChange: (v) => {
                 console.log('>>>>>>V', v);
                 setAmountSelected(v);
             }, placeholder: props.inputPlaceholder, value: amountSelected }),
-        calculation && (React.createElement("div", { className: "uix-fm-amount-calculation-card__calculation" },
-            React.createElement("div", { className: "uix-fm-amount-calculation-card__calculation-row" },
-                React.createElement("div", { className: "uix-fm-amount-calculation-card__calculation-label" }, props.amountLabel),
-                React.createElement("div", { className: "uix-fm-amount-calculation-card__calculation-value" }, calculation.amount)),
-            React.createElement("div", { className: "uix-fm-amount-calculation-card__calculation-row" },
-                React.createElement("div", { className: "uix-fm-amount-calculation-card__calculation-label" }, props.sumLabel),
-                React.createElement("div", { className: "uix-fm-amount-calculation-card__calculation-value" },
+        calculation && (React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation" },
+            React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-row" },
+                React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-label" }, props.amountLabel),
+                React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-value" }, calculation.amount)),
+            React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-row" },
+                React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-label" }, props.sumLabel),
+                React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-value" },
                     "$",
                     calculation.sum)))),
         React.createElement(Button, { className: classNameButton, disabled: !calculation || !calculation.amount, onClick: props.onButtonClick }, props.buttonText)));
 };
 
-export { AmountCalculationCard, preset };
+export { AmountCalculationCard };
