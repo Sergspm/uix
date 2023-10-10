@@ -15,6 +15,7 @@ type TAmountCalculationCardProps = {
     preset?: string;
     price?: number;
     sumLabel?: string;
+    sumFormat?: 'USD' | 'EUR';
 };
 declare const AmountCalculationCard: FC<TAmountCalculationCardProps>;
 

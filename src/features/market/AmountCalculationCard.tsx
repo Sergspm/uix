@@ -7,9 +7,9 @@ import { Card } from '../../widgets/cards';
 import './AmountCalculationCard.css';
 
 export type TAmountCalculationCardProps = {
+  amountLabel?: string;
   amountMax?: number;
   amountMin?: number;
-  amountLabel?: string;
   buttonText?: string;
   className?: string;
   classNameButton?: string;
@@ -20,6 +20,7 @@ export type TAmountCalculationCardProps = {
   onButtonClick?: (value: number) => boolean | void;
   preset?: string;
   price?: number;
+  sumFormat?: 'USD' | 'EUR';
   sumLabel?: string;
 };
 
@@ -78,8 +79,8 @@ export const AmountCalculationCard: FC<TAmountCalculationCardProps> = (p) => {
         onChange={setAmountSelected}
         placeholder={props.inputPlaceholder}
         value={amountSelected}
-        valueMin={props.amountMin ?? 0}
         valueMax={props.amountMax}
+        valueMin={props.amountMin ?? 0}
       />
 
       {calculation && (
@@ -100,7 +101,13 @@ export const AmountCalculationCard: FC<TAmountCalculationCardProps> = (p) => {
             </div>
 
             <div className="uix-feature-market-amount-calculation-card__calculation-value">
-              ${calculation.sum}
+              {props.sumFormat === 'USD' || props.sumFormat === 'EUR'
+                ? new Intl.NumberFormat('en-EN', {
+                    style: 'currency',
+                    currency: props.sumFormat,
+                    maximumFractionDigits: 0
+                  }).format(calculation.sum)
+                : calculation.sum}
             </div>
           </div>
         </div>

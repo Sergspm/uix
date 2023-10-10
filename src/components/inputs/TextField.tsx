@@ -7,8 +7,6 @@ type TTextFieldProps = {
   disabled?: boolean;
   hideNumberArrows?: boolean;
   label?: string;
-  valueMin?: number | string;
-  valueMax?: number | string;
   onBlur?: (e: SyntheticEvent<HTMLInputElement>) => void;
   onChange?: (value: string, event: ChangeEvent<HTMLInputElement>) => void;
   onClick?: (e: SyntheticEvent<HTMLInputElement>) => void;
@@ -17,6 +15,8 @@ type TTextFieldProps = {
   preset?: string;
   type?: 'text' | 'number';
   value?: string | number;
+  valueMax?: number | string;
+  valueMin?: number | string;
 };
 
 const presetsTextField: Record<string, Partial<TTextFieldProps>> = {};
@@ -50,8 +50,8 @@ export const TextField: FC<TTextFieldProps> = (p) => {
       <input
         className="uix-component-input-text-field__input"
         disabled={props.disabled}
-        min={props.valueMin}
         max={props.valueMax}
+        min={props.valueMin}
         onBlur={props.onBlur}
         onClick={props.onClick}
         onFocus={props.onFocus}

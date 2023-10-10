@@ -100,9 +100,13 @@ const AmountCalculationCard = (p) => {
                 React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-value" }, calculation.amount)),
             React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-row" },
                 React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-label" }, props.sumLabel),
-                React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-value" },
-                    "$",
-                    calculation.sum)))),
+                React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-value" }, props.sumFormat === 'USD' || props.sumFormat === 'EUR'
+                    ? new Intl.NumberFormat('en-EN', {
+                        style: 'currency',
+                        currency: props.sumFormat,
+                        maximumFractionDigits: 0
+                    }).format(calculation.sum)
+                    : calculation.sum)))),
         React.createElement(Button, { className: classNameButton, disabled: !calculation || !calculation.amount, onClick: () => {
                 if (props.onButtonClick && calculation) {
                     const result = props.onButtonClick(calculation.amount);
