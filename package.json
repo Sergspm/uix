@@ -5,8 +5,12 @@
   "type": "module",
   "files": [
     "assets",
-    "dist",
-    "src"
+    "components",
+    "features",
+    "icons",
+    "src",
+    "utils",
+    "widgets"
   ],
   "scripts": {
     "rollup": "rollup -c",
