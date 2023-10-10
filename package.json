@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "UI eXtended library",
   "type": "module",
+  "main": "components/inputs.js",
   "files": [
     "dist"
   ],
@@ -30,7 +31,8 @@
   "homepage": "https://github.com/Sergspm/uix#readme",
   "peerDependencies": {
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "uix": "git+https://github.com/Sergspm/uix.git#33e160650a87c69fa5601c8f31c5d57ef6344c56"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "25.0.5",
