@@ -10,14 +10,20 @@ const buildSections = [
   { input: 'src/components/inputs/index.ts', output: 'components/inputs.js' },
   { input: 'src/components/testimonials/index.ts', output: 'components/testimonials.js' },
   { input: 'src/features/market/index.ts', output: 'features/market.js' },
-  { input: 'src/icons/index.ts', output: 'icons/inputs.js' },
+  { input: 'src/icons/index.ts', output: 'icons/index.js' },
   { input: 'src/widgets/cards/index.ts', output: 'widgets/cards.js' },
   { input: 'src/utils/index.ts', output: 'utils/index.js' }
 ];
 
 const buildDefinitions = [
-  { input: 'components/types/components/buttons/index.d.ts', output: 'components/buttons.d.ts' },
-  { input: 'components/types/components/inputs/index.d.ts', output: 'components/inputs.d.ts' },
+  {
+    input: 'components/types/components/buttons/index.d.ts',
+    output: 'components/buttons.d.ts'
+  },
+  {
+    input: 'components/types/components/inputs/index.d.ts',
+    output: 'components/inputs.d.ts'
+  },
   {
     input: 'components/types/components/testimonials/index.d.ts',
     output: 'components/testimonials.d.ts'
@@ -26,7 +32,7 @@ const buildDefinitions = [
     input: 'features/types/features/market/index.d.ts',
     output: 'features/market.d.ts'
   },
-  { input: 'components/types/icons/index.d.ts', output: 'icons/inputs.d.ts' },
+  { input: 'components/types/icons/index.d.ts', output: 'icons/index.d.ts' },
   { input: 'widgets/types/widgets/cards/index.d.ts', output: 'widgets/cards.d.ts' },
   { input: 'utils/types/utils/index.d.ts', output: 'utils/index.d.ts' }
 ];

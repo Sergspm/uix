@@ -137,18 +137,34 @@
   color: var(--description-color, inherit);
 }
 
-.uix-feature-market-amount-calculation-card-simple {
-  position: relative;
+.uix-feature-market-amount-calculation-card__input {
+  margin-bottom: var(--input-margin-bottom, 1.5rem);
 }
 
-.uix-fm-amount-calculation-card__input {
-  margin-bottom: 1.5em;
+.uix-feature-market-amount-calculation-card__button {
+  width: var(--button-width, 100%);
 }
 
-.uix-fm-amount-calculation-card__calculation {
-  margin-bottom: 1em;
+.uix-feature-market-amount-calculation-card__calculation {
+  margin-bottom: var(--calculation-margin-bottom, 1rem);
 }
 
-.uix-fm-amount-calculation-card__button {
-  width: 100%;
+.uix-feature-market-amount-calculation-card__calculation-row {
+  display: flex;
+  justify-content: space-between;
+  color: var(--calculation-color, inherit);
+  font-family: var(--calculation-font-family, inherit);
+  font-size: var(--calculation-font-size, inherit);
+  font-style: var(--calculation-font-style, inherit);
+  font-weight: var(--calculation-font-weight, inherit);
+  line-height: var(--calculation-line-height, inherit);
+  margin-bottom: var(--calculation-row-margin-bottom, 0);
+}
+
+.uix-feature-market-amount-calculation-card__calculation-row:last-child {
+  margin-bottom: 0;
+}
+
+.uix-feature-market-amount-calculation-card__calculation-value {
+  font-weight: var(--calculation-value-font-weight, inherit);
 }

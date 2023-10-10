@@ -5,14 +5,9 @@
   "type": "module",
   "files": [
     "assets",
-    "components",
-    "features",
-    "icons",
-    "src",
-    "utils",
-    "widgets"
+    "dist",
+    "src"
   ],
-  "types": "dist/index.d.ts",
   "scripts": {
     "rollup": "rollup -c",
     "build": "npm run clean:before && npm run rollup && npm run clean:after",

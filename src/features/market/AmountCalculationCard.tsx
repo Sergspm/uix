@@ -7,7 +7,8 @@ import { Card } from '../../widgets/cards';
 import './AmountCalculationCard.css';
 
 export type TAmountCalculationCardProps = {
-  amountAvailable?: number;
+  amountMax?: number;
+  amountMin?: number;
   amountLabel?: string;
   buttonText?: string;
   className?: string;
@@ -16,7 +17,7 @@ export type TAmountCalculationCardProps = {
   header?: ReactNode;
   inputLabel?: string;
   inputPlaceholder?: string;
-  onButtonClick?: () => void;
+  onButtonClick?: (value: number) => boolean | void;
   preset?: string;
   price?: number;
   sumLabel?: string;
@@ -24,12 +25,12 @@ export type TAmountCalculationCardProps = {
 
 const presetsAmountCalculationCard: Record<string, Partial<TAmountCalculationCardProps>> = {};
 
-const calculate = (amountSelected: string, amountAvailable?: number, price?: number) => {
-  if (amountSelected !== '' && amountAvailable && amountAvailable > 0 && price && price > 0) {
+const calculate = (amountSelected: string, amountMax?: number, price?: number) => {
+  if (amountSelected !== '' && amountMax && amountMax > 0 && price && price > 0) {
     const amountRaw = parseInt(amountSelected);
     const amount = Math.min(
       isNaN(amountRaw) || amountRaw < 0 ? 0 : amountRaw,
-      amountAvailable && amountAvailable >= 0 ? amountAvailable : 0
+      amountMax && amountMax >= 0 ? amountMax : 0
     );
     const resultPrice = price && price >= 0 ? price : 0;
 
@@ -50,7 +51,7 @@ export const AmountCalculationCard: FC<TAmountCalculationCardProps> = (p) => {
 
   const [amountSelected, setAmountSelected] = useState('');
 
-  const calculation = calculate(amountSelected, props.amountAvailable, props.price);
+  const calculation = calculate(amountSelected, props.amountMax, props.price);
 
   let className = 'uix-feature-market-amount-calculation-card';
   let classNameInput = 'uix-feature-market-amount-calculation-card__input';
@@ -72,13 +73,13 @@ export const AmountCalculationCard: FC<TAmountCalculationCardProps> = (p) => {
     <Card className={className} header={props.header}>
       <TextField
         className={classNameInput}
+        hideNumberArrows
         label={props.inputLabel}
-        onChange={(v) => {
-          console.log('>>>>>>V', v);
-          setAmountSelected(v);
-        }}
+        onChange={setAmountSelected}
         placeholder={props.inputPlaceholder}
         value={amountSelected}
+        valueMin={props.amountMin ?? 0}
+        valueMax={props.amountMax}
       />
 
       {calculation && (
@@ -108,7 +109,15 @@ export const AmountCalculationCard: FC<TAmountCalculationCardProps> = (p) => {
       <Button
         className={classNameButton}
         disabled={!calculation || !calculation.amount}
-        onClick={props.onButtonClick}
+        onClick={() => {
+          if (props.onButtonClick && calculation) {
+            const result = props.onButtonClick(calculation.amount);
+
+            if (result === true) {
+              setAmountSelected('');
+            }
+          }
+        }}
       >
         {props.buttonText}
       </Button>

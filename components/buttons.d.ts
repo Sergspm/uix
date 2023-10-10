@@ -84,8 +84,8 @@ type TCommonProps = {
     children?: ReactNode;
     className?: string;
     disabled?: boolean;
-    preset?: string;
     onClick?: (e: MouseEvent) => void;
+    preset?: string;
 };
 type TNextLinkProps = TCommonProps & {
     element: TLink;
