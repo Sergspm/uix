@@ -2,11 +2,15 @@ import React, { createElement, useState } from 'react';
 
 const presetsButton = {};
 const Button = (p) => {
-    var _a;
-    const props = p.preset && p.preset in presetsButton ? Object.assign(Object.assign({}, presetsButton[p.preset]), p) : p;
+    const preset = p.preset && p.preset in presetsButton ? presetsButton[p.preset] : null;
+    const props = preset ? Object.assign(Object.assign({}, preset), p) : p;
+    if (preset) {
+        if (p.className && preset.className) {
+            props.className = preset.className + ' ' + p.className;
+        }
+    }
     let className = 'uix-component-button-button';
-    // @ts-ignore
-    const element = (_a = props.element) !== null && _a !== void 0 ? _a : 'button';
+    const element = 'element' in props && props.element ? props.element : 'button';
     if (props.active) {
         className += ' uix-component-button-button--active';
     }
@@ -20,9 +24,9 @@ const Button = (p) => {
         className,
         // @ts-ignore
         href: props.href,
-        disabled: props.disabled,
         // @ts-ignore
-        target: props.target,
+        disabled: props.disabled,
+        target: 'target' in props ? props.target : undefined,
         onClick: props.onClick
     }, props.children);
 };
@@ -44,7 +48,7 @@ const TextField = (p) => {
     }
     return (React.createElement("div", { className: className },
         Boolean(props.label) && (React.createElement("label", { className: "uix-component-input-text-field__label" }, props.label)),
-        React.createElement("input", { className: "uix-component-input-text-field__input", disabled: props.disabled, min: props.valueMin, max: props.valueMax, onBlur: props.onBlur, onClick: props.onClick, onFocus: props.onFocus, placeholder: props.placeholder, type: inputType, value: props.value, onChange: (e) => {
+        React.createElement("input", { className: "uix-component-input-text-field__input", disabled: props.disabled, max: props.valueMax, min: props.valueMin, onBlur: props.onBlur, onClick: props.onClick, onFocus: props.onFocus, placeholder: props.placeholder, type: inputType, value: props.value, onChange: (e) => {
                 if (props.onChange) {
                     props.onChange(e.target.value, e);
                 }
@@ -93,7 +97,7 @@ const AmountCalculationCard = (p) => {
         classNameButton += ' ' + props.classNameButton;
     }
     return (React.createElement(Card, { className: className, header: props.header },
-        React.createElement(TextField, { className: classNameInput, hideNumberArrows: true, label: props.inputLabel, onChange: setAmountSelected, placeholder: props.inputPlaceholder, value: amountSelected, valueMin: (_a = props.amountMin) !== null && _a !== void 0 ? _a : 0, valueMax: props.amountMax }),
+        React.createElement(TextField, { className: classNameInput, hideNumberArrows: true, label: props.inputLabel, onChange: setAmountSelected, placeholder: props.inputPlaceholder, value: amountSelected, valueMax: props.amountMax, valueMin: (_a = props.amountMin) !== null && _a !== void 0 ? _a : 0 }),
         calculation && (React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation" },
             React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-row" },
                 React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-label" }, props.amountLabel),

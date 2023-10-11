@@ -1,9 +1,9 @@
 import { ReactNode, FC } from 'react';
 
 type TAmountCalculationCardProps = {
+    amountLabel?: string;
     amountMax?: number;
     amountMin?: number;
-    amountLabel?: string;
     buttonText?: string;
     className?: string;
     classNameButton?: string;
@@ -14,8 +14,8 @@ type TAmountCalculationCardProps = {
     onButtonClick?: (value: number) => boolean | void;
     preset?: string;
     price?: number;
-    sumLabel?: string;
     sumFormat?: 'USD' | 'EUR';
+    sumLabel?: string;
 };
 declare const AmountCalculationCard: FC<TAmountCalculationCardProps>;
 
