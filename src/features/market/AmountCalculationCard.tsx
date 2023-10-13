@@ -17,7 +17,7 @@ export type TAmountCalculationCardProps = {
   header?: ReactNode;
   inputLabel?: string;
   inputPlaceholder?: string;
-  onButtonClick?: (value: number) => boolean | void;
+  onButtonClick?: (value: number) => Promise<boolean | void> | boolean | void;
   preset?: string;
   price?: number;
   sumFormat?: 'USD' | 'EUR';
@@ -120,7 +120,13 @@ export const AmountCalculationCard: FC<TAmountCalculationCardProps> = (p) => {
           if (props.onButtonClick && calculation) {
             const result = props.onButtonClick(calculation.amount);
 
-            if (result === true) {
+            if (result instanceof Promise) {
+              result.then((result) => {
+                if (result === true) {
+                  setAmountSelected('');
+                }
+              });
+            } else if (result === true) {
               setAmountSelected('');
             }
           }
