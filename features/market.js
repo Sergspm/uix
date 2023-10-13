@@ -114,7 +114,14 @@ const AmountCalculationCard = (p) => {
         React.createElement(Button, { className: classNameButton, disabled: !calculation || !calculation.amount, onClick: () => {
                 if (props.onButtonClick && calculation) {
                     const result = props.onButtonClick(calculation.amount);
-                    if (result === true) {
+                    if (result instanceof Promise) {
+                        result.then((result) => {
+                            if (result === true) {
+                                setAmountSelected('');
+                            }
+                        });
+                    }
+                    else if (result === true) {
                         setAmountSelected('');
                     }
                 }

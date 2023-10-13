@@ -11,7 +11,7 @@ type TAmountCalculationCardProps = {
     header?: ReactNode;
     inputLabel?: string;
     inputPlaceholder?: string;
-    onButtonClick?: (value: number) => boolean | void;
+    onButtonClick?: (value: number) => Promise<boolean | void> | boolean | void;
     preset?: string;
     price?: number;
     sumFormat?: 'USD' | 'EUR';
