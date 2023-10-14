@@ -67,7 +67,11 @@ const Card = (props) => {
 
 const presetsAmountCalculationCard = {};
 const calculate = (amountSelected, amountMax, price) => {
-    if (amountSelected !== '' && amountMax && amountMax > 0 && price && price > 0) {
+    if (amountSelected !== '' &&
+        amountMax &&
+        amountMax > 0 &&
+        typeof price === 'number' &&
+        price >= 0) {
         const amountRaw = parseInt(amountSelected);
         const amount = Math.min(isNaN(amountRaw) || amountRaw < 0 ? 0 : amountRaw, amountMax && amountMax >= 0 ? amountMax : 0);
         const resultPrice = price && price >= 0 ? price : 0;
