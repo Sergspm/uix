@@ -20,14 +20,14 @@
 }
 
 .uix-component-button-button:active,
-.uix-component-button-button--active {
+.uix-component-button-button.uix-component-button-button--active {
   border: var(--border-active, var(--border-hover, none));
   color: var(--color-active, var(--color-hover, #000));
   background: var(--background-active, var(--background-hover, transparent));
 }
 
 .uix-component-button-button:disabled,
-.uix-component-button-button--disabled {
+.uix-component-button-button.uix-component-button-button--disabled {
   border: var(--border-disabled, transparent);
   color: var(--color-disabled, #000);
   background: var(--background-disabled, transparent);
