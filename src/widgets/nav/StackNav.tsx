@@ -1,0 +1,48 @@
+import React, { FC, createElement } from 'react';
+
+import { TLink } from '../../types/nextjs/link';
+
+import './StackNav.css';
+
+export type TStackNavItem = {
+  description?: string;
+  element?: 'a' | TLink;
+  href: string;
+  key: string;
+  title: string;
+};
+
+export type TStackNavProps = {
+  className?: string;
+  elements: TStackNavItem[];
+};
+
+export const StackNav: FC<TStackNavProps> = (props) => {
+  let className = 'uix-widget-nav-stack-nav';
+
+  if (props.className) {
+    className += ' ' + props.className;
+  }
+
+  return (
+    <section className={className}>
+      {props.elements.map((item) =>
+        createElement(
+          item.element || 'a',
+          {
+            className: 'uix-widget-nav-stack-nav__item',
+            href: item.href,
+            key: item.key
+          },
+          <>
+            <span className="uix-widget-nav-stack-nav__item-title">{item.title}</span>
+
+            {Boolean(item.description) && (
+              <span className="uix-widget-nav-stack-nav__item-description">{item.description}</span>
+            )}
+          </>
+        )
+      )}
+    </section>
+  );
+};

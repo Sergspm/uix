@@ -1,0 +1,39 @@
+.uix-widget-nav-stack-nav__item {
+  display: block;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-bottom: var(--item-border-bottom, none);
+  background: var(--item-background, transparent);
+  padding: var(--item-padding, 0);
+}
+
+.uix-widget-nav-stack-nav__item:hover {
+  background: var(--item-background-hover, transparent);
+}
+
+.uix-widget-nav-stack-nav__item-title {
+  display: block;
+  transition: color 0.3s;
+  color: var(--item-title-color, inherit);
+  font-size: var(--item-title-font-size, inherit);
+  font-weight: var(--item-title-font-weight, inherit);
+  font-family: var(--item-title-font-family, inherit);
+}
+
+.uix-widget-nav-stack-nav__item:hover .uix-widget-nav-stack-nav__item-title {
+  color: var(--item-title-color-hover, inherit);
+}
+
+.uix-widget-nav-stack-nav__item-description {
+  display: block;
+  transition: color 0.3s;
+  color: var(--item-description-color, inherit);
+  font-size: var(--item-description-font-size, inherit);
+  font-weight: var(--item-description-font-weight, inherit);
+  font-family: var(--item-description-font-family, inherit);
+  margin: var(--item-description-margin, 0);
+}
+
+.uix-widget-nav-stack-nav__item:hover .uix-widget-nav-stack-nav__item-description {
+  color: var(--item-title-description-hover, inherit);
+}
