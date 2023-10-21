@@ -8,7 +8,7 @@
 }
 
 .uix-widget-nav-stack-nav__item:last-child {
-  border-bottom: var(--item-border-bottom-last-child, none);
+  border-bottom: var(--item-border-bottom-last-child, var(--item-border-bottom, none));
 }
 
 .uix-widget-nav-stack-nav__item:hover {
