@@ -5,7 +5,7 @@ const StackNav = (props) => {
     if (props.className) {
         className += ' ' + props.className;
     }
-    return (React.createElement("section", { className: className }, props.elements.map((item) => createElement(item.element || 'a', {
+    return (React.createElement("section", { className: className }, props.items.map((item) => createElement(item.element || props.linkElement || 'a', {
         className: 'uix-widget-nav-stack-nav__item',
         href: item.href,
         key: item.key

@@ -14,7 +14,8 @@ export type TStackNavItem = {
 
 export type TStackNavProps = {
   className?: string;
-  elements: TStackNavItem[];
+  items: TStackNavItem[];
+  linkElement?: 'a' | TLink;
 };
 
 export const StackNav: FC<TStackNavProps> = (props) => {
@@ -26,9 +27,9 @@ export const StackNav: FC<TStackNavProps> = (props) => {
 
   return (
     <section className={className}>
-      {props.elements.map((item) =>
+      {props.items.map((item) =>
         createElement(
-          item.element || 'a',
+          item.element || props.linkElement || 'a',
           {
             className: 'uix-widget-nav-stack-nav__item',
             href: item.href,

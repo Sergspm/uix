@@ -88,7 +88,8 @@ type TStackNavItem = {
 };
 type TStackNavProps = {
     className?: string;
-    elements: TStackNavItem[];
+    items: TStackNavItem[];
+    linkElement?: 'a' | TLink;
 };
 declare const StackNav: FC<TStackNavProps>;
 
