@@ -8,7 +8,7 @@ const StackNav = (props) => {
     return (React.createElement("section", { className: className }, props.items.map((item) => createElement(item.element || props.linkElement || 'a', {
         className: 'uix-widget-nav-stack-nav__item',
         href: item.href,
-        key: item.key
+        key: item.key || item.href
     }, React.createElement(React.Fragment, null,
         React.createElement("span", { className: "uix-widget-nav-stack-nav__item-title" }, item.title),
         Boolean(item.description) && (React.createElement("span", { className: "uix-widget-nav-stack-nav__item-description" }, item.description)))))));

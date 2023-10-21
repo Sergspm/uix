@@ -8,7 +8,7 @@ export type TStackNavItem = {
   description?: string;
   element?: 'a' | TLink;
   href: string;
-  key: string;
+  key?: string;
   title: string;
 };
 
@@ -33,7 +33,7 @@ export const StackNav: FC<TStackNavProps> = (props) => {
           {
             className: 'uix-widget-nav-stack-nav__item',
             href: item.href,
-            key: item.key
+            key: item.key || item.href
           },
           <>
             <span className="uix-widget-nav-stack-nav__item-title">{item.title}</span>

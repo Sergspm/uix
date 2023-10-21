@@ -83,7 +83,7 @@ type TStackNavItem = {
     description?: string;
     element?: 'a' | TLink;
     href: string;
-    key: string;
+    key?: string;
     title: string;
 };
 type TStackNavProps = {
