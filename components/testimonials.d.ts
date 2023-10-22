@@ -91,9 +91,11 @@ type TTestimonialStepProps = {
     href?: TUrl;
     icon?: FC<SVGProps<SVGSVGElement>>;
     iconActive?: FC<SVGProps<SVGSVGElement>>;
+    preset?: string;
     title?: string;
     titleActive?: string;
 };
+declare const presetsTestimonialStep: Record<string, Partial<TTestimonialStepProps>>;
 declare const TestimonialStep: FC<TTestimonialStepProps>;
 
-export { type TTestimonialStepProps, TestimonialStep };
+export { type TTestimonialStepProps, TestimonialStep, presetsTestimonialStep };
