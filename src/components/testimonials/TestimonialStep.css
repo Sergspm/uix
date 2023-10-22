@@ -1,6 +1,7 @@
 .uix-component-testimonial-testimonial-step {
   display: flex;
   align-items: center;
+  width: fit-content;
   border: var(--border, none);
 }
 
@@ -50,7 +51,8 @@
   padding: var(--content-padding, 0);
 }
 
-.uix-component-testimonial-testimonial-step__title {
+.uix-component-testimonial-testimonial-step__title,
+.uix-component-testimonial-testimonial-step__title-active {
   display: block;
   font-size: var(--title-font-size, inherit);
   font-weight: var(--title-font-weight, inherit);
@@ -60,10 +62,26 @@
 }
 
 .uix-component-testimonial-testimonial-step__title-active {
+  display: none;
   color: var(--title-color-active, var(--title-color, inherit));
 }
 
-.uix-component-testimonial-testimonial-step__description {
+.uix-component-testimonial-testimonial-step--active
+  .uix-component-testimonial-testimonial-step__title,
+.uix-component-testimonial-testimonial-step--active-on-hover:hover
+  .uix-component-testimonial-testimonial-step__title {
+  display: none;
+}
+
+.uix-component-testimonial-testimonial-step--active
+  .uix-component-testimonial-testimonial-step__title-active,
+.uix-component-testimonial-testimonial-step--active-on-hover:hover
+  .uix-component-testimonial-testimonial-step__title-active {
+  display: block;
+}
+
+.uix-component-testimonial-testimonial-step__description,
+.uix-component-testimonial-testimonial-step__description-active {
   display: block;
   font-size: var(--description-font-size, inherit);
   font-weight: var(--description-font-weight, inherit);
@@ -73,5 +91,20 @@
 }
 
 .uix-component-testimonial-testimonial-step__description-active {
+  display: none;
   color: var(--description-color-active, var(--description-color, inherit));
+}
+
+.uix-component-testimonial-testimonial-step--active
+  .uix-component-testimonial-testimonial-step__description,
+.uix-component-testimonial-testimonial-step--active-on-hover:hover
+  .uix-component-testimonial-testimonial-step__description {
+  display: none;
+}
+
+.uix-component-testimonial-testimonial-step--active
+  .uix-component-testimonial-testimonial-step__description-active,
+.uix-component-testimonial-testimonial-step--active-on-hover:hover
+  .uix-component-testimonial-testimonial-step__description-active {
+  display: block;
 }
