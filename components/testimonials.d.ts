@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import React, { FC, HTMLProps } from 'react';
+import React, { FC, SVGProps } from 'react';
 import { UrlObject } from 'url';
 
 type TUrl = string | UrlObject;
@@ -89,8 +89,8 @@ type TTestimonialStepProps = {
     hideDescription?: boolean;
     hideTitle?: boolean;
     href?: TUrl;
-    icon?: FC<HTMLProps<Element>>;
-    iconActive?: FC<HTMLProps<Element>>;
+    icon?: FC<SVGProps<SVGSVGElement>>;
+    iconActive?: FC<SVGProps<SVGSVGElement>>;
     title?: string;
     titleActive?: string;
 };

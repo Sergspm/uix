@@ -1,4 +1,4 @@
-import React, { FC, HTMLProps, createElement } from 'react';
+import React, { FC, SVGProps, createElement } from 'react';
 
 import type { TLink, TUrl } from '../../types/nextjs/link';
 
@@ -14,8 +14,8 @@ export type TTestimonialStepProps = {
   hideDescription?: boolean;
   hideTitle?: boolean;
   href?: TUrl;
-  icon?: FC<HTMLProps<Element>>;
-  iconActive?: FC<HTMLProps<Element>>;
+  icon?: FC<SVGProps<SVGSVGElement>>;
+  iconActive?: FC<SVGProps<SVGSVGElement>>;
   title?: string;
   titleActive?: string;
 };
@@ -53,34 +53,26 @@ export const TestimonialStep: FC<TTestimonialStepProps> = (props) => {
       <span className="uix-component-testimonial-testimonial-step__content">
         {!props.hideTitle && (Boolean(props.title) || Boolean(props.titleActive)) && (
           <>
-            {Boolean(props.title) && (
-              <span className="uix-component-testimonial-testimonial-step__title">
-                {props.title}
-              </span>
-            )}
+            <span className="uix-component-testimonial-testimonial-step__title">
+              {props.title || props.titleActive}
+            </span>
 
-            {Boolean(props.titleActive) && (
-              <span className="uix-component-testimonial-testimonial-step__title-active">
-                {props.titleActive}
-              </span>
-            )}
+            <span className="uix-component-testimonial-testimonial-step__title-active">
+              {props.titleActive || props.title}
+            </span>
           </>
         )}
 
         {!props.hideDescription &&
           (Boolean(props.description) || Boolean(props.descriptionActive)) && (
             <>
-              {Boolean(props.description) && (
-                <span className="uix-component-testimonial-testimonial-step__description">
-                  {props.description}
-                </span>
-              )}
+              <span className="uix-component-testimonial-testimonial-step__description">
+                {props.description || props.descriptionActive}
+              </span>
 
-              {Boolean(props.descriptionActive) && (
-                <span className="uix-component-testimonial-testimonial-step__description-active">
-                  {props.descriptionActive}
-                </span>
-              )}
+              <span className="uix-component-testimonial-testimonial-step__description-active">
+                {props.descriptionActive || props.description}
+              </span>
             </>
           )}
       </span>

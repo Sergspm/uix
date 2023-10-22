@@ -19,12 +19,12 @@ const TestimonialStep = (props) => {
             IconActive && (React.createElement(IconActive, { className: "uix-component-testimonial-testimonial-step__icon-active" }))),
         React.createElement("span", { className: "uix-component-testimonial-testimonial-step__content" },
             !props.hideTitle && (Boolean(props.title) || Boolean(props.titleActive)) && (React.createElement(React.Fragment, null,
-                Boolean(props.title) && (React.createElement("span", { className: "uix-component-testimonial-testimonial-step__title" }, props.title)),
-                Boolean(props.titleActive) && (React.createElement("span", { className: "uix-component-testimonial-testimonial-step__title-active" }, props.titleActive)))),
+                React.createElement("span", { className: "uix-component-testimonial-testimonial-step__title" }, props.title || props.titleActive),
+                React.createElement("span", { className: "uix-component-testimonial-testimonial-step__title-active" }, props.titleActive || props.title))),
             !props.hideDescription &&
                 (Boolean(props.description) || Boolean(props.descriptionActive)) && (React.createElement(React.Fragment, null,
-                Boolean(props.description) && (React.createElement("span", { className: "uix-component-testimonial-testimonial-step__description" }, props.description)),
-                Boolean(props.descriptionActive) && (React.createElement("span", { className: "uix-component-testimonial-testimonial-step__description-active" }, props.descriptionActive)))))));
+                React.createElement("span", { className: "uix-component-testimonial-testimonial-step__description" }, props.description || props.descriptionActive),
+                React.createElement("span", { className: "uix-component-testimonial-testimonial-step__description-active" }, props.descriptionActive || props.description))))));
 };
 
 export { TestimonialStep };
