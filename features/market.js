@@ -10,7 +10,6 @@ const Button = (p) => {
         }
     }
     let className = 'uix-component-button-button';
-    const element = 'element' in props && props.element ? props.element : 'button';
     if (props.active) {
         className += ' uix-component-button-button--active';
     }
@@ -20,13 +19,12 @@ const Button = (p) => {
     if (props.className) {
         className += ' ' + props.className;
     }
-    return createElement(element, {
+    return createElement(props.element || 'button', {
         className,
-        // @ts-ignore
-        href: props.href,
+        href: props.href || '',
         // @ts-ignore
         disabled: props.disabled,
-        target: 'target' in props ? props.target : undefined,
+        target: props.target,
         onClick: props.onClick
     }, props.children);
 };

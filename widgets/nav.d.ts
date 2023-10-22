@@ -2,18 +2,18 @@
 import React, { FC } from 'react';
 import { UrlObject } from 'url';
 
-type Url = string | UrlObject;
+type TUrl = string | UrlObject;
 type InternalLinkProps = {
     /**
      * Optional decorator for the path that will be shown in the browser URL bar. Before Next.js 9.5.3 this was used for dynamic routes, check our [previous docs](https://github.com/vercel/next.js/blob/v9.5.2/docs/api-reference/next/link.md#dynamic-routes) to see how it worked. Note: when this path differs from the one provided in `href` the previous `href`/`as` behavior is used as shown in the [previous docs](https://github.com/vercel/next.js/blob/v9.5.2/docs/api-reference/next/link.md#dynamic-routes).
      */
-    as?: Url;
+    as?: TUrl;
     /**
      * The path or URL to navigate to. It can also be an object.
      *
      * @example https://nextjs.org/docs/api-reference/next/link#with-url-object
      */
-    href: Url;
+    href: TUrl;
     /**
      * Enable legacy link behavior.
      * @defaultValue `false`
@@ -82,7 +82,7 @@ type TLink = React.ForwardRefExoticComponent<Omit<React.AnchorHTMLAttributes<HTM
 type TStackNavItem = {
     description?: string;
     element?: 'a' | TLink;
-    href: string;
+    href: TUrl;
     key?: string;
     title: string;
 };

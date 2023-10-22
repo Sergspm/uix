@@ -1,43 +1,21 @@
 import { FC, MouseEvent, ReactNode, createElement } from 'react';
 
-import type { TLink, Url } from '../../types/nextjs/link';
+import type { TLink, TUrl } from '../../types/nextjs/link';
 
 import './Button.css';
 
-type TCommonProps = {
+export type TButtonProps = {
   active?: boolean;
   children?: ReactNode;
   className?: string;
   disabled?: boolean;
+  element?: 'a' | TLink | 'button';
+  href?: TUrl;
   onClick?: (e: MouseEvent) => void;
   preset?: string;
-};
-
-type TNextLinkProps = TCommonProps & {
-  element: TLink;
-  href: Url;
-};
-
-type TAnchorElementProps = TCommonProps & {
-  element: 'a';
-  href?: string;
   target?: '_blank';
-};
-
-type TButtonElementProps = TCommonProps & {
-  element: 'button';
   type?: 'submit' | 'reset' | 'button';
 };
-
-type TUnknownProps = TCommonProps & {
-  type?: 'submit' | 'reset' | 'button';
-};
-
-export type TButtonProps =
-  | TUnknownProps
-  | TNextLinkProps
-  | TAnchorElementProps
-  | TButtonElementProps;
 
 export const presetsButton: Record<string, Partial<TButtonProps>> = {};
 
@@ -52,7 +30,6 @@ export const Button: FC<TButtonProps> = (p) => {
   }
 
   let className = 'uix-component-button-button';
-  const element = 'element' in props && props.element ? props.element : 'button';
 
   if (props.active) {
     className += ' uix-component-button-button--active';
@@ -67,14 +44,13 @@ export const Button: FC<TButtonProps> = (p) => {
   }
 
   return createElement(
-    element,
+    props.element || 'button',
     {
       className,
-      // @ts-ignore
-      href: props.href,
+      href: props.href || '',
       // @ts-ignore
       disabled: props.disabled,
-      target: 'target' in props ? props.target : undefined,
+      target: props.target,
       onClick: props.onClick
     },
     props.children

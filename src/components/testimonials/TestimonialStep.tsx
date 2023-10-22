@@ -1,65 +1,89 @@
-import React from 'react';
-import type { TLink, Url } from '../../types/nextjs/link';
+import React, { FC, HTMLProps, createElement } from 'react';
 
-type TCommonTestimonials = {
+import type { TLink, TUrl } from '../../types/nextjs/link';
+
+import './TestimonialStep.css';
+
+export type TTestimonialStepProps = {
   active?: boolean;
-  activeIcon?: React.ReactNode;
+  activeOnHover?: boolean;
   className?: string;
-  description?: 'Подпишите контракт';
+  description?: string;
   descriptionActive?: string;
-  // children?: React.ReactNode;
-  nonActiveIcon?: React.ReactNode;
-  onClick?: (e: React.MouseEvent) => void;
-  theme?: 'Делать' | 'Завершенный';
-  themeActive?: string;
+  element?: 'a' | TLink | 'div';
+  hideDescription?: boolean;
+  hideTitle?: boolean;
+  href?: TUrl;
+  icon?: FC<HTMLProps<Element>>;
+  iconActive?: FC<HTMLProps<Element>>;
+  title?: string;
+  titleActive?: string;
 };
 
-type TNextLinkProps = TCommonTestimonials & {
-  element?: TLink;
-  href?: Url;
-};
-
-type TAnchorElementProps = TCommonTestimonials & {
-  element?: 'a';
-  href?: string;
-  target?: '_blank';
-};
-
-export type TTestimonials = TNextLinkProps | TAnchorElementProps;
-
-export const TestimonialStep: React.FC<TTestimonials> = (props) => {
-  let className = 'uix-testimonial-step-wrapper';
-  const Element = props.element ?? 'div';
-  const href = props.href;
+export const TestimonialStep: FC<TTestimonialStepProps> = (props) => {
+  let className = 'uix-component-testimonial-testimonial-step';
 
   if (props.active) {
-    className += ' uix-testimonial-step-wrapper--active';
+    className += ' uix-component-testimonial-testimonial-step--active';
   }
 
-  return (
-    // @ts-ignore
-    <Element className={className} href={href || '#'} onClick={props.onClick}>
-      {props.activeIcon && props.activeIcon}
+  if (props.activeOnHover) {
+    className += ' uix-component-testimonial-testimonial-step--active-on-hover';
+  }
 
-      {props.nonActiveIcon && props.nonActiveIcon}
+  if (props.className) {
+    className += ' ' + props.className;
+  }
 
-      <div>
-        {props.theme && <p className="uix-testimonial-step-theme">{props.theme}</p>}
+  const Icon = props.icon;
+  const IconActive = props.iconActive;
 
-        {props.themeActive && (
-          <p className="uix-testimonial-step-theme--active">{props.themeActive}</p>
+  return createElement(
+    props.element || 'div',
+    { className, href: props.href || '' },
+    <>
+      <span className="uix-component-testimonial-testimonial-step__icon">
+        {Icon && <Icon className="uix-component-testimonial-testimonial-step__icon-default" />}
+
+        {IconActive && (
+          <IconActive className="uix-component-testimonial-testimonial-step__icon-active" />
+        )}
+      </span>
+
+      <span className="uix-component-testimonial-testimonial-step__content">
+        {!props.hideTitle && (Boolean(props.title) || Boolean(props.titleActive)) && (
+          <>
+            {Boolean(props.title) && (
+              <span className="uix-component-testimonial-testimonial-step__title">
+                {props.title}
+              </span>
+            )}
+
+            {Boolean(props.titleActive) && (
+              <span className="uix-component-testimonial-testimonial-step__title-active">
+                {props.titleActive}
+              </span>
+            )}
+          </>
         )}
 
-        {props.description && (
-          <h6 className="uix-testimonial-step-description">{props.description}</h6>
-        )}
+        {!props.hideDescription &&
+          (Boolean(props.description) || Boolean(props.descriptionActive)) && (
+            <>
+              {Boolean(props.description) && (
+                <span className="uix-component-testimonial-testimonial-step__description">
+                  {props.description}
+                </span>
+              )}
 
-        {props.descriptionActive && (
-          <h6 className="uix-testimonial-step-description--active">{props.descriptionActive}</h6>
-        )}
-      </div>
-
-      {/* {props.children} */}
-    </Element>
+              {Boolean(props.descriptionActive) && (
+                <span className="uix-component-testimonial-testimonial-step__description-active">
+                  {props.descriptionActive}
+                </span>
+              )}
+            </>
+          )}
+      </span>
+    </>
   );
 };

@@ -1,13 +1,13 @@
 import React, { FC, createElement } from 'react';
 
-import { TLink } from '../../types/nextjs/link';
+import { TLink, TUrl } from '../../types/nextjs/link';
 
 import './StackNav.css';
 
 export type TStackNavItem = {
   description?: string;
   element?: 'a' | TLink;
-  href: string;
+  href: TUrl;
   key?: string;
   title: string;
 };
@@ -27,13 +27,13 @@ export const StackNav: FC<TStackNavProps> = (props) => {
 
   return (
     <section className={className}>
-      {props.items.map((item) =>
+      {props.items.map((item, index) =>
         createElement(
           item.element || props.linkElement || 'a',
           {
             className: 'uix-widget-nav-stack-nav__item',
             href: item.href,
-            key: item.key || item.href
+            key: item.key || (typeof item.href === 'string' ? item.href : index)
           },
           <>
             <span className="uix-widget-nav-stack-nav__item-title">{item.title}</span>

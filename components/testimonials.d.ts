@@ -1,19 +1,19 @@
 /// <reference types="node" />
-import React from 'react';
+import React, { FC, HTMLProps } from 'react';
 import { UrlObject } from 'url';
 
-type Url = string | UrlObject;
+type TUrl = string | UrlObject;
 type InternalLinkProps = {
     /**
      * Optional decorator for the path that will be shown in the browser URL bar. Before Next.js 9.5.3 this was used for dynamic routes, check our [previous docs](https://github.com/vercel/next.js/blob/v9.5.2/docs/api-reference/next/link.md#dynamic-routes) to see how it worked. Note: when this path differs from the one provided in `href` the previous `href`/`as` behavior is used as shown in the [previous docs](https://github.com/vercel/next.js/blob/v9.5.2/docs/api-reference/next/link.md#dynamic-routes).
      */
-    as?: Url;
+    as?: TUrl;
     /**
      * The path or URL to navigate to. It can also be an object.
      *
      * @example https://nextjs.org/docs/api-reference/next/link#with-url-object
      */
-    href: Url;
+    href: TUrl;
     /**
      * Enable legacy link behavior.
      * @defaultValue `false`
@@ -79,27 +79,21 @@ type TLink = React.ForwardRefExoticComponent<Omit<React.AnchorHTMLAttributes<HTM
     children?: React.ReactNode;
 } & React.RefAttributes<HTMLAnchorElement>>;
 
-type TCommonTestimonials = {
+type TTestimonialStepProps = {
     active?: boolean;
-    activeIcon?: React.ReactNode;
+    activeOnHover?: boolean;
     className?: string;
-    description?: 'Подпишите контракт';
+    description?: string;
     descriptionActive?: string;
-    nonActiveIcon?: React.ReactNode;
-    onClick?: (e: React.MouseEvent) => void;
-    theme?: 'Делать' | 'Завершенный';
-    themeActive?: string;
+    element?: 'a' | TLink | 'div';
+    hideDescription?: boolean;
+    hideTitle?: boolean;
+    href?: TUrl;
+    icon?: FC<HTMLProps<Element>>;
+    iconActive?: FC<HTMLProps<Element>>;
+    title?: string;
+    titleActive?: string;
 };
-type TNextLinkProps = TCommonTestimonials & {
-    element?: TLink;
-    href?: Url;
-};
-type TAnchorElementProps = TCommonTestimonials & {
-    element?: 'a';
-    href?: string;
-    target?: '_blank';
-};
-type TTestimonials = TNextLinkProps | TAnchorElementProps;
-declare const TestimonialStep: React.FC<TTestimonials>;
+declare const TestimonialStep: FC<TTestimonialStepProps>;
 
-export { type TTestimonials, TestimonialStep };
+export { type TTestimonialStepProps, TestimonialStep };
