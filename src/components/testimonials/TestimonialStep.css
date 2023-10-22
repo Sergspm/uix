@@ -14,7 +14,7 @@
   justify-content: center;
   flex-shrink: 0;
   width: var(--icon-width, 0);
-  height: var(--icon-width, 0);
+  height: var(--icon-height, var(--icon-width, 0));
   border-radius: var(--icon-border-radius, 0);
   color: var(--icon-color, inherit);
   background: var(--icon-background, inherit);
@@ -60,12 +60,7 @@
 }
 
 .uix-component-testimonial-testimonial-step__title-active {
-  display: block;
-  font-size: var(--title-font-size-active, var(--title-font-size, inherit));
-  font-weight: var(--title-font-weight-active, var(--title-font-weight, inherit));
-  font-family: var(--title-font-family-active, var(--title-font-family, inherit));
   color: var(--title-color-active, var(--title-color, inherit));
-  margin: var(--title-margin-active, var(--title-margin, 0));
 }
 
 .uix-component-testimonial-testimonial-step__description {
@@ -78,10 +73,5 @@
 }
 
 .uix-component-testimonial-testimonial-step__description-active {
-  display: block;
-  font-size: var(--description-font-size-active, var(--description-font-size, inherit));
-  font-weight: var(--description-font-weight-active, var(--description-font-weight, inherit));
-  font-family: var(--description-font-family-active, var(--description-font-family, inherit));
   color: var(--description-color-active, var(--description-color, inherit));
-  margin: var(--description-margin-active, var(--description-margin, 0));
 }
