@@ -12,7 +12,7 @@ const Button = (p) => {
         className += ' uix-component-button-button--disabled';
     }
     if (preset && p.className && preset.className) {
-        className = ' ' + preset.className;
+        className += ' ' + preset.className;
     }
     if (props.className) {
         className += ' ' + props.className;

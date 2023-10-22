@@ -34,7 +34,7 @@ export const Button: FC<TButtonProps> = (p) => {
   }
 
   if (preset && p.className && preset.className) {
-    className = ' ' + preset.className;
+    className += ' ' + preset.className;
   }
 
   if (props.className) {
