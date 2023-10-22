@@ -19,21 +19,20 @@ export type TButtonProps = {
 
 export const presetsButton: Record<string, Partial<TButtonProps>> = {};
 
-export const Button: FC<TButtonProps> = (p) => {
-  const preset = p.preset && p.preset in presetsButton ? presetsButton[p.preset] : null;
-  const props = preset ? { ...preset, ...p } : p;
+export const Button: FC<TButtonProps> = (props) => {
+  const preset = (props.preset ? presetsButton[props.preset] : null) || {};
 
   let className = 'uix-component-button-button';
 
-  if (props.active) {
+  if (props.active || preset.active) {
     className += ' uix-component-button-button--active';
   }
 
-  if (props.disabled) {
+  if (props.disabled || preset.disabled) {
     className += ' uix-component-button-button--disabled';
   }
 
-  if (preset && p.className && preset.className) {
+  if (preset.className) {
     className += ' ' + preset.className;
   }
 
@@ -42,15 +41,15 @@ export const Button: FC<TButtonProps> = (p) => {
   }
 
   return createElement(
-    props.element || 'button',
+    props.element || preset.element || 'button',
     {
       className,
-      href: props.href || '',
+      href: props.href || preset.href || '',
       // @ts-ignore
-      disabled: props.disabled,
-      target: props.target,
-      onClick: props.onClick
+      disabled: props.disabled || preset.disabled,
+      target: props.target || preset.target,
+      onClick: props.onClick || preset.onClick
     },
-    props.children
+    props.children || preset.children
   );
 };

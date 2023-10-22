@@ -1,36 +1,40 @@
 import React, { createElement } from 'react';
 
 const presetsTestimonialStep = {};
-const TestimonialStep = (p) => {
-    const preset = p.preset && p.preset in presetsTestimonialStep ? presetsTestimonialStep[p.preset] : null;
-    const props = preset ? Object.assign(Object.assign({}, preset), p) : p;
+const TestimonialStep = (props) => {
+    const preset = (props.preset ? presetsTestimonialStep[props.preset] : null) || {};
     let className = 'uix-component-testimonial-testimonial-step';
-    if (props.active) {
+    if (props.active || preset.active) {
         className += ' uix-component-testimonial-testimonial-step--active';
     }
-    if (props.activeOnHover) {
+    if (props.activeOnHover || preset.activeOnHover) {
         className += ' uix-component-testimonial-testimonial-step--active-on-hover';
     }
-    if (preset && p.className && preset.className) {
-        className = ' ' + preset.className;
+    if (preset.className) {
+        className += ' ' + preset.className;
     }
     if (props.className) {
         className += ' ' + props.className;
     }
-    const Icon = props.icon;
-    const IconActive = props.iconActive;
-    return createElement(props.element || 'div', { className, href: props.href || '' }, React.createElement(React.Fragment, null,
+    const Icon = props.icon || preset.icon;
+    const IconActive = props.iconActive || preset.iconActive;
+    const hideTitle = props.hideTitle || preset.hideTitle;
+    const hideDescription = props.hideDescription || preset.hideDescription;
+    const title = props.title || preset.title;
+    const titleActive = props.titleActive || preset.titleActive;
+    const description = props.description || preset.description;
+    const descriptionActive = props.descriptionActive || preset.descriptionActive;
+    return createElement(props.element || preset.element || 'div', { className, href: props.href || preset.href || '' }, React.createElement(React.Fragment, null,
         React.createElement("span", { className: "uix-component-testimonial-testimonial-step__icon" },
             Icon && React.createElement(Icon, { className: "uix-component-testimonial-testimonial-step__icon-default" }),
             IconActive && (React.createElement(IconActive, { className: "uix-component-testimonial-testimonial-step__icon-active" }))),
         React.createElement("span", { className: "uix-component-testimonial-testimonial-step__content" },
-            !props.hideTitle && (Boolean(props.title) || Boolean(props.titleActive)) && (React.createElement(React.Fragment, null,
-                React.createElement("span", { className: "uix-component-testimonial-testimonial-step__title" }, props.title || props.titleActive),
-                React.createElement("span", { className: "uix-component-testimonial-testimonial-step__title-active" }, props.titleActive || props.title))),
-            !props.hideDescription &&
-                (Boolean(props.description) || Boolean(props.descriptionActive)) && (React.createElement(React.Fragment, null,
-                React.createElement("span", { className: "uix-component-testimonial-testimonial-step__description" }, props.description || props.descriptionActive),
-                React.createElement("span", { className: "uix-component-testimonial-testimonial-step__description-active" }, props.descriptionActive || props.description))))));
+            !hideTitle && (Boolean(title) || Boolean(titleActive)) && (React.createElement(React.Fragment, null,
+                React.createElement("span", { className: "uix-component-testimonial-testimonial-step__title" }, title || titleActive),
+                React.createElement("span", { className: "uix-component-testimonial-testimonial-step__title-active" }, titleActive || title))),
+            !hideDescription && (Boolean(description) || Boolean(descriptionActive)) && (React.createElement(React.Fragment, null,
+                React.createElement("span", { className: "uix-component-testimonial-testimonial-step__description" }, description || descriptionActive),
+                React.createElement("span", { className: "uix-component-testimonial-testimonial-step__description-active" }, descriptionActive || description))))));
 };
 
 export { TestimonialStep, presetsTestimonialStep };
