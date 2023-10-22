@@ -23,12 +23,6 @@ export const Button: FC<TButtonProps> = (p) => {
   const preset = p.preset && p.preset in presetsButton ? presetsButton[p.preset] : null;
   const props = preset ? { ...preset, ...p } : p;
 
-  if (preset) {
-    if (p.className && preset.className) {
-      props.className = preset.className + ' ' + p.className;
-    }
-  }
-
   let className = 'uix-component-button-button';
 
   if (props.active) {
@@ -37,6 +31,10 @@ export const Button: FC<TButtonProps> = (p) => {
 
   if (props.disabled) {
     className += ' uix-component-button-button--disabled';
+  }
+
+  if (preset && p.className && preset.className) {
+    className = ' ' + preset.className;
   }
 
   if (props.className) {

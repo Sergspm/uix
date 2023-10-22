@@ -16,11 +16,18 @@ export type TTestimonialStepProps = {
   href?: TUrl;
   icon?: FC<SVGProps<SVGSVGElement>>;
   iconActive?: FC<SVGProps<SVGSVGElement>>;
+  preset?: string;
   title?: string;
   titleActive?: string;
 };
 
-export const TestimonialStep: FC<TTestimonialStepProps> = (props) => {
+export const presetsTestimonialStep: Record<string, Partial<TTestimonialStepProps>> = {};
+
+export const TestimonialStep: FC<TTestimonialStepProps> = (p) => {
+  const preset =
+    p.preset && p.preset in presetsTestimonialStep ? presetsTestimonialStep[p.preset] : null;
+  const props = preset ? { ...preset, ...p } : p;
+
   let className = 'uix-component-testimonial-testimonial-step';
 
   if (props.active) {
@@ -29,6 +36,10 @@ export const TestimonialStep: FC<TTestimonialStepProps> = (props) => {
 
   if (props.activeOnHover) {
     className += ' uix-component-testimonial-testimonial-step--active-on-hover';
+  }
+
+  if (preset && p.className && preset.className) {
+    className = ' ' + preset.className;
   }
 
   if (props.className) {
