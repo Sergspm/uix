@@ -5,7 +5,8 @@
   border: var(--border, none);
 }
 
-.uix-component-testimonial-testimonial-step--active {
+.uix-component-testimonial-testimonial-step--active,
+.uix-component-testimonial-testimonial-step--active-on-hover:hover {
   border: var(--border-active, var(--border, none));
 }
 
