@@ -3,9 +3,11 @@
   align-items: center;
   width: fit-content;
   border: var(--border, none);
+  transition: border-color 0.3s;
 }
 
-.uix-component-testimonial-testimonial-step--active {
+.uix-component-testimonial-testimonial-step--active,
+.uix-component-testimonial-testimonial-step--active-on-hover:hover {
   border: var(--border-active, var(--border, none));
 }
 
@@ -20,6 +22,7 @@
   color: var(--icon-color, inherit);
   background: var(--icon-background, inherit);
   font-size: var(--icon-font-size, inherit);
+  transition: background-color 0.3s;
 }
 
 .uix-component-testimonial-testimonial-step--active
