@@ -19,7 +19,7 @@
   background: var(--background-active, var(--background, none));
 }
 
-.uix-component-testimonial-testimonial-step__icon-outer {
+.uix-component-testimonial-testimonial-step__icon {
   display: flex;
   align-items: center;
   justify-content: center;
