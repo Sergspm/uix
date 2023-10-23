@@ -81,13 +81,10 @@ type TLink = React.ForwardRefExoticComponent<Omit<React.AnchorHTMLAttributes<HTM
 
 type TTestimonialStepProps = {
     active?: boolean;
-    activeOnHover?: boolean;
     className?: string;
     description?: string;
     descriptionActive?: string;
     element?: 'a' | TLink | 'div';
-    hideDescription?: boolean;
-    hideTitle?: boolean;
     href?: TUrl;
     icon?: FC<SVGProps<SVGSVGElement>>;
     iconActive?: FC<SVGProps<SVGSVGElement>>;

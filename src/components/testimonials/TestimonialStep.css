@@ -3,15 +3,23 @@
   align-items: center;
   width: fit-content;
   border: var(--border, none);
-  transition: border-color 0.3s;
+  background: var(--background, none);
+  transition:
+    border-color 0.3s,
+    background-color 0.3s;
 }
 
-.uix-component-testimonial-testimonial-step--active,
-.uix-component-testimonial-testimonial-step--active-on-hover:hover {
+.uix-component-testimonial-testimonial-step:hover {
+  border: var(--border-hover, var(--border, none));
+  background: var(--background-hover, var(--background, none));
+}
+
+.uix-component-testimonial-testimonial-step.uix--active {
   border: var(--border-active, var(--border, none));
+  background: var(--background-active, var(--background, none));
 }
 
-.uix-component-testimonial-testimonial-step__icon {
+.uix-component-testimonial-testimonial-step__icon-outer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,30 +33,10 @@
   transition: background-color 0.3s;
 }
 
-.uix-component-testimonial-testimonial-step--active
-  .uix-component-testimonial-testimonial-step__icon,
-.uix-component-testimonial-testimonial-step--active-on-hover:hover
+.uix-component-testimonial-testimonial-step.uix--active
   .uix-component-testimonial-testimonial-step__icon {
   color: var(--icon-color-active, inherit);
   background: var(--icon-background-active, inherit);
-}
-
-.uix-component-testimonial-testimonial-step__icon-active {
-  display: none;
-}
-
-.uix-component-testimonial-testimonial-step--active
-  .uix-component-testimonial-testimonial-step__icon-default,
-.uix-component-testimonial-testimonial-step--active-on-hover:hover
-  .uix-component-testimonial-testimonial-step__icon-default {
-  display: none;
-}
-
-.uix-component-testimonial-testimonial-step--active
-  .uix-component-testimonial-testimonial-step__icon-active,
-.uix-component-testimonial-testimonial-step--active-on-hover:hover
-  .uix-component-testimonial-testimonial-step__icon-active {
-  display: block;
 }
 
 .uix-component-testimonial-testimonial-step__content {
@@ -56,8 +44,7 @@
   padding: var(--content-padding, 0);
 }
 
-.uix-component-testimonial-testimonial-step__title,
-.uix-component-testimonial-testimonial-step__title-active {
+.uix-component-testimonial-testimonial-step__title {
   display: block;
   font-size: var(--title-font-size, inherit);
   font-weight: var(--title-font-weight, inherit);
@@ -66,27 +53,12 @@
   margin: var(--title-margin, 0);
 }
 
-.uix-component-testimonial-testimonial-step__title-active {
-  display: none;
+.uix-component-testimonial-testimonial-step.uix--active
+  .uix-component-testimonial-testimonial-step__title {
   color: var(--title-color-active, var(--title-color, inherit));
 }
 
-.uix-component-testimonial-testimonial-step--active
-  .uix-component-testimonial-testimonial-step__title,
-.uix-component-testimonial-testimonial-step--active-on-hover:hover
-  .uix-component-testimonial-testimonial-step__title {
-  display: none;
-}
-
-.uix-component-testimonial-testimonial-step--active
-  .uix-component-testimonial-testimonial-step__title-active,
-.uix-component-testimonial-testimonial-step--active-on-hover:hover
-  .uix-component-testimonial-testimonial-step__title-active {
-  display: block;
-}
-
-.uix-component-testimonial-testimonial-step__description,
-.uix-component-testimonial-testimonial-step__description-active {
+.uix-component-testimonial-testimonial-step__description {
   display: block;
   font-size: var(--description-font-size, inherit);
   font-weight: var(--description-font-weight, inherit);
@@ -95,21 +67,7 @@
   margin: var(--description-margin, 0);
 }
 
-.uix-component-testimonial-testimonial-step__description-active {
-  display: none;
-  color: var(--description-color-active, var(--description-color, inherit));
-}
-
-.uix-component-testimonial-testimonial-step--active
-  .uix-component-testimonial-testimonial-step__description,
-.uix-component-testimonial-testimonial-step--active-on-hover:hover
+.uix-component-testimonial-testimonial-step.uix--active
   .uix-component-testimonial-testimonial-step__description {
-  display: none;
-}
-
-.uix-component-testimonial-testimonial-step--active
-  .uix-component-testimonial-testimonial-step__description-active,
-.uix-component-testimonial-testimonial-step--active-on-hover:hover
-  .uix-component-testimonial-testimonial-step__description-active {
-  display: block;
+  color: var(--description-color-active, var(--description-color, inherit));
 }
