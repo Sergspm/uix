@@ -1,6 +1,6 @@
 import { FC, SVGProps } from 'react';
 
-declare const AlertCircleIcon: FC<SVGProps<SVGSVGElement>>;
+declare const AlertCircleOutlineIcon: FC<SVGProps<SVGSVGElement>>;
 
 declare const BrowserOutlineIcon: FC<SVGProps<SVGSVGElement>>;
 
@@ -18,4 +18,4 @@ declare const ReceiptOutlineIcon: FC<SVGProps<SVGSVGElement>>;
 
 declare const TruckDeliveryOutlineIcon: FC<SVGProps<SVGSVGElement>>;
 
-export { AlertCircleIcon, BrowserOutlineIcon, BuildingStoreOutlineIcon, CheckIcon, CircleCheckFilledIcon, CloudDownloadOutlineIcon, FileCertificateOutlineIcon, ReceiptOutlineIcon, TruckDeliveryOutlineIcon };
+export { AlertCircleOutlineIcon, BrowserOutlineIcon, BuildingStoreOutlineIcon, CheckIcon, CircleCheckFilledIcon, CloudDownloadOutlineIcon, FileCertificateOutlineIcon, ReceiptOutlineIcon, TruckDeliveryOutlineIcon };

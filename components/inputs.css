@@ -55,6 +55,12 @@
   background: var(--input-background-disabled, var(--input-background, transparent));
 }
 
+.uix-component-input-smart-text-field.uix--error .uix-component-input-smart-text-field__inner {
+  border: var(--input-border-error, var(--input-border, none));
+  color: var(--input-color-error, var(--input-color, inherit));
+  background: var(--input-background-error, var(--input-background, transparent));
+}
+
 .uix-component-input-smart-text-field__input {
   width: 100%;
   display: block;

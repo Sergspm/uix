@@ -1,4 +1,4 @@
-export * from './AlertCircleIcon';
+export * from './AlertCircleOutlineIcon';
 export * from './BrowserOutlineIcon';
 export * from './BuildingStoreOutlineIcon';
 export * from './CheckIcon';
