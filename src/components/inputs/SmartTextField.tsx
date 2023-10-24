@@ -56,7 +56,7 @@ export const SmartTextField: FC<TSmartTextFieldProps> = (props) => {
     inputType = 'number';
   }
 
-  if (props.status === 'error' || preset.status === 'error') {
+  if (props.status === 'error' || preset.status === 'error' || hasError) {
     className += ' uix--error';
   }
 

@@ -65,7 +65,7 @@ const SmartTextField = (props) => {
         className += ' uix--without-arrows';
         inputType = 'number';
     }
-    if (props.status === 'error' || preset.status === 'error') {
+    if (props.status === 'error' || preset.status === 'error' || hasError) {
         className += ' uix--error';
     }
     if (preset.className) {
