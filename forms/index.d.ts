@@ -32,7 +32,7 @@ interface IUseFormProps {
     defaultValues?: TFormValues;
     validators?: TFormValidatorsBag;
 }
-declare const useForm: (props: IUseFormProps) => {
+declare const useForm: (props?: IUseFormProps) => {
     values: TFormValues;
     errors: TErrorsBag;
     controllers: TFormControllers;

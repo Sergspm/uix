@@ -66,7 +66,7 @@ const validateValue = (value, validators) => {
     return null;
 };
 
-const useForm = (props) => {
+const useForm = (props = {}) => {
     const [values, setValues] = useState(() => props.defaultValues || {});
     const [errors, setErrors] = useState({});
     const controllers = useMemo(() => Object.keys(values).reduce((acc, name) => {

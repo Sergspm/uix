@@ -9,7 +9,7 @@ interface IUseFormProps {
   validators?: TFormValidatorsBag;
 }
 
-export const useForm = (props: IUseFormProps) => {
+export const useForm = (props: IUseFormProps = {}) => {
   const [values, setValues] = useState<TFormValues>(() => props.defaultValues || {});
   const [errors, setErrors] = useState<TErrorsBag>({});
 
