@@ -1,6 +1,6 @@
 import { FC, MouseEvent, ReactNode, createElement } from 'react';
 
-import type { TLink, TUrl } from '../../types/nextjs/link';
+import type { TLink, TUrl } from '../../types/nextjs';
 
 import './Button.css';
 
@@ -45,6 +45,7 @@ export const Button: FC<TButtonProps> = (props) => {
     {
       className,
       href: props.href || preset.href || '',
+      // eslint-disable-next-line
       // @ts-ignore
       disabled: props.disabled || preset.disabled,
       target: props.target || preset.target,

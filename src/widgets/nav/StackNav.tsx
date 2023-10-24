@@ -1,6 +1,6 @@
 import React, { FC, createElement } from 'react';
 
-import { TLink, TUrl } from '../../types/nextjs/link';
+import { TLink, TUrl } from '../../types/nextjs';
 
 import './StackNav.css';
 

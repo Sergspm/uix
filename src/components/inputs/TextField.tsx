@@ -1,19 +1,25 @@
 import React, { ChangeEvent, FC, SyntheticEvent } from 'react';
 
+import { IError } from '../../utils/errors';
+
 import './TextField.css';
 
-type TTextFieldProps = {
+export type TTextFieldProps = {
   className?: string;
   disabled?: boolean;
   hideNumberArrows?: boolean;
   label?: string;
   onBlur?: (e: SyntheticEvent<HTMLInputElement>) => void;
-  onChange?: (value: string, event: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (
+    value: string,
+    error: IError | null | undefined,
+    event: ChangeEvent<HTMLInputElement>
+  ) => void;
   onClick?: (e: SyntheticEvent<HTMLInputElement>) => void;
   onFocus?: (e: SyntheticEvent<HTMLInputElement>) => void;
   placeholder?: string;
   preset?: string;
-  type?: 'text' | 'number';
+  type?: 'text' | 'number' | 'password';
   value?: string | number;
   valueMax?: number | string;
   valueMin?: number | string;
@@ -29,11 +35,11 @@ export const TextField: FC<TTextFieldProps> = (p) => {
   let inputType = props.type || 'text';
 
   if (props.disabled) {
-    className += ' uix-component-input-text-field--disabled';
+    className += ' uix--disabled';
   }
 
   if (props.hideNumberArrows) {
-    className += ' uix-component-input-text-field--without-arrows';
+    className += ' uix--without-arrows';
     inputType = 'number';
   }
 
@@ -60,7 +66,7 @@ export const TextField: FC<TTextFieldProps> = (p) => {
         value={props.value}
         onChange={(e) => {
           if (props.onChange) {
-            props.onChange(e.target.value, e);
+            props.onChange(e.target.value, null, e);
           }
         }}
       />

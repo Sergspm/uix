@@ -19,11 +19,34 @@ const Button = (props) => {
     return createElement(props.element || preset.element || 'button', {
         className,
         href: props.href || preset.href || '',
+        // eslint-disable-next-line
         // @ts-ignore
         disabled: props.disabled || preset.disabled,
         target: props.target || preset.target,
         onClick: props.onClick || preset.onClick
     }, props.children || preset.children);
+};
+
+/******************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise, SuppressedError, Symbol */
+
+
+typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
+    var e = new Error(message);
+    return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
 };
 
 const presetsTextField = {};
@@ -32,10 +55,10 @@ const TextField = (p) => {
     let className = 'uix-component-input-text-field';
     let inputType = props.type || 'text';
     if (props.disabled) {
-        className += ' uix-component-input-text-field--disabled';
+        className += ' uix--disabled';
     }
     if (props.hideNumberArrows) {
-        className += ' uix-component-input-text-field--without-arrows';
+        className += ' uix--without-arrows';
         inputType = 'number';
     }
     if (props.className) {
@@ -45,7 +68,7 @@ const TextField = (p) => {
         Boolean(props.label) && (React.createElement("label", { className: "uix-component-input-text-field__label" }, props.label)),
         React.createElement("input", { className: "uix-component-input-text-field__input", disabled: props.disabled, max: props.valueMax, min: props.valueMin, onBlur: props.onBlur, onClick: props.onClick, onFocus: props.onFocus, placeholder: props.placeholder, type: inputType, value: props.value, onChange: (e) => {
                 if (props.onChange) {
-                    props.onChange(e.target.value, e);
+                    props.onChange(e.target.value, null, e);
                 }
             } })));
 };

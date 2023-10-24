@@ -1,6 +1,6 @@
 import React, { FC, SVGProps, createElement } from 'react';
 
-import type { TLink, TUrl } from '../../types/nextjs/link';
+import type { TLink, TUrl } from '../../types/nextjs';
 
 import './TestimonialStep.css';
 

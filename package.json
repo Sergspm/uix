@@ -14,8 +14,8 @@
   "scripts": {
     "rollup": "rollup -c",
     "build": "npm run clean:before && npm run rollup && npm run clean:after",
-    "clean:before": "rm -rf components features icons utils widgets",
-    "clean:after": "rm -rf components/types features/types icons/types utils/types widgets/types",
+    "clean:before": "rm -rf components features icons utils widgets forms",
+    "clean:after": "rm -rf components/types features/types icons/types utils/types forms/types widgets/types",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix"
   },

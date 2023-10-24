@@ -35,6 +35,132 @@
   pointer-events: none;
 }
 
+.uix-component-input-smart-text-field {
+  display: block;
+  width: var(--width, 100%);
+}
+
+.uix-component-input-smart-text-field__label {
+  width: 100%;
+  display: block;
+  font-family: var(--label-font-family, inherit);
+  font-size: var(--label-font-size, inherit);
+  font-style: var(--label-font-style, inherit);
+  font-weight: var(--label-font-weight, inherit);
+  color: var(--label-color, inherit);
+  margin: var(--label-margin, 0);
+}
+
+.uix-component-input-smart-text-field.uix--disabled .uix-component-input-smart-text-field__label {
+  color: var(--label-color-disabled, var(--label-color, inherit));
+}
+
+.uix-component-input-smart-text-field.uix--error .uix-component-input-smart-text-field__label {
+  color: var(--label-color-error, var(--label-color, inherit));
+}
+
+.uix-component-input-smart-text-field__inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: var(--input-border, none);
+  border-radius: var(--input-border-radius, 0);
+  background: var(--input-background, transparent);
+  transition:
+    color 0.3s,
+    border-color 0.3s;
+}
+
+.uix-component-input-smart-text-field__inner:hover {
+  border: var(--input-border-hover, var(--input-border-focus, var(--input-border, none)));
+  color: var(--input-color-hover, var(--input-color-focus, var(--input-color, inherit)));
+}
+
+.uix-component-input-smart-text-field__inner:has(
+    .uix-component-input-smart-text-field__input:focus
+  ) {
+  border: var(--input-border-focus, var(--input-border, none));
+  color: var(--input-color-focus, var(--input-color, inherit));
+}
+
+.uix-component-input-smart-text-field.uix--disabled .uix-component-input-smart-text-field__inner {
+  border: var(--input-border-disabled, var(--input-border, none));
+  color: var(--input-color-disabled, var(--input-color, inherit));
+}
+
+.uix-component-input-smart-text-field__input {
+  width: 100%;
+  display: block;
+  padding: 0 var(--input-padding-x, 0);
+  height: var(--input-height, auto);
+  font-family: var(--input-font-family, inherit);
+  font-size: var(--input-font-size, inherit);
+  font-weight: var(--input-font-weight, inherit);
+  text-align: var(--input-text-align, left);
+  color: var(--input-color, inherit);
+  flex: 1;
+}
+
+.uix-component-input-smart-text-field__input::placeholder {
+  color: var(--input-color-placeholder, inherit);
+}
+
+.uix-component-input-smart-text-field.uix--without-arrows
+  .uix-component-input-smart-text-field__input {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.uix-component-input-smart-text-field.uix--without-arrows
+  .uix-component-input-smart-text-field__input::-webkit-outer-spin-button,
+.uix-component-input-smart-text-field.uix--without-arrows
+  .uix-component-input-smart-text-field__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.uix-component-input-smart-text-field__help-text {
+  width: 100%;
+  font-family: var(--help-font-family, inherit);
+  font-size: var(--help-font-size, inherit);
+  font-weight: var(--help-font-weight, inherit);
+  text-align: var(--help-text-align, left);
+  color: var(--help-color, inherit);
+  margin: var(--help-margin, 0);
+}
+
+.uix-component-input-smart-text-field.uix--error .uix-component-input-smart-text-field__help-text {
+  color: var(--help-error-color, var(--help-color, inherit));
+}
+
+.uix-component-input-smart-text-field__suffix-container {
+  display: flex;
+  align-items: center;
+  padding: var(--suffix-container-padding, 0);
+}
+
+.uix-component-input-smart-text-field__suffix {
+  font-family: var(--suffix-text-font-family, inherit);
+  font-size: var(--suffix-text-font-size, inherit);
+  font-weight: var(--suffix-text-font-weight, inherit);
+  color: var(--suffix-text-color, inherit);
+  margin: var(--suffix-text-margin, 0);
+}
+
+.uix-component-input-smart-text-field__success-icon,
+.uix-component-input-smart-text-field__error-icon {
+  font-size: var(--suffix-icon-font-size, inherit);
+  margin: var(--suffix-icon-margin, 0);
+}
+
+.uix-component-input-smart-text-field__success-icon {
+  color: var(--suffix-icon-success-color, var(--suffix-text-color, inherit));
+}
+
+.uix-component-input-smart-text-field__error-icon {
+  color: var(--suffix-icon-error-color, var(--suffix-text-color, inherit));
+}
+
 .uix-component-input-text-field {
   display: block;
   width: var(--width, 100%);
@@ -49,6 +175,11 @@
   font-weight: var(--label-font-weight, inherit);
   color: var(--label-color, #000);
   margin-bottom: var(--label-margin-bottom, 0);
+}
+
+.uix-component-input-text-field.uix--disabled .uix-component-input-text-field__label {
+  color: var(--label-color-disabled, var(--label-color, #000));
+  cursor: default;
 }
 
 .uix-component-input-text-field__input {
@@ -79,18 +210,24 @@
   color: var(--input-color-focus, var(--input-color, #000));
 }
 
+.uix-component-input-text-field.uix--disabled .uix-component-input-text-field__input {
+  border: var(--input-border-disabled, var(--input-border, none));
+  background: var(--input-background-disabled, var(--input-background, transparent));
+  color: var(--input-color-disabled, var(--input-color, #000));
+}
+
 .uix-component-input-text-field__input::placeholder {
   color: var(--input-color-placeholder, #00000077);
 }
 
-.uix-component-input-text-field--without-arrows .uix-component-input-text-field__input {
+.uix-component-input-text-field.uix--without-arrows .uix-component-input-text-field__input {
   -moz-appearance: textfield;
   appearance: textfield;
 }
 
-.uix-component-input-text-field--without-arrows
+.uix-component-input-text-field.uix--without-arrows
   .uix-component-input-text-field__input::-webkit-outer-spin-button,
-.uix-component-input-text-field--without-arrows
+.uix-component-input-text-field.uix--without-arrows
   .uix-component-input-text-field__input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;

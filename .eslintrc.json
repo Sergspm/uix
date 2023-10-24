@@ -33,6 +33,7 @@
     "typescript-sort-keys",
     "sort-destructure-keys"
   ],
+  "ignorePatterns": ["src/types/axios.d.ts", "src/types/nextjs.d.ts"],
   "rules": {
     "@typescript-eslint/no-unused-vars": [
       "warn",

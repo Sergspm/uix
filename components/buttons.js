@@ -19,6 +19,7 @@ const Button = (props) => {
     return createElement(props.element || preset.element || 'button', {
         className,
         href: props.href || preset.href || '',
+        // eslint-disable-next-line
         // @ts-ignore
         disabled: props.disabled || preset.disabled,
         target: props.target || preset.target,

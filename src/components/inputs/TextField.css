@@ -14,6 +14,11 @@
   margin-bottom: var(--label-margin-bottom, 0);
 }
 
+.uix-component-input-text-field.uix--disabled .uix-component-input-text-field__label {
+  color: var(--label-color-disabled, var(--label-color, #000));
+  cursor: default;
+}
+
 .uix-component-input-text-field__input {
   width: 100%;
   display: block;
@@ -42,18 +47,24 @@
   color: var(--input-color-focus, var(--input-color, #000));
 }
 
+.uix-component-input-text-field.uix--disabled .uix-component-input-text-field__input {
+  border: var(--input-border-disabled, var(--input-border, none));
+  background: var(--input-background-disabled, var(--input-background, transparent));
+  color: var(--input-color-disabled, var(--input-color, #000));
+}
+
 .uix-component-input-text-field__input::placeholder {
   color: var(--input-color-placeholder, #00000077);
 }
 
-.uix-component-input-text-field--without-arrows .uix-component-input-text-field__input {
+.uix-component-input-text-field.uix--without-arrows .uix-component-input-text-field__input {
   -moz-appearance: textfield;
   appearance: textfield;
 }
 
-.uix-component-input-text-field--without-arrows
+.uix-component-input-text-field.uix--without-arrows
   .uix-component-input-text-field__input::-webkit-outer-spin-button,
-.uix-component-input-text-field--without-arrows
+.uix-component-input-text-field.uix--without-arrows
   .uix-component-input-text-field__input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;

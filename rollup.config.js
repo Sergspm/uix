@@ -13,7 +13,8 @@ const buildSections = [
   { input: 'src/icons/index.ts', output: 'icons/index.js' },
   { input: 'src/widgets/cards/index.ts', output: 'widgets/cards.js' },
   { input: 'src/widgets/nav/index.ts', output: 'widgets/nav.js' },
-  { input: 'src/utils/index.ts', output: 'utils/index.js' }
+  { input: 'src/utils/index.ts', output: 'utils/index.js' },
+  { input: 'src/forms/index.ts', output: 'forms/index.js' }
 ];
 
 const buildDefinitions = [
@@ -36,7 +37,8 @@ const buildDefinitions = [
   { input: 'components/types/icons/index.d.ts', output: 'icons/index.d.ts' },
   { input: 'widgets/types/widgets/cards/index.d.ts', output: 'widgets/cards.d.ts' },
   { input: 'widgets/types/widgets/nav/index.d.ts', output: 'widgets/nav.d.ts' },
-  { input: 'utils/types/utils/index.d.ts', output: 'utils/index.d.ts' }
+  { input: 'utils/types/utils/index.d.ts', output: 'utils/index.d.ts' },
+  { input: 'forms/types/forms/index.d.ts', output: 'forms/index.d.ts' }
 ];
 
 export default [
