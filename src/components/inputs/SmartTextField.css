@@ -32,7 +32,8 @@
   background: var(--input-background, transparent);
   transition:
     color 0.3s,
-    border-color 0.3s;
+    border-color 0.3s,
+    background-color 0.3s;
 }
 
 .uix-component-input-smart-text-field__inner:hover {
@@ -51,6 +52,7 @@
 .uix-component-input-smart-text-field.uix--disabled .uix-component-input-smart-text-field__inner {
   border: var(--input-border-disabled, var(--input-border, none));
   color: var(--input-color-disabled, var(--input-color, inherit));
+  background: var(--input-background-disabled, var(--input-background, transparent));
 }
 
 .uix-component-input-smart-text-field__input {
