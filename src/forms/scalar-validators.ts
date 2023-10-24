@@ -1,10 +1,19 @@
 import { TValidator } from './types';
 
-export const isNotEmpty = ({ message }: { message?: string } = {}): TValidator => ({
+type TIsNotEmptyProps = {
+  message?: string;
+  trim?: boolean;
+};
+
+export const isNotEmpty = ({ message }: TIsNotEmptyProps = {}): TValidator => ({
   name: 'isNotEmpty',
   message,
   validate: (value) => {
-    const isEmpty = value === null || value === undefined || value === '';
+    let isEmpty = value === null || value === undefined || value === '';
+
+    if (!isEmpty && typeof value === 'string' && value.trim() === '') {
+      isEmpty = true;
+    }
 
     return !isEmpty;
   }

@@ -4,7 +4,10 @@ const isNotEmpty = ({ message } = {}) => ({
     name: 'isNotEmpty',
     message,
     validate: (value) => {
-        const isEmpty = value === null || value === undefined || value === '';
+        let isEmpty = value === null || value === undefined || value === '';
+        if (!isEmpty && typeof value === 'string' && value.trim() === '') {
+            isEmpty = true;
+        }
         return !isEmpty;
     }
 });

@@ -25,9 +25,11 @@ type TFormController = {
 };
 type TFormControllers = Record<string, TFormController>;
 
-declare const isNotEmpty: ({ message }?: {
-    message?: string | undefined;
-}) => TValidator;
+type TIsNotEmptyProps = {
+    message?: string;
+    trim?: boolean;
+};
+declare const isNotEmpty: ({ message }?: TIsNotEmptyProps) => TValidator;
 
 interface IUseFormProps {
     defaultValues?: TFormValues;
