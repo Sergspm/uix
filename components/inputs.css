@@ -45,6 +45,7 @@
   ) {
   border: var(--input-border-focus, var(--input-border, none));
   color: var(--input-color-focus, var(--input-color, inherit));
+  background: var(--input-background-focus, var(--input-background, transparent));
 }
 
 .uix-component-input-smart-text-field.uix--disabled .uix-component-input-smart-text-field__inner {
