@@ -19,6 +19,7 @@ type TFormValues = Record<string, TFormValue>;
 type TFormController = {
     error: IError | null | undefined;
     hasValidators: boolean;
+    touched: boolean;
     onChange: (value: TFormValue, error?: IError | null) => void;
     value: TFormValue;
 };

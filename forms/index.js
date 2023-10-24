@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useRef, useMemo, useCallback } from 'react';
 
 const isNotEmpty = ({ message } = {}) => ({
     name: 'isNotEmpty',
@@ -69,20 +69,33 @@ const validateValue = (value, validators) => {
 const useForm = (props = {}) => {
     const [values, setValues] = useState(() => props.defaultValues || {});
     const [errors, setErrors] = useState({});
+    const touched = useRef({});
     const controllers = useMemo(() => Object.keys(values).reduce((acc, name) => {
         acc[name] = {
             value: values[name],
             error: errors[name],
             hasValidators: Boolean(props.validators && props.validators[name]),
+            touched: touched.current[name] || false,
             onChange: (value, error) => {
                 setValues((values) => (Object.assign(Object.assign({}, values), { [name]: value })));
+                touched.current[name] = true;
                 let validationError = error;
                 if (!error && props.validators && props.validators[name]) {
                     validationError = validateValue(value, props.validators[name]);
                 }
-                if (validationError) {
-                    setErrors((errors) => (Object.assign(Object.assign({}, errors), { [name]: validationError })));
-                }
+                setErrors((errors) => {
+                    if (!validationError && !errors[name]) {
+                        return errors;
+                    }
+                    const newErrors = Object.assign({}, errors);
+                    if (validationError) {
+                        newErrors[name] = validationError;
+                    }
+                    else {
+                        delete newErrors[name];
+                    }
+                    return newErrors;
+                });
             }
         };
         return acc;

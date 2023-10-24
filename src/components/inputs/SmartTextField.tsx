@@ -36,6 +36,7 @@ export const SmartTextField: FC<TSmartTextFieldProps> = (props) => {
     props.validators || (props.controller && props.controller.hasValidators)
   );
   const suffix = props.suffix || preset.suffix;
+  const touched = Boolean(props.controller && props.controller.touched);
 
   let className = 'uix-component-input-smart-text-field';
   let inputType = props.type || preset.type || 'text';
@@ -96,9 +97,9 @@ export const SmartTextField: FC<TSmartTextFieldProps> = (props) => {
           }}
         />
 
-        {(suffix || hasValidators) && (
+        {(suffix || hasValidators || hasError) && (
           <div className="uix-component-input-smart-text-field__suffix-container">
-            {hasValidators && !hasError && SuccessIcon && (
+            {hasValidators && !hasError && SuccessIcon && touched && (
               <SuccessIcon className="uix-component-input-smart-text-field__success-icon" />
             )}
 

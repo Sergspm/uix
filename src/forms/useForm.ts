@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 
 import type { IError, TErrorsBag } from '../utils/errors';
 import type { TFormControllers, TFormValidatorsBag, TFormValue, TFormValues } from './types';
@@ -13,6 +13,8 @@ export const useForm = (props: IUseFormProps = {}) => {
   const [values, setValues] = useState<TFormValues>(() => props.defaultValues || {});
   const [errors, setErrors] = useState<TErrorsBag>({});
 
+  const touched = useRef<Record<string, boolean>>({});
+
   const controllers = useMemo<TFormControllers>(
     () =>
       Object.keys(values).reduce<TFormControllers>((acc, name) => {
@@ -20,8 +22,11 @@ export const useForm = (props: IUseFormProps = {}) => {
           value: values[name],
           error: errors[name],
           hasValidators: Boolean(props.validators && props.validators[name]),
+          touched: touched.current[name] || false,
           onChange: (value, error) => {
             setValues((values) => ({ ...values, [name]: value }));
+
+            touched.current[name] = true;
 
             let validationError = error;
 
@@ -29,8 +34,23 @@ export const useForm = (props: IUseFormProps = {}) => {
               validationError = validateValue(value, props.validators[name]);
             }
 
+            setErrors((errors) => {
+              if (!validationError && !errors[name]) {
+                return errors;
+              }
+
+              const newErrors = { ...errors };
+
+              if (validationError) {
+                newErrors[name] = validationError;
+              } else {
+                delete newErrors[name];
+              }
+
+              return newErrors;
+            });
+
             if (validationError) {
-              setErrors((errors) => ({ ...errors, [name]: validationError }));
             }
           }
         };

@@ -49,6 +49,7 @@ const SmartTextField = (props) => {
         (props.controller && props.controller.error ? props.controller.error.message : null);
     const hasValidators = Boolean(props.validators || (props.controller && props.controller.hasValidators));
     const suffix = props.suffix || preset.suffix;
+    const touched = Boolean(props.controller && props.controller.touched);
     let className = 'uix-component-input-smart-text-field';
     let inputType = props.type || preset.type || 'text';
     let value = props.controller ? props.controller.value : props.value;
@@ -87,8 +88,8 @@ const SmartTextField = (props) => {
                         props.onChange(e.target.value, error, e);
                     }
                 } }),
-            (suffix || hasValidators) && (React.createElement("div", { className: "uix-component-input-smart-text-field__suffix-container" },
-                hasValidators && !hasError && SuccessIcon && (React.createElement(SuccessIcon, { className: "uix-component-input-smart-text-field__success-icon" })),
+            (suffix || hasValidators || hasError) && (React.createElement("div", { className: "uix-component-input-smart-text-field__suffix-container" },
+                hasValidators && !hasError && SuccessIcon && touched && (React.createElement(SuccessIcon, { className: "uix-component-input-smart-text-field__success-icon" })),
                 hasValidators && hasError && ErrorIcon && (React.createElement(ErrorIcon, { className: "uix-component-input-smart-text-field__error-icon" })),
                 suffix && React.createElement("div", { className: "uix-component-input-smart-text-field__suffix" }, suffix)))),
         helpText && (React.createElement("div", { className: "uix-component-input-smart-text-field__help-text" }, helpText))));
