@@ -69,7 +69,12 @@
 }
 
 .uix-component-input-smart-text-field__input::placeholder {
-  color: var(--input-color-placeholder, inherit);
+  color: var(--input-placeholder-color, inherit);
+}
+
+.uix-component-input-smart-text-field.uix--disabled
+  .uix-component-input-smart-text-field__input::placeholder {
+  color: var(--input-placeholder-color-disabled, inherit);
 }
 
 .uix-component-input-smart-text-field.uix--without-arrows
