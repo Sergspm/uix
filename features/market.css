@@ -47,6 +47,7 @@
   font-size: var(--label-font-size, inherit);
   font-style: var(--label-font-style, inherit);
   font-weight: var(--label-font-weight, inherit);
+  line-height: var(--label-line-height, normal);
   color: var(--label-color, inherit);
   margin: var(--label-margin, 0);
 }
