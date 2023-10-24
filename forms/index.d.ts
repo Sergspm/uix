@@ -29,7 +29,7 @@ type TIsNotEmptyProps = {
     message?: string;
     trim?: boolean;
 };
-declare const isNotEmpty: ({ message }?: TIsNotEmptyProps) => TValidator;
+declare const isNotEmpty: ({ message, trim }?: TIsNotEmptyProps) => TValidator;
 
 interface IUseFormProps {
     defaultValues?: TFormValues;

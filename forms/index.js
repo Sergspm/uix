@@ -1,11 +1,11 @@
 import { useState, useRef, useMemo, useCallback } from 'react';
 
-const isNotEmpty = ({ message } = {}) => ({
+const isNotEmpty = ({ message, trim } = {}) => ({
     name: 'isNotEmpty',
     message,
     validate: (value) => {
         let isEmpty = value === null || value === undefined || value === '';
-        if (!isEmpty && typeof value === 'string' && value.trim() === '') {
+        if (trim && !isEmpty && typeof value === 'string' && value.trim() === '') {
             isEmpty = true;
         }
         return !isEmpty;
