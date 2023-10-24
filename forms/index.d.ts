@@ -24,7 +24,7 @@ type TFormController = {
 };
 type TFormControllers = Record<string, TFormController>;
 
-declare const isNotEmpty: ({ message }: {
+declare const isNotEmpty: ({ message }?: {
     message?: string | undefined;
 }) => TValidator;
 

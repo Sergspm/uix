@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback } from 'react';
 
-const isNotEmpty = ({ message }) => ({
+const isNotEmpty = ({ message } = {}) => ({
     name: 'isNotEmpty',
     message,
     validate: (value) => {
