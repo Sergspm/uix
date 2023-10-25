@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, SVGProps } from 'react';
+import React, { ChangeEvent, FC, ReactNode, SVGProps, createElement } from 'react';
 
 import type { TFormController, TValidator } from '../../forms/types';
 import { validateValue } from '../../forms/validator';
@@ -6,13 +6,14 @@ import type { TTextFieldProps } from './TextField';
 
 import './SmartTextField.css';
 
-type TSmartTextFieldProps = TTextFieldProps & {
+type TSmartTextFieldProps = Omit<TTextFieldProps, 'type'> & {
   controller?: TFormController | null;
   errorIcon?: FC<SVGProps<SVGSVGElement>>;
   helpText?: string | null;
   status?: 'error' | null;
   successIcon?: FC<SVGProps<SVGSVGElement>>;
   suffix?: ReactNode;
+  type?: 'text' | 'number' | 'password' | 'textarea';
   validators?: TValidator[];
 };
 
@@ -37,9 +38,9 @@ export const SmartTextField: FC<TSmartTextFieldProps> = (props) => {
   );
   const suffix = props.suffix || preset.suffix;
   const touched = Boolean(props.controller && props.controller.touched);
+  const inputType = props.type || preset.type || 'text';
+  const isTextarea = inputType === 'textarea';
 
-  let className = 'uix-component-input-smart-text-field';
-  let inputType = props.type || preset.type || 'text';
   let value = props.controller ? props.controller.value : props.value;
 
   if (value === null) {
@@ -48,44 +49,33 @@ export const SmartTextField: FC<TSmartTextFieldProps> = (props) => {
     value = `${value}`;
   }
 
-  if (disabled) {
-    className += ' uix--disabled';
-  }
-
-  if (props.hideNumberArrows || preset.hideNumberArrows) {
-    className += ' uix--without-arrows';
-    inputType = 'number';
-  }
-
-  if (props.status === 'error' || preset.status === 'error' || hasError) {
-    className += ' uix--error';
-  }
-
-  if (preset.className) {
-    className += ' ' + preset.className;
-  }
-
-  if (props.className) {
-    className += ' ' + props.className;
-  }
-
   return (
-    <div className={className}>
+    <div
+      className={
+        'uix-component-input-smart-text-field' +
+        (disabled ? ' uix--disabled' : '') +
+        (props.hideNumberArrows || preset.hideNumberArrows ? ' uix--without-arrows' : '') +
+        (props.status === 'error' || preset.status === 'error' || hasError ? ' uix--error' : '') +
+        (isTextarea ? ' uix--textarea' : '') +
+        (preset.className ? ' ' + preset.className : '') +
+        (props.className ? ' ' + props.className : '')
+      }
+    >
       {label && <label className="uix-component-input-smart-text-field__label">{label}</label>}
 
       <div className="uix-component-input-smart-text-field__inner">
-        <input
-          className="uix-component-input-smart-text-field__input"
-          disabled={disabled}
-          max={props.valueMax || preset.valueMax}
-          min={props.valueMin || preset.valueMin}
-          onBlur={props.onBlur || preset.onBlur}
-          onClick={props.onClick || preset.onClick}
-          onFocus={props.onFocus || preset.onFocus}
-          placeholder={props.placeholder || preset.placeholder}
-          type={inputType}
-          value={value}
-          onChange={(e) => {
+        {createElement(isTextarea ? 'textarea' : 'input', {
+          className: 'uix-component-input-smart-text-field__input',
+          disabled,
+          max: isTextarea ? undefined : props.valueMax || preset.valueMax,
+          min: isTextarea ? undefined : props.valueMin || preset.valueMin,
+          onBlur: props.onBlur || preset.onBlur,
+          onClick: props.onClick || preset.onClick,
+          onFocus: props.onFocus || preset.onFocus,
+          placeholder: props.placeholder || preset.placeholder,
+          type: isTextarea ? undefined : inputType,
+          value: value,
+          onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
             const value = e.target.value;
             const error = props.validators ? validateValue(value, props.validators) : null;
 
@@ -94,8 +84,8 @@ export const SmartTextField: FC<TSmartTextFieldProps> = (props) => {
             } else if (props.onChange) {
               props.onChange(e.target.value, error, e);
             }
-          }}
-        />
+          }
+        })}
 
         {(suffix || hasValidators || hasError) && (
           <div className="uix-component-input-smart-text-field__suffix-container">

@@ -19,8 +19,8 @@ type TFormValues = Record<string, TFormValue>;
 type TFormController = {
     error: IError | null | undefined;
     hasValidators: boolean;
-    touched: boolean;
     onChange: (value: TFormValue, error?: IError | null) => void;
+    touched: boolean;
     value: TFormValue;
 };
 type TFormControllers = Record<string, TFormController>;
@@ -29,7 +29,14 @@ type TIsNotEmptyProps = {
     message?: string;
     trim?: boolean;
 };
-declare const isNotEmpty: ({ message, trim }?: TIsNotEmptyProps) => TValidator;
+declare const isNotEmpty: (props?: TIsNotEmptyProps) => TValidator;
+type TIsStringLengthProps = {
+    max?: number;
+    message?: string;
+    min?: number;
+    trim?: boolean;
+};
+declare const isStringLength: (props?: TIsStringLengthProps) => TValidator;
 
 interface IUseFormProps {
     defaultValues?: TFormValues;
@@ -46,4 +53,4 @@ declare const useForm: (props?: IUseFormProps) => {
 declare const validateValueAsync: (value: TFormValue, validators: TValidator[]) => Promise<IError | null>;
 declare const validateValue: (value: TFormValue, validators: TValidator[]) => IError | null;
 
-export { type TFormController, type TFormControllers, type TFormValidatorsBag, type TFormValue, type TFormValues, type TValidator, isNotEmpty, useForm, validateValue, validateValueAsync };
+export { type TFormController, type TFormControllers, type TFormValidatorsBag, type TFormValue, type TFormValues, type TValidator, isNotEmpty, isStringLength, useForm, validateValue, validateValueAsync };

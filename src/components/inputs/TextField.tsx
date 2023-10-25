@@ -13,7 +13,7 @@ export type TTextFieldProps = {
   onChange?: (
     value: string,
     error: IError | null | undefined,
-    event: ChangeEvent<HTMLInputElement>
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   onClick?: (e: SyntheticEvent<HTMLInputElement>) => void;
   onFocus?: (e: SyntheticEvent<HTMLInputElement>) => void;

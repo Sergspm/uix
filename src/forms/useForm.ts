@@ -49,9 +49,6 @@ export const useForm = (props: IUseFormProps = {}) => {
 
               return newErrors;
             });
-
-            if (validationError) {
-            }
           }
         };
 

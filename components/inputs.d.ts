@@ -18,8 +18,8 @@ type TFormValue = string | number | boolean | null | undefined;
 type TFormController = {
     error: IError | null | undefined;
     hasValidators: boolean;
-    touched: boolean;
     onChange: (value: TFormValue, error?: IError | null) => void;
+    touched: boolean;
     value: TFormValue;
 };
 
@@ -29,7 +29,7 @@ type TTextFieldProps = {
     hideNumberArrows?: boolean;
     label?: string;
     onBlur?: (e: SyntheticEvent<HTMLInputElement>) => void;
-    onChange?: (value: string, error: IError | null | undefined, event: ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (value: string, error: IError | null | undefined, event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     onClick?: (e: SyntheticEvent<HTMLInputElement>) => void;
     onFocus?: (e: SyntheticEvent<HTMLInputElement>) => void;
     placeholder?: string;
@@ -41,13 +41,14 @@ type TTextFieldProps = {
 };
 declare const TextField: FC<TTextFieldProps>;
 
-type TSmartTextFieldProps = TTextFieldProps & {
+type TSmartTextFieldProps = Omit<TTextFieldProps, 'type'> & {
     controller?: TFormController | null;
     errorIcon?: FC<SVGProps<SVGSVGElement>>;
     helpText?: string | null;
     status?: 'error' | null;
     successIcon?: FC<SVGProps<SVGSVGElement>>;
     suffix?: ReactNode;
+    type?: 'text' | 'number' | 'password' | 'textarea';
     validators?: TValidator[];
 };
 declare const presetsSmartTextField: Record<string, Partial<TSmartTextFieldProps>>;

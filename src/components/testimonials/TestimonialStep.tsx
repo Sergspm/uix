@@ -22,21 +22,6 @@ export const presetsTestimonialStep: Record<string, Partial<TTestimonialStepProp
 
 export const TestimonialStep: FC<TTestimonialStepProps> = (props) => {
   const preset = (props.preset ? presetsTestimonialStep[props.preset] : null) || {};
-
-  let className = 'uix-component-testimonial-testimonial-step';
-
-  if (props.active || preset.active) {
-    className += ' uix--active';
-  }
-
-  if (preset.className) {
-    className += ' ' + preset.className;
-  }
-
-  if (props.className) {
-    className += ' ' + props.className;
-  }
-
   const Icon = props.active
     ? props.iconActive || preset.iconActive || props.icon || preset.icon
     : props.icon || preset.icon;
@@ -49,7 +34,14 @@ export const TestimonialStep: FC<TTestimonialStepProps> = (props) => {
 
   return createElement(
     props.element || preset.element || 'div',
-    { className, href: props.href || preset.href || '' },
+    {
+      className:
+        'uix-component-testimonial-testimonial-step' +
+        (props.active || preset.active ? ' uix--active' : '') +
+        (preset.className ? ' ' + preset.className : '') +
+        (props.className ? ' ' + props.className : ''),
+      href: props.href || preset.href || ''
+    },
     <>
       <span className="uix-component-testimonial-testimonial-step__icon">{Icon && <Icon />}</span>
 

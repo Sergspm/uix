@@ -3,21 +3,12 @@ import React, { createElement, useState } from 'react';
 const presetsButton = {};
 const Button = (props) => {
     const preset = (props.preset ? presetsButton[props.preset] : null) || {};
-    let className = 'uix-component-button-button';
-    if (props.active || preset.active) {
-        className += ' uix-component-button-button--active';
-    }
-    if (props.disabled || preset.disabled) {
-        className += ' uix-component-button-button--disabled';
-    }
-    if (preset.className) {
-        className += ' ' + preset.className;
-    }
-    if (props.className) {
-        className += ' ' + props.className;
-    }
     return createElement(props.element || preset.element || 'button', {
-        className,
+        className: 'uix-component-button-button' +
+            (props.active || preset.active ? ' uix--active' : '') +
+            (props.disabled || preset.disabled ? ' uix--disabled' : '') +
+            (preset.className ? ' ' + preset.className : '') +
+            (props.className ? ' ' + props.className : ''),
         href: props.href || preset.href || '',
         // eslint-disable-next-line
         // @ts-ignore

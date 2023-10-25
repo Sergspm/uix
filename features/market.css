@@ -20,14 +20,14 @@
 }
 
 .uix-component-button-button:active,
-.uix-component-button-button.uix-component-button-button--active {
+.uix-component-button-button.uix--active {
   border: var(--border-active, var(--border-hover, none));
   color: var(--color-active, var(--color-hover, #000));
   background: var(--background-active, var(--background-hover, transparent));
 }
 
 .uix-component-button-button:disabled,
-.uix-component-button-button.uix-component-button-button--disabled {
+.uix-component-button-button.uix--disabled {
   border: var(--border-disabled, transparent);
   color: var(--color-disabled, #000);
   background: var(--background-disabled, transparent);
@@ -61,6 +61,7 @@
 }
 
 .uix-component-input-smart-text-field__inner {
+  position: relative;
   width: 100%;
   display: flex;
   align-items: center;
@@ -101,7 +102,7 @@
 .uix-component-input-smart-text-field__input {
   width: 100%;
   display: block;
-  padding: 0 var(--input-padding-x, 0);
+  padding: var(--input-padding, 0 var(--input-padding-x, 0));
   height: var(--input-height, auto);
   font-family: var(--input-font-family, inherit);
   font-size: var(--input-font-size, inherit);
@@ -156,6 +157,13 @@
   display: flex;
   align-items: center;
   padding: var(--suffix-container-padding, 0);
+}
+
+.uix-component-input-smart-text-field.uix--textarea
+  .uix-component-input-smart-text-field__suffix-container {
+  position: absolute;
+  top: var(--suffix-container-top, 0);
+  right: var(--suffix-container-right, 0);
 }
 
 .uix-component-input-smart-text-field__suffix {

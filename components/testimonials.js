@@ -3,16 +3,6 @@ import React, { createElement } from 'react';
 const presetsTestimonialStep = {};
 const TestimonialStep = (props) => {
     const preset = (props.preset ? presetsTestimonialStep[props.preset] : null) || {};
-    let className = 'uix-component-testimonial-testimonial-step';
-    if (props.active || preset.active) {
-        className += ' uix--active';
-    }
-    if (preset.className) {
-        className += ' ' + preset.className;
-    }
-    if (props.className) {
-        className += ' ' + props.className;
-    }
     const Icon = props.active
         ? props.iconActive || preset.iconActive || props.icon || preset.icon
         : props.icon || preset.icon;
@@ -22,7 +12,13 @@ const TestimonialStep = (props) => {
     const description = props.active
         ? props.descriptionActive || preset.descriptionActive || props.description || preset.description
         : props.description || preset.description;
-    return createElement(props.element || preset.element || 'div', { className, href: props.href || preset.href || '' }, React.createElement(React.Fragment, null,
+    return createElement(props.element || preset.element || 'div', {
+        className: 'uix-component-testimonial-testimonial-step' +
+            (props.active || preset.active ? ' uix--active' : '') +
+            (preset.className ? ' ' + preset.className : '') +
+            (props.className ? ' ' + props.className : ''),
+        href: props.href || preset.href || ''
+    }, React.createElement(React.Fragment, null,
         React.createElement("span", { className: "uix-component-testimonial-testimonial-step__icon" }, Icon && React.createElement(Icon, null)),
         React.createElement("span", { className: "uix-component-testimonial-testimonial-step__content" },
             Boolean(title) && (React.createElement("span", { className: "uix-component-testimonial-testimonial-step__title" }, title)),

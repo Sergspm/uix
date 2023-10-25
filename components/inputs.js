@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createElement } from 'react';
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -50,8 +50,8 @@ const SmartTextField = (props) => {
     const hasValidators = Boolean(props.validators || (props.controller && props.controller.hasValidators));
     const suffix = props.suffix || preset.suffix;
     const touched = Boolean(props.controller && props.controller.touched);
-    let className = 'uix-component-input-smart-text-field';
-    let inputType = props.type || preset.type || 'text';
+    const inputType = props.type || preset.type || 'text';
+    const isTextarea = inputType === 'textarea';
     let value = props.controller ? props.controller.value : props.value;
     if (value === null) {
         value = undefined;
@@ -59,26 +59,27 @@ const SmartTextField = (props) => {
     else if (typeof value === 'boolean') {
         value = `${value}`;
     }
-    if (disabled) {
-        className += ' uix--disabled';
-    }
-    if (props.hideNumberArrows || preset.hideNumberArrows) {
-        className += ' uix--without-arrows';
-        inputType = 'number';
-    }
-    if (props.status === 'error' || preset.status === 'error' || hasError) {
-        className += ' uix--error';
-    }
-    if (preset.className) {
-        className += ' ' + preset.className;
-    }
-    if (props.className) {
-        className += ' ' + props.className;
-    }
-    return (React.createElement("div", { className: className },
+    return (React.createElement("div", { className: 'uix-component-input-smart-text-field' +
+            (disabled ? ' uix--disabled' : '') +
+            (props.hideNumberArrows || preset.hideNumberArrows ? ' uix--without-arrows' : '') +
+            (props.status === 'error' || preset.status === 'error' || hasError ? ' uix--error' : '') +
+            (isTextarea ? ' uix--textarea' : '') +
+            (preset.className ? ' ' + preset.className : '') +
+            (props.className ? ' ' + props.className : '') },
         label && React.createElement("label", { className: "uix-component-input-smart-text-field__label" }, label),
         React.createElement("div", { className: "uix-component-input-smart-text-field__inner" },
-            React.createElement("input", { className: "uix-component-input-smart-text-field__input", disabled: disabled, max: props.valueMax || preset.valueMax, min: props.valueMin || preset.valueMin, onBlur: props.onBlur || preset.onBlur, onClick: props.onClick || preset.onClick, onFocus: props.onFocus || preset.onFocus, placeholder: props.placeholder || preset.placeholder, type: inputType, value: value, onChange: (e) => {
+            createElement(isTextarea ? 'textarea' : 'input', {
+                className: 'uix-component-input-smart-text-field__input',
+                disabled,
+                max: isTextarea ? undefined : props.valueMax || preset.valueMax,
+                min: isTextarea ? undefined : props.valueMin || preset.valueMin,
+                onBlur: props.onBlur || preset.onBlur,
+                onClick: props.onClick || preset.onClick,
+                onFocus: props.onFocus || preset.onFocus,
+                placeholder: props.placeholder || preset.placeholder,
+                type: isTextarea ? undefined : inputType,
+                value: value,
+                onChange: (e) => {
                     const value = e.target.value;
                     const error = props.validators ? validateValue(value, props.validators) : null;
                     if (props.controller) {
@@ -87,7 +88,8 @@ const SmartTextField = (props) => {
                     else if (props.onChange) {
                         props.onChange(e.target.value, error, e);
                     }
-                } }),
+                }
+            }),
             (suffix || hasValidators || hasError) && (React.createElement("div", { className: "uix-component-input-smart-text-field__suffix-container" },
                 hasValidators && !hasError && SuccessIcon && touched && (React.createElement(SuccessIcon, { className: "uix-component-input-smart-text-field__success-icon" })),
                 hasValidators && hasError && ErrorIcon && (React.createElement(ErrorIcon, { className: "uix-component-input-smart-text-field__error-icon" })),
