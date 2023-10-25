@@ -52,6 +52,8 @@ const SmartTextField = (props) => {
     const touched = Boolean(props.controller && props.controller.touched);
     const inputType = props.type || preset.type || 'text';
     const isTextarea = inputType === 'textarea';
+    const showSymbolsLength = props.showSymbolsLength || preset.showSymbolsLength || false;
+    const maxAvailableSymbols = props.maxAvailableSymbols || preset.maxAvailableSymbols;
     let value = props.controller ? props.controller.value : props.value;
     if (value === null) {
         value = undefined;
@@ -59,17 +61,19 @@ const SmartTextField = (props) => {
     else if (typeof value === 'boolean') {
         value = `${value}`;
     }
-    return (React.createElement("div", { className: 'uix-component-input-smart-text-field' +
+    return (React.createElement("div", { className: 'uix-smart-text-field' +
             (disabled ? ' uix--disabled' : '') +
             (props.hideNumberArrows || preset.hideNumberArrows ? ' uix--without-arrows' : '') +
             (props.status === 'error' || preset.status === 'error' || hasError ? ' uix--error' : '') +
             (isTextarea ? ' uix--textarea' : '') +
             (preset.className ? ' ' + preset.className : '') +
             (props.className ? ' ' + props.className : '') },
-        label && React.createElement("label", { className: "uix-component-input-smart-text-field__label" }, label),
-        React.createElement("div", { className: "uix-component-input-smart-text-field__inner" },
+        (label || (showSymbolsLength && typeof value === 'string')) && (React.createElement("div", { className: "uix-smart-text-field__head" },
+            label && React.createElement("label", { className: "uix-smart-text-field__label" }, label),
+            showSymbolsLength && typeof value === 'string' && (React.createElement("div", { className: "uix-smart-text-field__symbols-length" }, `${value.length}${maxAvailableSymbols !== undefined ? `/${maxAvailableSymbols}` : ''}`)))),
+        React.createElement("div", { className: "uix-smart-text-field__inner" },
             createElement(isTextarea ? 'textarea' : 'input', {
-                className: 'uix-component-input-smart-text-field__input',
+                className: 'uix-smart-text-field__input',
                 disabled,
                 max: isTextarea ? undefined : props.valueMax || preset.valueMax,
                 min: isTextarea ? undefined : props.valueMin || preset.valueMin,
@@ -90,11 +94,11 @@ const SmartTextField = (props) => {
                     }
                 }
             }),
-            (suffix || hasValidators || hasError) && (React.createElement("div", { className: "uix-component-input-smart-text-field__suffix-container" },
-                hasValidators && !hasError && SuccessIcon && touched && (React.createElement(SuccessIcon, { className: "uix-component-input-smart-text-field__success-icon" })),
-                hasValidators && hasError && ErrorIcon && (React.createElement(ErrorIcon, { className: "uix-component-input-smart-text-field__error-icon" })),
-                suffix && React.createElement("div", { className: "uix-component-input-smart-text-field__suffix" }, suffix)))),
-        helpText && (React.createElement("div", { className: "uix-component-input-smart-text-field__help-text" }, helpText))));
+            (suffix || hasValidators || hasError) && (React.createElement("div", { className: "uix-smart-text-field__suffix-container" },
+                hasValidators && !hasError && SuccessIcon && touched && (React.createElement(SuccessIcon, { className: "uix-smart-text-field__success-icon" })),
+                hasValidators && hasError && ErrorIcon && (React.createElement(ErrorIcon, { className: "uix-smart-text-field__error-icon" })),
+                suffix && React.createElement("div", { className: "uix-smart-text-field__suffix" }, suffix)))),
+        helpText && React.createElement("div", { className: "uix-smart-text-field__help-text" }, helpText)));
 };
 
 const presetsTextField = {};

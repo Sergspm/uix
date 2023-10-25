@@ -10,6 +10,8 @@ type TSmartTextFieldProps = Omit<TTextFieldProps, 'type'> & {
   controller?: TFormController | null;
   errorIcon?: FC<SVGProps<SVGSVGElement>>;
   helpText?: string | null;
+  maxAvailableSymbols?: number;
+  showSymbolsLength?: boolean;
   status?: 'error' | null;
   successIcon?: FC<SVGProps<SVGSVGElement>>;
   suffix?: ReactNode;
@@ -40,6 +42,8 @@ export const SmartTextField: FC<TSmartTextFieldProps> = (props) => {
   const touched = Boolean(props.controller && props.controller.touched);
   const inputType = props.type || preset.type || 'text';
   const isTextarea = inputType === 'textarea';
+  const showSymbolsLength = props.showSymbolsLength || preset.showSymbolsLength || false;
+  const maxAvailableSymbols = props.maxAvailableSymbols || preset.maxAvailableSymbols;
 
   let value = props.controller ? props.controller.value : props.value;
 
@@ -52,7 +56,7 @@ export const SmartTextField: FC<TSmartTextFieldProps> = (props) => {
   return (
     <div
       className={
-        'uix-component-input-smart-text-field' +
+        'uix-smart-text-field' +
         (disabled ? ' uix--disabled' : '') +
         (props.hideNumberArrows || preset.hideNumberArrows ? ' uix--without-arrows' : '') +
         (props.status === 'error' || preset.status === 'error' || hasError ? ' uix--error' : '') +
@@ -61,11 +65,21 @@ export const SmartTextField: FC<TSmartTextFieldProps> = (props) => {
         (props.className ? ' ' + props.className : '')
       }
     >
-      {label && <label className="uix-component-input-smart-text-field__label">{label}</label>}
+      {(label || (showSymbolsLength && typeof value === 'string')) && (
+        <div className="uix-smart-text-field__head">
+          {label && <label className="uix-smart-text-field__label">{label}</label>}
 
-      <div className="uix-component-input-smart-text-field__inner">
+          {showSymbolsLength && typeof value === 'string' && (
+            <div className="uix-smart-text-field__symbols-length">{`${value.length}${
+              maxAvailableSymbols !== undefined ? `/${maxAvailableSymbols}` : ''
+            }`}</div>
+          )}
+        </div>
+      )}
+
+      <div className="uix-smart-text-field__inner">
         {createElement(isTextarea ? 'textarea' : 'input', {
-          className: 'uix-component-input-smart-text-field__input',
+          className: 'uix-smart-text-field__input',
           disabled,
           max: isTextarea ? undefined : props.valueMax || preset.valueMax,
           min: isTextarea ? undefined : props.valueMin || preset.valueMin,
@@ -88,23 +102,21 @@ export const SmartTextField: FC<TSmartTextFieldProps> = (props) => {
         })}
 
         {(suffix || hasValidators || hasError) && (
-          <div className="uix-component-input-smart-text-field__suffix-container">
+          <div className="uix-smart-text-field__suffix-container">
             {hasValidators && !hasError && SuccessIcon && touched && (
-              <SuccessIcon className="uix-component-input-smart-text-field__success-icon" />
+              <SuccessIcon className="uix-smart-text-field__success-icon" />
             )}
 
             {hasValidators && hasError && ErrorIcon && (
-              <ErrorIcon className="uix-component-input-smart-text-field__error-icon" />
+              <ErrorIcon className="uix-smart-text-field__error-icon" />
             )}
 
-            {suffix && <div className="uix-component-input-smart-text-field__suffix">{suffix}</div>}
+            {suffix && <div className="uix-smart-text-field__suffix">{suffix}</div>}
           </div>
         )}
       </div>
 
-      {helpText && (
-        <div className="uix-component-input-smart-text-field__help-text">{helpText}</div>
-      )}
+      {helpText && <div className="uix-smart-text-field__help-text">{helpText}</div>}
     </div>
   );
 };

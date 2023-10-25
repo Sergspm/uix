@@ -45,6 +45,8 @@ type TSmartTextFieldProps = Omit<TTextFieldProps, 'type'> & {
     controller?: TFormController | null;
     errorIcon?: FC<SVGProps<SVGSVGElement>>;
     helpText?: string | null;
+    maxAvailableSymbols?: number;
+    showSymbolsLength?: boolean;
     status?: 'error' | null;
     successIcon?: FC<SVGProps<SVGSVGElement>>;
     suffix?: ReactNode;
