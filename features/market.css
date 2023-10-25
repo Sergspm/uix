@@ -115,6 +115,7 @@
   display: block;
   padding: var(--input-padding, 0 var(--input-padding-x, 0));
   height: var(--input-height, auto);
+  min-height: var(--input-min-height, 0);
   font-family: var(--input-font-family, inherit);
   font-size: var(--input-font-size, inherit);
   font-weight: var(--input-font-weight, inherit);
