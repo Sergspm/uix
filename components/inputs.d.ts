@@ -46,7 +46,7 @@ type TSmartTextFieldProps = Omit<TTextFieldProps, 'type'> & {
     errorIcon?: FC<SVGProps<SVGSVGElement>>;
     helpText?: string | null;
     maxAvailableSymbols?: number;
-    showSymbolsLength?: boolean;
+    showSymbolsLength?: boolean | 'trim';
     status?: 'error' | null;
     successIcon?: FC<SVGProps<SVGSVGElement>>;
     suffix?: ReactNode;

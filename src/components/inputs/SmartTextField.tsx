@@ -11,7 +11,7 @@ type TSmartTextFieldProps = Omit<TTextFieldProps, 'type'> & {
   errorIcon?: FC<SVGProps<SVGSVGElement>>;
   helpText?: string | null;
   maxAvailableSymbols?: number;
-  showSymbolsLength?: boolean;
+  showSymbolsLength?: boolean | 'trim';
   status?: 'error' | null;
   successIcon?: FC<SVGProps<SVGSVGElement>>;
   suffix?: ReactNode;
@@ -65,14 +65,14 @@ export const SmartTextField: FC<TSmartTextFieldProps> = (props) => {
         (props.className ? ' ' + props.className : '')
       }
     >
-      {(label || (showSymbolsLength && typeof value === 'string')) && (
+      {(label || (Boolean(showSymbolsLength) && typeof value === 'string')) && (
         <div className="uix-smart-text-field__head">
           {label && <label className="uix-smart-text-field__label">{label}</label>}
 
-          {showSymbolsLength && typeof value === 'string' && (
-            <div className="uix-smart-text-field__symbols-length">{`${value.length}${
-              maxAvailableSymbols !== undefined ? `/${maxAvailableSymbols}` : ''
-            }`}</div>
+          {Boolean(showSymbolsLength) && typeof value === 'string' && (
+            <div className="uix-smart-text-field__symbols-length">{`${
+              (showSymbolsLength === 'trim' ? value.trim() : value).length
+            }${maxAvailableSymbols !== undefined ? `/${maxAvailableSymbols}` : ''}`}</div>
           )}
         </div>
       )}
@@ -103,7 +103,7 @@ export const SmartTextField: FC<TSmartTextFieldProps> = (props) => {
 
         {(suffix || hasValidators || hasError) && (
           <div className="uix-smart-text-field__suffix-container">
-            {hasValidators && !hasError && SuccessIcon && touched && (
+            {hasValidators && !hasError && SuccessIcon && touched && value !== '' && (
               <SuccessIcon className="uix-smart-text-field__success-icon" />
             )}
 

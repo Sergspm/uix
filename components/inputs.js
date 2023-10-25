@@ -68,9 +68,9 @@ const SmartTextField = (props) => {
             (isTextarea ? ' uix--textarea' : '') +
             (preset.className ? ' ' + preset.className : '') +
             (props.className ? ' ' + props.className : '') },
-        (label || (showSymbolsLength && typeof value === 'string')) && (React.createElement("div", { className: "uix-smart-text-field__head" },
+        (label || (Boolean(showSymbolsLength) && typeof value === 'string')) && (React.createElement("div", { className: "uix-smart-text-field__head" },
             label && React.createElement("label", { className: "uix-smart-text-field__label" }, label),
-            showSymbolsLength && typeof value === 'string' && (React.createElement("div", { className: "uix-smart-text-field__symbols-length" }, `${value.length}${maxAvailableSymbols !== undefined ? `/${maxAvailableSymbols}` : ''}`)))),
+            Boolean(showSymbolsLength) && typeof value === 'string' && (React.createElement("div", { className: "uix-smart-text-field__symbols-length" }, `${(showSymbolsLength === 'trim' ? value.trim() : value).length}${maxAvailableSymbols !== undefined ? `/${maxAvailableSymbols}` : ''}`)))),
         React.createElement("div", { className: "uix-smart-text-field__inner" },
             createElement(isTextarea ? 'textarea' : 'input', {
                 className: 'uix-smart-text-field__input',
@@ -95,7 +95,7 @@ const SmartTextField = (props) => {
                 }
             }),
             (suffix || hasValidators || hasError) && (React.createElement("div", { className: "uix-smart-text-field__suffix-container" },
-                hasValidators && !hasError && SuccessIcon && touched && (React.createElement(SuccessIcon, { className: "uix-smart-text-field__success-icon" })),
+                hasValidators && !hasError && SuccessIcon && touched && value !== '' && (React.createElement(SuccessIcon, { className: "uix-smart-text-field__success-icon" })),
                 hasValidators && hasError && ErrorIcon && (React.createElement(ErrorIcon, { className: "uix-smart-text-field__error-icon" })),
                 suffix && React.createElement("div", { className: "uix-smart-text-field__suffix" }, suffix)))),
         helpText && React.createElement("div", { className: "uix-smart-text-field__help-text" }, helpText)));
