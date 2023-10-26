@@ -1,0 +1,109 @@
+.uix-simple-file-field {
+  display: block;
+  width: var(--width, 100%);
+}
+
+.uix-simple-file-field__label {
+  width: 100%;
+  display: block;
+  font-family: var(--label-font-family, inherit);
+  font-size: var(--label-font-size, inherit);
+  font-weight: var(--label-font-weight, inherit);
+  line-height: var(--label-line-height, normal);
+  color: var(--label-color, inherit);
+  margin: var(--label-margin, 0);
+}
+
+.uix-simple-file-field.uix--disabled .uix-smart-text-field__label {
+  color: var(--label-color-disabled, var(--label-color, inherit));
+}
+
+.uix-simple-file-field.uix--error .uix-smart-text-field__label {
+  color: var(--label-color-error, var(--label-color, inherit));
+}
+
+.uix-simple-file-field__inner {
+  display: flex;
+}
+
+.uix-simple-file-field__inner-label {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  border: var(--inner-label-border, none);
+  padding: var(--inner-label-padding, 0);
+}
+
+.uix-simple-file-field.uix--disabled .uix-simple-file-field__inner-label {
+  border: var(--inner-label-border-disabled, var(--inner-label-border, none));
+}
+
+.uix-simple-file-field.uix--error .uix-simple-file-field__inner-label {
+  border: var(--inner-label-border-error, var(--inner-label-border, none));
+}
+
+.uix-simple-file-field__input {
+  position: absolute;
+  visibility: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.uix-simple-file-field__placeholder {
+  font-family: var(--placeholder-font-family, inherit);
+  font-size: var(--placeholder-font-size, inherit);
+  font-weight: var(--placeholder-font-weight, inherit);
+  color: var(--placeholder-color, inherit);
+}
+
+.uix-simple-file-field__file-icon {
+  font-size: var(--file-icon-font-size, inherit);
+  color: var(--file-icon-color, inherit);
+  margin: var(--file-icon-margin, 0);
+}
+
+.uix-simple-file-field__file-name {
+  font-family: var(--file-name-font-family, inherit);
+  font-size: var(--file-name-font-size, inherit);
+  font-weight: var(--file-name-font-weight, inherit);
+  color: var(--file-name-color, inherit);
+  margin: var(--file-name-margin, 0);
+}
+
+.uix-simple-file-field__file-size {
+  font-family: var(--file-size-font-family, var(--file-name-font-family, inherit));
+  font-size: var(--file-size-font-size, var(--file-name-font-size, inherit));
+  font-weight: var(--file-size-font-weight, var(--file-name-font-weight, inherit));
+  color: var(--file-size-color, var(--file-name-color, inherit));
+  margin: var(--file-size-margin, var(--file-name-margin, 0));
+}
+
+.uix-simple-file-field__error-icon {
+  margin-left: auto;
+  font-size: var(--error-icon-font-size, inherit);
+  color: var(--error-icon-color, inherit);
+}
+
+.uix-simple-file-field__button {
+  width: fit-content;
+  flex-shrink: 0;
+}
+
+.uix-simple-file-field__help-text {
+  width: 100%;
+  font-family: var(--help-font-family, inherit);
+  font-size: var(--help-font-size, inherit);
+  font-weight: var(--help-font-weight, inherit);
+  text-align: var(--help-text-align, left);
+  color: var(--help-color, inherit);
+  margin: var(--help-margin, 0);
+}
+
+.uix-simple-file-field.uix--disabled .uix-simple-file-field__help-text {
+  color: var(--help-disabled-color, var(--help-color, inherit));
+}
+
+.uix-simple-file-field.uix--error .uix-simple-file-field__help-text {
+  color: var(--help-error-color, var(--help-color, inherit));
+}

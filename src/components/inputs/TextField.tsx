@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, SyntheticEvent } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 
 import { IError } from '../../utils/errors';
 
@@ -9,14 +9,11 @@ export type TTextFieldProps = {
   disabled?: boolean;
   hideNumberArrows?: boolean;
   label?: string;
-  onBlur?: (e: SyntheticEvent<HTMLInputElement>) => void;
   onChange?: (
     value: string,
     error: IError | null | undefined,
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  onClick?: (e: SyntheticEvent<HTMLInputElement>) => void;
-  onFocus?: (e: SyntheticEvent<HTMLInputElement>) => void;
   placeholder?: string;
   preset?: string;
   type?: 'text' | 'number' | 'password';
@@ -58,9 +55,6 @@ export const TextField: FC<TTextFieldProps> = (p) => {
         disabled={props.disabled}
         max={props.valueMax}
         min={props.valueMin}
-        onBlur={props.onBlur}
-        onClick={props.onClick}
-        onFocus={props.onFocus}
         placeholder={props.placeholder}
         type={inputType}
         value={props.value}

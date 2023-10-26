@@ -1,4 +1,4 @@
-import { SyntheticEvent, ChangeEvent, FC, SVGProps, ReactNode } from 'react';
+import { FC, SVGProps, ChangeEvent, ReactNode } from 'react';
 
 interface IError {
     code?: number;
@@ -12,7 +12,13 @@ type TValidator = {
     name: string;
     validate: (value: TFormValue) => boolean | Promise<boolean>;
 };
-type TFormValue = string | number | boolean | null | undefined;
+type TFormValue = string | number | boolean | TFormFile | null | undefined;
+type TFormFile = {
+    file?: File | null;
+    name: string;
+    size: number | null;
+    type: string;
+};
 type TFormController = {
     error: IError | null | undefined;
     hasValidators: boolean;
@@ -21,15 +27,32 @@ type TFormController = {
     value: TFormValue;
 };
 
+type TSimpleFileFieldProps = {
+    buttonText?: string;
+    className?: string;
+    classNameButton?: string;
+    controller?: TFormController | null;
+    disabled?: boolean;
+    errorIcon?: FC<SVGProps<SVGSVGElement>>;
+    fileIcon?: FC<SVGProps<SVGSVGElement>>;
+    helpText?: string;
+    label?: string;
+    onChange?: (value: TFormFile | null, error: IError | null | undefined, event: ChangeEvent<HTMLInputElement>) => void;
+    placeholder?: string;
+    preset?: string;
+    status?: 'error' | null;
+    validators?: TValidator[];
+    value?: TFormFile | null;
+};
+declare const presetsSimpleFileField: Record<string, Partial<TSimpleFileFieldProps>>;
+declare const SimpleFileField: FC<TSimpleFileFieldProps>;
+
 type TTextFieldProps = {
     className?: string;
     disabled?: boolean;
     hideNumberArrows?: boolean;
     label?: string;
-    onBlur?: (e: SyntheticEvent<HTMLInputElement>) => void;
     onChange?: (value: string, error: IError | null | undefined, event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-    onClick?: (e: SyntheticEvent<HTMLInputElement>) => void;
-    onFocus?: (e: SyntheticEvent<HTMLInputElement>) => void;
     placeholder?: string;
     preset?: string;
     type?: 'text' | 'number' | 'password';
@@ -54,4 +77,4 @@ type TSmartTextFieldProps = Omit<TTextFieldProps, 'type'> & {
 declare const presetsSmartTextField: Record<string, Partial<TSmartTextFieldProps>>;
 declare const SmartTextField: FC<TSmartTextFieldProps>;
 
-export { SmartTextField, type TTextFieldProps, TextField, presetsSmartTextField };
+export { SimpleFileField, SmartTextField, type TTextFieldProps, TextField, presetsSimpleFileField, presetsSmartTextField };

@@ -32,7 +32,13 @@ type TValidator = {
     validate: (value: TFormValue) => boolean | Promise<boolean>;
 };
 type TFormValidatorsBag = Record<string, TValidator[]>;
-type TFormValue = string | number | boolean | null | undefined;
+type TFormValue = string | number | boolean | TFormFile | null | undefined;
+type TFormFile = {
+    file?: File | null;
+    name: string;
+    size: number | null;
+    type: string;
+};
 type TFormValues = Record<string, TFormValue>;
 type TFormController = {
     error: IError | null | undefined;
@@ -74,4 +80,4 @@ declare const useForm: (props?: IUseFormProps) => {
 declare const validateValueAsync: (value: TFormValue, validators: TValidator[]) => Promise<IError | null>;
 declare const validateValue: (value: TFormValue, validators: TValidator[]) => IError | null;
 
-export { type TFormController, type TFormControllers, type TFormValidatorsBag, type TFormValue, type TFormValues, type TValidator, isNotEmpty, isStringLength, useForm, validateValue, validateValueAsync };
+export { type TFormController, type TFormControllers, type TFormFile, type TFormValidatorsBag, type TFormValue, type TFormValues, type TValidator, isNotEmpty, isStringLength, useForm, validateValue, validateValueAsync };

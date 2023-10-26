@@ -8,7 +8,14 @@ export type TValidator = {
 
 export type TFormValidatorsBag = Record<string, TValidator[]>;
 
-export type TFormValue = string | number | boolean | null | undefined;
+export type TFormValue = string | number | boolean | TFormFile | null | undefined;
+
+export type TFormFile = {
+  file?: File | null;
+  name: string;
+  size: number | null;
+  type: string;
+};
 
 export type TFormValues = Record<string, TFormValue>;
 

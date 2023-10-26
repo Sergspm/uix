@@ -1,4 +1,75 @@
-import React, { createElement } from 'react';
+import React, { createElement, useRef, useCallback } from 'react';
+
+const presetsButton = {};
+const Button = (props) => {
+    const preset = (props.preset ? presetsButton[props.preset] : null) || {};
+    return createElement(props.element || preset.element || 'button', {
+        className: 'uix-component-button-button' +
+            (props.active || preset.active ? ' uix--active' : '') +
+            (props.disabled || preset.disabled ? ' uix--disabled' : '') +
+            (preset.className ? ' ' + preset.className : '') +
+            (props.className ? ' ' + props.className : ''),
+        href: props.href || preset.href || '',
+        // eslint-disable-next-line
+        // @ts-ignore
+        disabled: props.disabled || preset.disabled,
+        target: props.target || preset.target,
+        onClick: props.onClick || preset.onClick
+    }, props.children || preset.children);
+};
+
+const presetsSimpleFileField = {};
+const SimpleFileField = (props) => {
+    const preset = (props.preset ? presetsSimpleFileField[props.preset] : null) || {};
+    const disabled = props.disabled || preset.disabled;
+    const label = props.label || preset.label;
+    const hasError = props.status === 'error' ||
+        preset.status === 'error' ||
+        Boolean(props.controller && props.controller.error);
+    const helpText = (props.controller && props.controller.error ? props.controller.error.message : null) ||
+        props.helpText ||
+        preset.helpText;
+    const buttonText = props.buttonText || preset.buttonText;
+    const placeholder = props.placeholder || preset.placeholder;
+    const FileIcon = props.fileIcon || preset.fileIcon;
+    const ErrorIcon = props.errorIcon || preset.errorIcon;
+    const value = props.value ||
+        (props.controller && typeof props.controller.value === 'object'
+            ? props.controller.value
+            : null) ||
+        null;
+    const fileRef = useRef(null);
+    const handleButtonClick = useCallback(() => {
+        if (fileRef.current) {
+            fileRef.current.click();
+        }
+    }, []);
+    const handleFileChange = useCallback((e) => {
+        const file = e.target.files;
+        console.log({ file });
+    }, []);
+    return (React.createElement("div", { className: 'uix-simple-file-field' +
+            (disabled ? ' uix--disabled' : '') +
+            (props.status === 'error' || preset.status === 'error' || hasError ? ' uix--error' : '') +
+            (preset.className ? ' ' + preset.className : '') +
+            (props.className ? ' ' + props.className : '') },
+        label && React.createElement("label", { className: "uix-simple-file-field__label" }, label),
+        React.createElement("div", { className: "uix-simple-file-field__inner" },
+            React.createElement("label", { className: "uix-simple-file-field__inner-label" },
+                React.createElement("input", { ref: fileRef, className: "uix-simple-file-field__input", onChange: handleFileChange, type: "file" }),
+                placeholder && !value && (React.createElement("span", { className: "uix-simple-file-field__placeholder" }, placeholder)),
+                !!value && (React.createElement(React.Fragment, null,
+                    FileIcon && React.createElement(FileIcon, { className: "uix-simple-file-field__file-icon" }),
+                    React.createElement("span", { className: "uix-simple-file-field__file-name" }, value.name),
+                    React.createElement("span", { className: "uix-simple-file-field__file-size" },
+                        value.size,
+                        " \u043A\u0431"))),
+                hasError && ErrorIcon && React.createElement(ErrorIcon, { className: "uix-simple-file-field__error-icon" })),
+            buttonText && (React.createElement(Button, { onClick: handleButtonClick, className: 'uix-simple-file-field__button' +
+                    (props.classNameButton ? ' ' + props.classNameButton : '') +
+                    (preset.classNameButton ? ' ' + preset.classNameButton : '') }, buttonText))),
+        helpText && React.createElement("div", { className: "uix-simple-file-field__help-text" }, helpText)));
+};
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -77,9 +148,6 @@ const SmartTextField = (props) => {
                 disabled,
                 max: isTextarea ? undefined : props.valueMax || preset.valueMax,
                 min: isTextarea ? undefined : props.valueMin || preset.valueMin,
-                onBlur: props.onBlur || preset.onBlur,
-                onClick: props.onClick || preset.onClick,
-                onFocus: props.onFocus || preset.onFocus,
                 placeholder: props.placeholder || preset.placeholder,
                 type: isTextarea ? undefined : inputType,
                 value: value,
@@ -118,11 +186,11 @@ const TextField = (p) => {
     }
     return (React.createElement("div", { className: className },
         Boolean(props.label) && (React.createElement("label", { className: "uix-component-input-text-field__label" }, props.label)),
-        React.createElement("input", { className: "uix-component-input-text-field__input", disabled: props.disabled, max: props.valueMax, min: props.valueMin, onBlur: props.onBlur, onClick: props.onClick, onFocus: props.onFocus, placeholder: props.placeholder, type: inputType, value: props.value, onChange: (e) => {
+        React.createElement("input", { className: "uix-component-input-text-field__input", disabled: props.disabled, max: props.valueMax, min: props.valueMin, placeholder: props.placeholder, type: inputType, value: props.value, onChange: (e) => {
                 if (props.onChange) {
                     props.onChange(e.target.value, null, e);
                 }
             } })));
 };
 
-export { SmartTextField, TextField, presetsSmartTextField };
+export { SimpleFileField, SmartTextField, TextField, presetsSimpleFileField, presetsSmartTextField };
