@@ -73,6 +73,7 @@ export const SimpleFileField: FC<TSimpleFileFieldProps> = (props) => {
       className={
         'uix-simple-file-field' +
         (disabled ? ' uix--disabled' : '') +
+        (value ? ' uix--with-value' : '') +
         (props.status === 'error' || preset.status === 'error' || hasError ? ' uix--error' : '') +
         (preset.className ? ' ' + preset.className : '') +
         (props.className ? ' ' + props.className : '')

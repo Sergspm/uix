@@ -71,14 +71,21 @@
   position: relative;
   border: var(--inner-field-border, none);
   padding: var(--inner-field-padding, 0);
+  background: var(--inner-field-background, transparent);
 }
 
 .uix-simple-file-field.uix--disabled .uix-simple-file-field__inner-field {
   border: var(--inner-field-border-disabled, var(--inner-field-border, none));
+  background: var(--inner-field-background-disabled, var(--inner-field-background, transparent));
+}
+
+.uix-simple-file-field.uix--with-value .uix-simple-file-field__inner-field {
+  background: var(--inner-field-background-with-value, var(--inner-field-background, transparent));
 }
 
 .uix-simple-file-field.uix--error .uix-simple-file-field__inner-field {
   border: var(--inner-field-border-error, var(--inner-field-border, none));
+  background: var(--inner-field-background-error, var(--inner-field-background, transparent));
 }
 
 .uix-simple-file-field__input {
