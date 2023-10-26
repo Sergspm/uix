@@ -5,5 +5,6 @@ export * from './CheckIcon';
 export * from './CircleCheckFilledIcon';
 export * from './CloudDownloadOutlineIcon';
 export * from './FileCertificateOutlineIcon';
+export * from './FileOutlineIcon';
 export * from './ReceiptOutlineIcon';
 export * from './TruckDeliveryOutlineIcon';

@@ -18,6 +18,23 @@ const Button = (props) => {
     }, props.children || preset.children);
 };
 
+const formatFileSizeWithLabels = (size) => {
+    if (size < 1024) {
+        return `${size} б`;
+    }
+    let label = 'кб';
+    let value = size / 1024;
+    if (value >= 1024) {
+        label = 'мб';
+        value = size / 1024 / 1024;
+        if (value >= 1024) {
+            label = 'гб';
+            value = size / 1024 / 1024 / 1024;
+        }
+    }
+    return new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 2 }).format(value) + ' ' + label;
+};
+
 const presetsSimpleFileField = {};
 const SimpleFileField = (props) => {
     const preset = (props.preset ? presetsSimpleFileField[props.preset] : null) || {};
@@ -77,9 +94,7 @@ const SimpleFileField = (props) => {
                 !!value && (React.createElement(React.Fragment, null,
                     FileIcon && React.createElement(FileIcon, { className: "uix-simple-file-field__file-icon" }),
                     React.createElement("span", { className: "uix-simple-file-field__file-name" }, value.name),
-                    React.createElement("span", { className: "uix-simple-file-field__file-size" },
-                        value.size,
-                        " \u043A\u0431"))),
+                    React.createElement("span", { className: "uix-simple-file-field__file-size" }, value.size !== null ? formatFileSizeWithLabels(value.size) : ''))),
                 hasError && ErrorIcon && React.createElement(ErrorIcon, { className: "uix-simple-file-field__error-icon" })),
             buttonText && (React.createElement(Button, { disabled: disabled, onClick: handleButtonClick, className: 'uix-simple-file-field__button' +
                     (props.classNameButton ? ' ' + props.classNameButton : '') +

@@ -14,8 +14,10 @@ declare const CloudDownloadOutlineIcon: FC<SVGProps<SVGSVGElement>>;
 
 declare const FileCertificateOutlineIcon: FC<SVGProps<SVGSVGElement>>;
 
+declare const FileOutlineIcon: FC<SVGProps<SVGSVGElement>>;
+
 declare const ReceiptOutlineIcon: FC<SVGProps<SVGSVGElement>>;
 
 declare const TruckDeliveryOutlineIcon: FC<SVGProps<SVGSVGElement>>;
 
-export { AlertCircleOutlineIcon, BrowserOutlineIcon, BuildingStoreOutlineIcon, CheckIcon, CircleCheckFilledIcon, CloudDownloadOutlineIcon, FileCertificateOutlineIcon, ReceiptOutlineIcon, TruckDeliveryOutlineIcon };
+export { AlertCircleOutlineIcon, BrowserOutlineIcon, BuildingStoreOutlineIcon, CheckIcon, CircleCheckFilledIcon, CloudDownloadOutlineIcon, FileCertificateOutlineIcon, FileOutlineIcon, ReceiptOutlineIcon, TruckDeliveryOutlineIcon };

@@ -13,6 +13,7 @@ export type TFormValue = string | number | boolean | TFormFile | null | undefine
 export type TFormFile = {
   file?: File | null;
   name: string;
+  publicPath?: string | null;
   size: number | null;
   type: string;
 };

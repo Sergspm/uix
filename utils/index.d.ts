@@ -39,9 +39,11 @@ interface IError {
 type TErrorsBag = Record<string, IError | null | undefined>;
 declare const extractErrorsFromApi: (e: IErrorCommon | unknown) => TErrorsBag | null;
 
+declare const formatFileSizeWithLabels: (size: number) => string;
+
 declare const getQueryStringParam: (params: ParsedUrlQuery | undefined, param: string) => string | null;
 
 declare const configureWhiteIPList: (whiteIps: string[]) => void;
 declare const isIpAvailable: (req: IncomingMessage) => boolean;
 
-export { type IBadRequest, type IError, type IErrorCommon, type IRtkQueryError, type IStatusResponse, type TErrorsBag, type TValidationMappedErrors, configureWhiteIPList, copyToClipboard, extractErrorsFromApi, getQueryStringParam, isIpAvailable };
+export { type IBadRequest, type IError, type IErrorCommon, type IRtkQueryError, type IStatusResponse, type TErrorsBag, type TValidationMappedErrors, configureWhiteIPList, copyToClipboard, extractErrorsFromApi, formatFileSizeWithLabels, getQueryStringParam, isIpAvailable };

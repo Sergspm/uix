@@ -4,6 +4,7 @@ import type { TFormController, TFormFile, TValidator } from '../../forms/types';
 import type { IError } from '../../utils/errors';
 import { Button } from '../buttons/Button';
 
+import { formatFileSizeWithLabels } from '../../utils/files';
 import './SimpleFileField.css';
 
 type TSimpleFileFieldProps = {
@@ -117,7 +118,9 @@ export const SimpleFileField: FC<TSimpleFileFieldProps> = (props) => {
 
               <span className="uix-simple-file-field__file-name">{value.name}</span>
 
-              <span className="uix-simple-file-field__file-size">{value.size} кб</span>
+              <span className="uix-simple-file-field__file-size">
+                {value.size !== null ? formatFileSizeWithLabels(value.size) : ''}
+              </span>
             </>
           )}
 

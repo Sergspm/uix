@@ -52,6 +52,23 @@ const extractErrorsFromApi = (e) => {
     return null;
 };
 
+const formatFileSizeWithLabels = (size) => {
+    if (size < 1024) {
+        return `${size} б`;
+    }
+    let label = 'кб';
+    let value = size / 1024;
+    if (value >= 1024) {
+        label = 'мб';
+        value = size / 1024 / 1024;
+        if (value >= 1024) {
+            label = 'гб';
+            value = size / 1024 / 1024 / 1024;
+        }
+    }
+    return new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 2 }).format(value) + ' ' + label;
+};
+
 const getQueryStringParam = (params, param) => {
     const value = params === null || params === void 0 ? void 0 : params[param];
     return typeof value === 'string' ? value : null;
@@ -70,4 +87,4 @@ const isIpAvailable = (req) => {
     return IP_WHITE_LIST.includes(ip);
 };
 
-export { configureWhiteIPList, copyToClipboard, extractErrorsFromApi, getQueryStringParam, isIpAvailable };
+export { configureWhiteIPList, copyToClipboard, extractErrorsFromApi, formatFileSizeWithLabels, getQueryStringParam, isIpAvailable };

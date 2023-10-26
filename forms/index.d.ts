@@ -36,6 +36,7 @@ type TFormValue = string | number | boolean | TFormFile | null | undefined;
 type TFormFile = {
     file?: File | null;
     name: string;
+    publicPath?: string | null;
     size: number | null;
     type: string;
 };
