@@ -69,8 +69,8 @@
   align-items: center;
   flex: 1;
   position: relative;
-  border: var(--inner-field-border, none);
   padding: var(--inner-field-padding, 0);
+  border: var(--inner-field-border, none);
   background: var(--inner-field-background, transparent);
 }
 
@@ -100,6 +100,10 @@
   font-size: var(--placeholder-font-size, inherit);
   font-weight: var(--placeholder-font-weight, inherit);
   color: var(--placeholder-color, inherit);
+}
+
+.uix-simple-file-field.uix--disabled .uix-simple-file-field__placeholder {
+  color: var(--placeholder-color-disabled, var(--placeholder-color, inherit));
 }
 
 .uix-simple-file-field__file-icon {
