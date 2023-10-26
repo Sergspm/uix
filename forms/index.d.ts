@@ -1,7 +1,5 @@
-type TValidationMappedErrors = Record<string, string>;
 interface IError {
     code?: number;
-    details?: TValidationMappedErrors;
     message: string;
     name?: string;
     validator?: string;

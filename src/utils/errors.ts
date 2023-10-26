@@ -34,7 +34,6 @@ export interface IErrorCommon<T = any> extends Partial<Error> {
 
 export interface IError {
   code?: number;
-  details?: TValidationMappedErrors;
   message: string;
   name?: string;
   validator?: string;
@@ -42,13 +41,7 @@ export interface IError {
 
 export type TErrorsBag = Record<string, IError | null | undefined>;
 
-export const getSyntheticError = (
-  message: string,
-  code?: number,
-  details?: TValidationMappedErrors
-): IError => ({ code: code ?? 0, message, details });
-
-export const extractSyntheticErrorFromApi = (e: IErrorCommon | unknown) => {
+export const extractErrorsFromApi = (e: IErrorCommon | unknown) => {
   const err = e as IErrorCommon;
 
   let data = err && err.response && err.response.data ? err.response.data : undefined;
@@ -58,15 +51,15 @@ export const extractSyntheticErrorFromApi = (e: IErrorCommon | unknown) => {
   }
 
   if (data && data.statusCode === 400 && Array.isArray(data.message)) {
-    return getSyntheticError(
-      data.error,
-      data.statusCode,
-      (data.message as IBadRequestMessage[]).reduce<TValidationMappedErrors>((acc, err) => {
-        acc[err.property] = Object.values(err.constraints)[0];
+    return (data.message as IBadRequestMessage[]).reduce<TErrorsBag>((acc, err) => {
+      acc[err.property] = {
+        name: err.property,
+        message: Object.values(err.constraints)[0],
+        code: data.statusCode
+      };
 
-        return acc;
-      }, {})
-    );
+      return acc;
+    }, {});
   }
 
   console.error(e);
