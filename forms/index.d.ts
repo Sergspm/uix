@@ -47,6 +47,7 @@ declare const useForm: (props?: IUseFormProps) => {
     errors: TErrorsBag;
     controllers: TFormControllers;
     setValue: (name: string, value: TFormValue) => void;
+    setValues: (values: TFormValues) => void;
     setError: (name: string, error: IError) => void;
 };
 

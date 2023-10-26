@@ -84,7 +84,7 @@ const validateValue = (value, validators) => {
 };
 
 const useForm = (props = {}) => {
-    const [values, setValues] = useState(() => props.defaultValues || {});
+    const [values, setValuesInternal] = useState(() => props.defaultValues || {});
     const [errors, setErrors] = useState({});
     const touched = useRef({});
     const controllers = useMemo(() => Object.keys(values).reduce((acc, name) => {
@@ -94,7 +94,7 @@ const useForm = (props = {}) => {
             hasValidators: Boolean(props.validators && props.validators[name]),
             touched: touched.current[name] || false,
             onChange: (value, error) => {
-                setValues((values) => (Object.assign(Object.assign({}, values), { [name]: value })));
+                setValuesInternal((values) => (Object.assign(Object.assign({}, values), { [name]: value })));
                 touched.current[name] = true;
                 let validationError = error;
                 if (!error && props.validators && props.validators[name]) {
@@ -118,12 +118,15 @@ const useForm = (props = {}) => {
         return acc;
     }, {}), [values, errors, props.validators]);
     const setValue = useCallback((name, value) => {
-        setValues((values) => (Object.assign(Object.assign({}, values), { [name]: value })));
+        setValuesInternal((values) => (Object.assign(Object.assign({}, values), { [name]: value })));
+    }, []);
+    const setValues = useCallback((values) => {
+        setValuesInternal((v) => (Object.assign(Object.assign({}, v), values)));
     }, []);
     const setError = useCallback((name, error) => {
         setErrors((errors) => (Object.assign(Object.assign({}, errors), { [name]: error })));
     }, []);
-    return { values, errors, controllers, setValue, setError };
+    return { values, errors, controllers, setValue, setValues, setError };
 };
 
 export { isNotEmpty, isStringLength, useForm, validateValue, validateValueAsync };

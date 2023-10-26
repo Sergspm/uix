@@ -10,7 +10,7 @@ interface IUseFormProps {
 }
 
 export const useForm = (props: IUseFormProps = {}) => {
-  const [values, setValues] = useState<TFormValues>(() => props.defaultValues || {});
+  const [values, setValuesInternal] = useState<TFormValues>(() => props.defaultValues || {});
   const [errors, setErrors] = useState<TErrorsBag>({});
 
   const touched = useRef<Record<string, boolean>>({});
@@ -24,7 +24,7 @@ export const useForm = (props: IUseFormProps = {}) => {
           hasValidators: Boolean(props.validators && props.validators[name]),
           touched: touched.current[name] || false,
           onChange: (value, error) => {
-            setValues((values) => ({ ...values, [name]: value }));
+            setValuesInternal((values) => ({ ...values, [name]: value }));
 
             touched.current[name] = true;
 
@@ -58,12 +58,16 @@ export const useForm = (props: IUseFormProps = {}) => {
   );
 
   const setValue = useCallback((name: string, value: TFormValue) => {
-    setValues((values) => ({ ...values, [name]: value }));
+    setValuesInternal((values) => ({ ...values, [name]: value }));
+  }, []);
+
+  const setValues = useCallback((values: TFormValues) => {
+    setValuesInternal((v) => ({ ...v, ...values }));
   }, []);
 
   const setError = useCallback((name: string, error: IError) => {
     setErrors((errors) => ({ ...errors, [name]: error }));
   }, []);
 
-  return { values, errors, controllers, setValue, setError };
+  return { values, errors, controllers, setValue, setValues, setError };
 };
