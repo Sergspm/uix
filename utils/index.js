@@ -32,6 +32,23 @@ typeof SuppressedError === "function" ? SuppressedError : function (error, suppr
 
 const copyToClipboard = (text) => __awaiter(void 0, void 0, void 0, function* () { return navigator.clipboard.writeText(text); });
 
+const getSyntheticError = (message, code, details) => ({ code: code !== null && code !== void 0 ? code : 0, message, details });
+const extractSyntheticErrorFromApi = (e) => {
+    const err = e;
+    let data = err && err.response && err.response.data ? err.response.data : undefined;
+    if (!data && err && err.data && err.data.statusCode) {
+        data = err.data;
+    }
+    if (data && data.statusCode === 400 && Array.isArray(data.message)) {
+        return getSyntheticError(data.error, data.statusCode, data.message.reduce((acc, err) => {
+            acc[err.property] = Object.values(err.constraints)[0];
+            return acc;
+        }, {}));
+    }
+    console.error(e);
+    return null;
+};
+
 const getQueryStringParam = (params, param) => {
     const value = params === null || params === void 0 ? void 0 : params[param];
     return typeof value === 'string' ? value : null;
@@ -50,4 +67,4 @@ const isIpAvailable = (req) => {
     return IP_WHITE_LIST.includes(ip);
 };
 
-export { configureWhiteIPList, copyToClipboard, getQueryStringParam, isIpAvailable };
+export { configureWhiteIPList, copyToClipboard, extractSyntheticErrorFromApi, getQueryStringParam, getSyntheticError, isIpAvailable };
