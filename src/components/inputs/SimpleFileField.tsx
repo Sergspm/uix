@@ -46,6 +46,8 @@ export const SimpleFileField: FC<TSimpleFileFieldProps> = (props) => {
   const placeholder = props.placeholder || preset.placeholder;
   const FileIcon = props.fileIcon || preset.fileIcon;
   const ErrorIcon = props.errorIcon || preset.errorIcon;
+  const onChange = props.onChange || preset.onChange;
+  const controller = props.controller || preset.controller;
 
   const value =
     props.value ||
@@ -62,11 +64,26 @@ export const SimpleFileField: FC<TSimpleFileFieldProps> = (props) => {
     }
   }, []);
 
-  const handleFileChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files;
+  const handleFileChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files && e.target.files.length ? e.target.files[0] : null;
+      const value = file
+        ? {
+            file,
+            name: file.name,
+            size: file.size,
+            type: file.type
+          }
+        : null;
 
-    console.log({ file });
-  }, []);
+      if (controller) {
+        controller.onChange(value, null);
+      } else if (onChange) {
+        onChange(value, null, e);
+      }
+    },
+    [onChange, controller]
+  );
 
   return (
     <div

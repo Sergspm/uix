@@ -33,6 +33,8 @@ const SimpleFileField = (props) => {
     const placeholder = props.placeholder || preset.placeholder;
     const FileIcon = props.fileIcon || preset.fileIcon;
     const ErrorIcon = props.errorIcon || preset.errorIcon;
+    const onChange = props.onChange || preset.onChange;
+    const controller = props.controller || preset.controller;
     const value = props.value ||
         (props.controller && typeof props.controller.value === 'object'
             ? props.controller.value
@@ -45,9 +47,22 @@ const SimpleFileField = (props) => {
         }
     }, []);
     const handleFileChange = useCallback((e) => {
-        const file = e.target.files;
-        console.log({ file });
-    }, []);
+        const file = e.target.files && e.target.files.length ? e.target.files[0] : null;
+        const value = file
+            ? {
+                file,
+                name: file.name,
+                size: file.size,
+                type: file.type
+            }
+            : null;
+        if (controller) {
+            controller.onChange(value, null);
+        }
+        else if (onChange) {
+            onChange(value, null, e);
+        }
+    }, [onChange, controller]);
     return (React.createElement("div", { className: 'uix-simple-file-field' +
             (disabled ? ' uix--disabled' : '') +
             (value ? ' uix--with-value' : '') +
