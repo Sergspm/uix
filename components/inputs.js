@@ -66,7 +66,7 @@ const SimpleFileField = (props) => {
                         value.size,
                         " \u043A\u0431"))),
                 hasError && ErrorIcon && React.createElement(ErrorIcon, { className: "uix-simple-file-field__error-icon" })),
-            buttonText && (React.createElement(Button, { onClick: handleButtonClick, className: 'uix-simple-file-field__button' +
+            buttonText && (React.createElement(Button, { disabled: disabled, onClick: handleButtonClick, className: 'uix-simple-file-field__button' +
                     (props.classNameButton ? ' ' + props.classNameButton : '') +
                     (preset.classNameButton ? ' ' + preset.classNameButton : '') }, buttonText))),
         helpText && React.createElement("div", { className: "uix-simple-file-field__help-text" }, helpText)));

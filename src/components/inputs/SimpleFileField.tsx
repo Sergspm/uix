@@ -109,6 +109,7 @@ export const SimpleFileField: FC<TSimpleFileFieldProps> = (props) => {
 
         {buttonText && (
           <Button
+            disabled={disabled}
             onClick={handleButtonClick}
             className={
               'uix-simple-file-field__button' +
