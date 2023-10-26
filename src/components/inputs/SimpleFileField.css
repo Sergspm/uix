@@ -34,11 +34,13 @@
   position: relative;
   padding: var(--inner-field-padding, 0);
   border: var(--inner-field-border, none);
+  border-right: var(--inner-field-border-right, none);
   background: var(--inner-field-background, transparent);
 }
 
 .uix-simple-file-field.uix--disabled .uix-simple-file-field__inner-field {
   border: var(--inner-field-border-disabled, var(--inner-field-border, none));
+  border: var(--inner-field-border-right-disabled, var(--inner-field-border-right, none));
   background: var(--inner-field-background-disabled, var(--inner-field-background, transparent));
 }
 
@@ -48,6 +50,7 @@
 
 .uix-simple-file-field.uix--error .uix-simple-file-field__inner-field {
   border: var(--inner-field-border-error, var(--inner-field-border, none));
+  border: var(--inner-field-border-right-error, var(--inner-field-border-right, none));
   background: var(--inner-field-background-error, var(--inner-field-background, transparent));
 }
 
