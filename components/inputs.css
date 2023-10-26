@@ -61,6 +61,7 @@
 
 .uix-simple-file-field__inner {
   display: flex;
+  height: var(--inner-height, auto);
 }
 
 .uix-simple-file-field__inner-label {
