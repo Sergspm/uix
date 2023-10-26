@@ -1,3 +1,23 @@
+type TValidationMappedErrors = Record<string, string>;
+interface IBadRequestMessage {
+    children: unknown[];
+    constraints: TValidationMappedErrors;
+    property: string;
+}
+interface IBadRequest {
+    error: string;
+    message: IBadRequestMessage[];
+    statusCode: number;
+}
+interface IErrorCommon<T = any> extends Partial<Error> {
+    data?: IBadRequest;
+    response?: {
+        data: T;
+        status: number;
+        statusText: string;
+    };
+    status?: number;
+}
 interface IError {
     code?: number;
     message: string;
@@ -47,6 +67,8 @@ declare const useForm: (props?: IUseFormProps) => {
     setValue: (name: string, value: TFormValue) => void;
     setValues: (values: TFormValues) => void;
     setError: (name: string, error: IError) => void;
+    setApiErrors: (e: IErrorCommon | unknown) => boolean;
+    resetErrors: () => void;
 };
 
 declare const validateValueAsync: (value: TFormValue, validators: TValidator[]) => Promise<IError | null>;

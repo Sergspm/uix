@@ -26,6 +26,26 @@ const isStringLength = (props = {}) => ({
     }
 });
 
+const extractErrorsFromApi = (e) => {
+    const err = e;
+    let data = err && err.response && err.response.data ? err.response.data : undefined;
+    if (!data && err && err.data && err.data.statusCode) {
+        data = err.data;
+    }
+    if (data && data.statusCode === 400 && Array.isArray(data.message)) {
+        return data.message.reduce((acc, err) => {
+            acc[err.property] = {
+                name: err.property,
+                message: Object.values(err.constraints)[0],
+                code: data.statusCode
+            };
+            return acc;
+        }, {});
+    }
+    console.error(e);
+    return null;
+};
+
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -126,7 +146,17 @@ const useForm = (props = {}) => {
     const setError = useCallback((name, error) => {
         setErrors((errors) => (Object.assign(Object.assign({}, errors), { [name]: error })));
     }, []);
-    return { values, errors, controllers, setValue, setValues, setError };
+    const setApiErrors = useCallback((e) => {
+        const newErrors = extractErrorsFromApi(e);
+        if (newErrors) {
+            setErrors((errors) => (Object.assign(Object.assign({}, errors), newErrors)));
+        }
+        return Boolean(newErrors);
+    }, []);
+    const resetErrors = useCallback(() => {
+        setErrors({});
+    }, []);
+    return { values, errors, controllers, setValue, setValues, setError, setApiErrors, resetErrors };
 };
 
 export { isNotEmpty, isStringLength, useForm, validateValue, validateValueAsync };

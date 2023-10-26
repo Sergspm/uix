@@ -1,6 +1,11 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 
-import type { IError, TErrorsBag } from '../utils/errors';
+import {
+  extractErrorsFromApi,
+  type IError,
+  type IErrorCommon,
+  type TErrorsBag
+} from '../utils/errors';
 import type { TFormControllers, TFormValidatorsBag, TFormValue, TFormValues } from './types';
 import { validateValue } from './validator';
 
@@ -69,5 +74,19 @@ export const useForm = (props: IUseFormProps = {}) => {
     setErrors((errors) => ({ ...errors, [name]: error }));
   }, []);
 
-  return { values, errors, controllers, setValue, setValues, setError };
+  const setApiErrors = useCallback((e: IErrorCommon | unknown) => {
+    const newErrors = extractErrorsFromApi(e);
+
+    if (newErrors) {
+      setErrors((errors) => ({ ...errors, ...newErrors }));
+    }
+
+    return Boolean(newErrors);
+  }, []);
+
+  const resetErrors = useCallback(() => {
+    setErrors({});
+  }, []);
+
+  return { values, errors, controllers, setValue, setValues, setError, setApiErrors, resetErrors };
 };
