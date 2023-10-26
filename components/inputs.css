@@ -51,11 +51,11 @@
   margin: var(--label-margin, 0);
 }
 
-.uix-simple-file-field.uix--disabled .uix-smart-text-field__label {
+.uix-simple-file-field.uix--disabled .uix-simple-file-field__label {
   color: var(--label-color-disabled, var(--label-color, inherit));
 }
 
-.uix-simple-file-field.uix--error .uix-smart-text-field__label {
+.uix-simple-file-field.uix--error .uix-simple-file-field__label {
   color: var(--label-color-error, var(--label-color, inherit));
 }
 
