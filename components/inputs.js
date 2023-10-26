@@ -55,7 +55,7 @@ const SimpleFileField = (props) => {
             (props.className ? ' ' + props.className : '') },
         label && React.createElement("label", { className: "uix-simple-file-field__label" }, label),
         React.createElement("div", { className: "uix-simple-file-field__inner" },
-            React.createElement("label", { className: "uix-simple-file-field__inner-label" },
+            React.createElement("label", { className: "uix-simple-file-field__inner-field" },
                 React.createElement("input", { ref: fileRef, className: "uix-simple-file-field__input", onChange: handleFileChange, type: "file" }),
                 placeholder && !value && (React.createElement("span", { className: "uix-simple-file-field__placeholder" }, placeholder)),
                 !!value && (React.createElement(React.Fragment, null,

@@ -81,7 +81,7 @@ export const SimpleFileField: FC<TSimpleFileFieldProps> = (props) => {
       {label && <label className="uix-simple-file-field__label">{label}</label>}
 
       <div className="uix-simple-file-field__inner">
-        <label className="uix-simple-file-field__inner-label">
+        <label className="uix-simple-file-field__inner-field">
           <input
             ref={fileRef}
             className="uix-simple-file-field__input"
