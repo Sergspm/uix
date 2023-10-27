@@ -1,4 +1,4 @@
-import React, { createElement, useState } from 'react';
+import React, { createElement, useState, useEffect } from 'react';
 
 const presetsButton = {};
 const Button = (props) => {
@@ -76,57 +76,55 @@ const Card = (props) => {
 
 const presetsAmountCalculationCard = {};
 const calculate = (amountSelected, amountMax, price) => {
+    const priceConverted = typeof price === 'string' ? parseFloat(price) : null;
     if (amountSelected !== '' &&
         amountMax &&
         amountMax > 0 &&
-        typeof price === 'number' &&
-        price >= 0) {
+        typeof priceConverted === 'number' &&
+        !isNaN(priceConverted) &&
+        priceConverted >= 0) {
         const amountRaw = parseInt(amountSelected);
         const amount = Math.min(isNaN(amountRaw) || amountRaw < 0 ? 0 : amountRaw, amountMax && amountMax >= 0 ? amountMax : 0);
-        const resultPrice = price && price >= 0 ? price : 0;
+        const resultPrice = priceConverted && priceConverted >= 0 ? priceConverted : 0;
         return {
             amount,
-            sum: amount * resultPrice
+            sum: amount * resultPrice,
+            price: resultPrice
         };
     }
     return null;
 };
+const formatCurrency = (sum, currency) => currency
+    ? new Intl.NumberFormat('en-EN', {
+        style: 'currency',
+        currency,
+        maximumFractionDigits: 0
+    }).format(sum)
+    : `${sum}`;
 const AmountCalculationCard = (p) => {
     var _a;
     const props = p.preset && p.preset in presetsAmountCalculationCard
         ? Object.assign(Object.assign({}, presetsAmountCalculationCard[p.preset]), p) : p;
     const [amountSelected, setAmountSelected] = useState('');
-    const calculation = calculate(amountSelected, props.amountMax, props.price);
-    let className = 'uix-feature-market-amount-calculation-card';
-    let classNameInput = 'uix-feature-market-amount-calculation-card__input';
-    let classNameButton = 'uix-feature-market-amount-calculation-card__button';
-    if (props.className) {
-        className += ' ' + props.className;
-    }
-    if (props.classNameInput) {
-        classNameInput += ' ' + props.classNameInput;
-    }
-    if (props.classNameButton) {
-        classNameButton += ' ' + props.classNameButton;
-    }
-    return (React.createElement(Card, { className: className, header: props.header },
-        React.createElement(TextField, { className: classNameInput, hideNumberArrows: true, label: props.inputLabel, onChange: setAmountSelected, placeholder: props.inputPlaceholder, value: amountSelected, valueMax: props.amountMax, valueMin: (_a = props.amountMin) !== null && _a !== void 0 ? _a : 0 }),
-        calculation && (React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation" },
-            React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-row" },
-                React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-label" }, props.amountLabel),
-                React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-value" }, calculation.amount)),
-            React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-row" },
-                React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-label" }, props.sumLabel),
-                React.createElement("div", { className: "uix-feature-market-amount-calculation-card__calculation-value" }, props.sumFormat === 'USD' || props.sumFormat === 'EUR'
-                    ? new Intl.NumberFormat('en-EN', {
-                        style: 'currency',
-                        currency: props.sumFormat,
-                        maximumFractionDigits: 0
-                    }).format(calculation.sum)
-                    : calculation.sum)))),
-        React.createElement(Button, { className: classNameButton, disabled: !calculation || !calculation.amount, onClick: () => {
+    const [priceSelected, setPriceSelected] = useState(() => { var _a; return `${(_a = props.price) !== null && _a !== void 0 ? _a : ''}`; });
+    const calculation = calculate(amountSelected, props.amountMax, priceSelected);
+    useEffect(() => {
+        var _a;
+        setPriceSelected(`${(_a = props.price) !== null && _a !== void 0 ? _a : ''}`);
+    }, [props.price]);
+    return (React.createElement(Card, { className: 'uix-amount-calculation-card' + (props.className ? ' ' + props.className : ''), header: props.header },
+        React.createElement(TextField, { hideNumberArrows: true, label: props.inputAmountLabel, onChange: setAmountSelected, placeholder: props.inputAmountPlaceholder, value: amountSelected, valueMax: props.amountMax, valueMin: (_a = props.amountMin) !== null && _a !== void 0 ? _a : 0, className: 'uix-amount-calculation-card__input' +
+                (props.classNameInput ? ' ' + props.classNameInput : '') }),
+        props.withPriceInput && (React.createElement(TextField, { hideNumberArrows: true, label: props.inputPriceLabel, onChange: setPriceSelected, placeholder: props.inputPricePlaceholder, value: priceSelected, className: 'uix-amount-calculation-card__input' +
+                (props.classNameInput ? ' ' + props.classNameInput : '') })),
+        calculation && (React.createElement("div", { className: "uix-amount-calculation-card__calculation" },
+            React.createElement(CalculationRow, { label: props.amountLabel, value: calculation.amount }),
+            props.withPriceInput && (React.createElement(CalculationRow, { label: props.priceLabel, value: formatCurrency(calculation.price, props.sumFormat) })),
+            React.createElement(CalculationRow, { label: props.sumLabel, value: formatCurrency(calculation.sum, props.sumFormat) }))),
+        React.createElement(Button, { disabled: !calculation || !calculation.amount, className: 'uix-amount-calculation-card__button' +
+                (props.classNameButton ? ' ' + props.classNameButton : ''), onClick: () => {
                 if (props.onButtonClick && calculation) {
-                    const result = props.onButtonClick(calculation.amount);
+                    const result = props.onButtonClick(calculation);
                     if (result instanceof Promise) {
                         result.then((result) => {
                             if (result === true) {
@@ -140,5 +138,8 @@ const AmountCalculationCard = (p) => {
                 }
             } }, props.buttonText)));
 };
+const CalculationRow = (props) => (React.createElement("div", { className: "uix-amount-calculation-card__calculation-row" },
+    React.createElement("div", { className: "uix-amount-calculation-card__calculation-label" }, props.label),
+    React.createElement("div", { className: "uix-amount-calculation-card__calculation-value" }, props.value)));
 
 export { AmountCalculationCard };

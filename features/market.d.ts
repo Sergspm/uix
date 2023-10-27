@@ -1,5 +1,6 @@
 import { ReactNode, FC } from 'react';
 
+type TSumFormat = 'USD' | 'EUR';
 type TAmountCalculationCardProps = {
     amountLabel?: string;
     amountMax?: number;
@@ -9,13 +10,22 @@ type TAmountCalculationCardProps = {
     classNameButton?: string;
     classNameInput?: string;
     header?: ReactNode;
-    inputLabel?: string;
-    inputPlaceholder?: string;
-    onButtonClick?: (value: number) => Promise<boolean | void> | boolean | void;
+    inputAmountLabel?: string;
+    inputAmountPlaceholder?: string;
+    inputPriceLabel?: string;
+    inputPricePlaceholder?: string;
+    onButtonClick?: (calculation: TCalculation) => Promise<boolean | void> | boolean | void;
     preset?: string;
     price?: number;
-    sumFormat?: 'USD' | 'EUR';
+    priceLabel?: string;
+    sumFormat?: TSumFormat;
     sumLabel?: string;
+    withPriceInput?: boolean;
+};
+type TCalculation = {
+    amount: number;
+    price: number;
+    sum: number;
 };
 declare const AmountCalculationCard: FC<TAmountCalculationCardProps>;
 

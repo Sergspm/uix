@@ -433,19 +433,19 @@
   color: var(--description-color, inherit);
 }
 
-.uix-feature-market-amount-calculation-card__input {
+.uix-amount-calculation-card__input {
   margin-bottom: var(--input-margin-bottom, 1.5rem);
 }
 
-.uix-feature-market-amount-calculation-card__button {
+.uix-amount-calculation-card__button {
   width: var(--button-width, 100%);
 }
 
-.uix-feature-market-amount-calculation-card__calculation {
+.uix-amount-calculation-card__calculation {
   margin-bottom: var(--calculation-margin-bottom, 1rem);
 }
 
-.uix-feature-market-amount-calculation-card__calculation-row {
+.uix-amount-calculation-card__calculation-row {
   display: flex;
   justify-content: space-between;
   color: var(--calculation-color, inherit);
@@ -457,10 +457,10 @@
   margin-bottom: var(--calculation-row-margin-bottom, 0);
 }
 
-.uix-feature-market-amount-calculation-card__calculation-row:last-child {
+.uix-amount-calculation-card__calculation-row:last-child {
   margin-bottom: 0;
 }
 
-.uix-feature-market-amount-calculation-card__calculation-value {
+.uix-amount-calculation-card__calculation-value {
   font-weight: var(--calculation-value-font-weight, inherit);
 }
