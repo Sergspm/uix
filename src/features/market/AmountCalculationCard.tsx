@@ -32,7 +32,7 @@ export type TAmountCalculationCardProps = {
 
 const presetsAmountCalculationCard: Record<string, Partial<TAmountCalculationCardProps>> = {};
 
-type TCalculation = {
+export type TCalculation = {
   amount: number;
   price: number;
   sum: number;

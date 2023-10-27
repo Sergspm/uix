@@ -29,4 +29,4 @@ type TCalculation = {
 };
 declare const AmountCalculationCard: FC<TAmountCalculationCardProps>;
 
-export { AmountCalculationCard, type TAmountCalculationCardProps };
+export { AmountCalculationCard, type TAmountCalculationCardProps, type TCalculation };
