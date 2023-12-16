@@ -1,6 +1,4 @@
-import React, { FC, ReactNode } from 'react';
-
-import './CardEmptyState.css';
+import { FC, ReactNode } from 'react';
 
 export type TCardEmptyStateProps = {
   className?: string;

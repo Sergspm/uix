@@ -1,6 +1,4 @@
-import React, { FC, ReactNode } from 'react';
-
-import './Card.css';
+import { FC, ReactNode } from 'react';
 
 export type TCardProps = {
   children?: ReactNode;

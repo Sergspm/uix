@@ -1,11 +1,11 @@
 import { TValidator } from './types';
 
-type TIsNotEmptyProps = {
-  message?: string;
-  trim?: boolean;
-};
-
-export const isNotEmpty = (props: TIsNotEmptyProps = {}): TValidator => ({
+export const isNotEmpty = (
+  props: {
+    message?: string;
+    trim?: boolean;
+  } = {}
+): TValidator => ({
   name: 'isNotEmpty',
   message: props.message,
   validate: (value) => {
@@ -19,14 +19,14 @@ export const isNotEmpty = (props: TIsNotEmptyProps = {}): TValidator => ({
   }
 });
 
-type TIsStringLengthProps = {
-  max?: number;
-  message?: string;
-  min?: number;
-  trim?: boolean;
-};
-
-export const isStringLength = (props: TIsStringLengthProps = {}): TValidator => ({
+export const isStringLength = (
+  props: {
+    max?: number;
+    message?: string;
+    min?: number;
+    trim?: boolean;
+  } = {}
+): TValidator => ({
   name: 'isNotEmpty',
   message: props.message,
   validate: (value) => {
@@ -39,6 +39,33 @@ export const isStringLength = (props: TIsStringLengthProps = {}): TValidator => 
       ) {
         return false;
       }
+    }
+
+    return true;
+  }
+});
+
+export const isArrayLength = (
+  props: {
+    max?: number;
+    message?: string;
+    min?: number;
+  } = {}
+): TValidator => ({
+  name: 'isArrayLength',
+  message: props.message,
+  validate: (value) => {
+    if (!Array.isArray(value)) {
+      return false;
+    }
+
+    const length = value.length;
+
+    if (
+      (props.min !== undefined && props.min > length) ||
+      (props.max !== undefined && props.max < length)
+    ) {
+      return false;
     }
 
     return true;

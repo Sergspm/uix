@@ -1,8 +1,6 @@
-import React, { ChangeEvent, FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 
 import { IError } from '../../utils/errors';
-
-import './TextField.css';
 
 export type TTextFieldProps = {
   className?: string;
@@ -17,7 +15,7 @@ export type TTextFieldProps = {
   placeholder?: string;
   preset?: string;
   type?: 'text' | 'number' | 'password';
-  value?: string | number;
+  value?: string | number | null;
   valueMax?: number | string;
   valueMin?: number | string;
 };
@@ -28,24 +26,21 @@ export const TextField: FC<TTextFieldProps> = (p) => {
   const props =
     p.preset && p.preset in presetsTextField ? { ...presetsTextField[p.preset], ...p } : p;
 
-  let className = 'uix-component-input-text-field';
   let inputType = props.type || 'text';
 
-  if (props.disabled) {
-    className += ' uix--disabled';
-  }
-
   if (props.hideNumberArrows) {
-    className += ' uix--without-arrows';
     inputType = 'number';
   }
 
-  if (props.className) {
-    className += ' ' + props.className;
-  }
-
   return (
-    <div className={className}>
+    <div
+      className={
+        'uix-component-input-text-field' +
+        (props.disabled ? ' uix--disabled' : '') +
+        (props.hideNumberArrows ? ' uix--without-arrows' : '') +
+        (props.className ? ' ' + props.className : '')
+      }
+    >
       {Boolean(props.label) && (
         <label className="uix-component-input-text-field__label">{props.label}</label>
       )}
@@ -57,7 +52,7 @@ export const TextField: FC<TTextFieldProps> = (p) => {
         min={props.valueMin}
         placeholder={props.placeholder}
         type={inputType}
-        value={props.value}
+        value={props.value ?? undefined}
         onChange={(e) => {
           if (props.onChange) {
             props.onChange(e.target.value, null, e);

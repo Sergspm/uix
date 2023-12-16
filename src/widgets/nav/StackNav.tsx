@@ -1,8 +1,6 @@
-import React, { FC, createElement } from 'react';
+import { FC, createElement } from 'react';
 
 import { TLink, TUrl } from '../../types/nextjs';
-
-import './StackNav.css';
 
 export type TStackNavItem = {
   description?: string;

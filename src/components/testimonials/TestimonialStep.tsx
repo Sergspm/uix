@@ -1,8 +1,6 @@
-import React, { FC, SVGProps, createElement } from 'react';
+import { FC, SVGProps, createElement } from 'react';
 
 import type { TLink, TUrl } from '../../types/nextjs';
-
-import './TestimonialStep.css';
 
 export type TTestimonialStepProps = {
   active?: boolean;
@@ -16,6 +14,7 @@ export type TTestimonialStepProps = {
   preset?: string;
   title?: string;
   titleActive?: string;
+  disabled?: boolean;
 };
 
 export const presetsTestimonialStep: Record<string, Partial<TTestimonialStepProps>> = {};
@@ -38,6 +37,7 @@ export const TestimonialStep: FC<TTestimonialStepProps> = (props) => {
       className:
         'uix-component-testimonial-testimonial-step' +
         (props.active || preset.active ? ' uix--active' : '') +
+        (props.disabled || preset.disabled ? ' uix--disabled' : '') +
         (preset.className ? ' ' + preset.className : '') +
         (props.className ? ' ' + props.className : ''),
       href: props.href || preset.href || ''

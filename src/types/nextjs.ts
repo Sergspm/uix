@@ -72,7 +72,7 @@ type InternalLinkProps = {
    */
   shallow?: boolean;
 };
-export type LinkProps = InternalLinkProps;
+
 /**
  * React Component that enables client-side transitions between routes.
  */

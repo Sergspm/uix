@@ -1,11 +1,9 @@
-import React, { ChangeEvent, FC, SVGProps, useCallback, useRef } from 'react';
+import { ChangeEvent, FC, SVGProps, useCallback, useRef } from 'react';
 
 import type { TFormController, TFormFile, TValidator } from '../../forms/types';
 import type { IError } from '../../utils/errors';
-import { Button } from '../buttons/Button';
-
 import { formatFileSizeWithLabels } from '../../utils/files';
-import './SimpleFileField.css';
+import { Button } from '../buttons/Button';
 
 type TSimpleFileFieldProps = {
   buttonText?: string;
@@ -18,7 +16,7 @@ type TSimpleFileFieldProps = {
   helpText?: string;
   label?: string;
   onChange?: (
-    value: TFormFile | null,
+    value: TFormFile[] | null,
     error: IError | null | undefined,
     event: ChangeEvent<HTMLInputElement>
   ) => void;
@@ -26,10 +24,29 @@ type TSimpleFileFieldProps = {
   preset?: string;
   status?: 'error' | null;
   validators?: TValidator[];
-  value?: TFormFile | null;
+  value?: TFormFile[] | null;
+  multiple?: boolean;
+  accept?: string;
+  hideFiles?: boolean;
+  mode?: 'append' | 'replace';
 };
 
 export const presetsSimpleFileField: Record<string, Partial<TSimpleFileFieldProps>> = {};
+
+const acceptPresets: Record<string, string[]> = {
+  EXCEL: [
+    'application/vnd.ms-excel',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
+    'application/vnd.ms-excel.sheet.macroEnabled.12',
+    'application/vnd.ms-excel.template.macroEnabled.12',
+    'application/vnd.ms-excel.addin.macroEnabled.12',
+    'application/vnd.ms-excel.sheet.binary.macroEnabled.12'
+  ],
+  CSV: ['text/csv']
+};
+
+const cachedAcceptPresets: Record<string, string> = {};
 
 export const SimpleFileField: FC<TSimpleFileFieldProps> = (props) => {
   const preset = (props.preset ? presetsSimpleFileField[props.preset] : null) || {};
@@ -49,11 +66,40 @@ export const SimpleFileField: FC<TSimpleFileFieldProps> = (props) => {
   const ErrorIcon = props.errorIcon || preset.errorIcon;
   const onChange = props.onChange || preset.onChange;
   const controller = props.controller || preset.controller;
+  let mode = props.mode || preset.mode || 'append';
+  let accept = props.accept || preset.accept;
+
+  if (accept) {
+    if (!cachedAcceptPresets[accept]) {
+      cachedAcceptPresets[accept] = accept
+        .split(',')
+        .reduce<string[]>((acc, acceptItem) => {
+          const acceptItemSanitized = acceptItem.trim();
+
+          if (acceptItemSanitized) {
+            acc.push(
+              acceptPresets[acceptItemSanitized]
+                ? acceptPresets[acceptItemSanitized].join(',')
+                : acceptItemSanitized
+            );
+          }
+
+          return acc;
+        }, [])
+        .join(',');
+    }
+
+    accept = cachedAcceptPresets[accept];
+  }
+
+  if (!props.multiple) {
+    mode = 'replace';
+  }
 
   const value =
     props.value ||
-    (props.controller && typeof props.controller.value === 'object'
-      ? (props.controller.value as TFormFile)
+    (props.controller && Array.isArray(props.controller.value) && props.controller.value.length
+      ? (props.controller.value as TFormFile[])
       : null) ||
     null;
 
@@ -67,23 +113,32 @@ export const SimpleFileField: FC<TSimpleFileFieldProps> = (props) => {
 
   const handleFileChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files && e.target.files.length ? e.target.files[0] : null;
-      const value = file
-        ? {
+      const files: TFormFile[] = mode === 'append' && value ? [...value] : [];
+
+      if (e.target.files) {
+        for (let i = 0, l = e.target.files.length; i < l; ++i) {
+          const file = e.target.files[i];
+
+          files.push({
             file,
             name: file.name,
             size: file.size,
-            type: file.type
-          }
-        : null;
+            type: file.type,
+            path: URL.createObjectURL(file),
+            id: Date.now() + ':' + Math.random()
+          });
+        }
+      }
 
       if (controller) {
-        controller.onChange(value, null);
+        controller.onChange(files, null);
       } else if (onChange) {
-        onChange(value, null, e);
+        onChange(files, null, e);
       }
+
+      e.target.value = '';
     },
-    [onChange, controller]
+    [onChange, controller, mode, value]
   );
 
   return (
@@ -106,6 +161,9 @@ export const SimpleFileField: FC<TSimpleFileFieldProps> = (props) => {
             className="uix-simple-file-field__input"
             onChange={handleFileChange}
             type="file"
+            multiple={props.multiple || preset.multiple}
+            accept={accept}
+            disabled={disabled}
           />
 
           {placeholder && !value && (
@@ -113,15 +171,25 @@ export const SimpleFileField: FC<TSimpleFileFieldProps> = (props) => {
           )}
 
           {!!value && (
-            <>
-              {FileIcon && <FileIcon className="uix-simple-file-field__file-icon" />}
+            <span className="uix-simple-file-field__values-container">
+              {value.map((f, index) => (
+                <span key={f.id} className="uix-simple-file-field__file-outer">
+                  {FileIcon && <FileIcon className="uix-simple-file-field__file-icon" />}
 
-              <span className="uix-simple-file-field__file-name">{value.name}</span>
+                  <span className="uix-simple-file-field__file-name">{f.name}</span>
 
-              <span className="uix-simple-file-field__file-size">
-                {value.size !== null ? formatFileSizeWithLabels(value.size) : ''}
-              </span>
-            </>
+                  {f.size !== null && (
+                    <span className="uix-simple-file-field__file-size">
+                      {formatFileSizeWithLabels(f.size)}
+                    </span>
+                  )}
+
+                  {index < value.length - 1 && (
+                    <span className="uix-simple-file-field__file-delimiter">,</span>
+                  )}
+                </span>
+              ))}
+            </span>
           )}
 
           {hasError && ErrorIcon && <ErrorIcon className="uix-simple-file-field__error-icon" />}

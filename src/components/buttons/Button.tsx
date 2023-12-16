@@ -2,8 +2,6 @@ import { FC, MouseEvent, ReactNode, createElement } from 'react';
 
 import type { TLink, TUrl } from '../../types/nextjs';
 
-import './Button.css';
-
 export type TButtonProps = {
   active?: boolean;
   children?: ReactNode;
@@ -11,7 +9,7 @@ export type TButtonProps = {
   disabled?: boolean;
   element?: 'a' | TLink | 'button';
   href?: TUrl;
-  onClick?: (e: MouseEvent) => void;
+  onClick?: (e: MouseEvent) => void | Promise<void | boolean>;
   preset?: string;
   target?: '_blank';
   type?: 'submit' | 'reset' | 'button';
@@ -31,7 +29,8 @@ export const Button: FC<TButtonProps> = (props) => {
         (props.disabled || preset.disabled ? ' uix--disabled' : '') +
         (preset.className ? ' ' + preset.className : '') +
         (props.className ? ' ' + props.className : ''),
-      href: props.href || preset.href || '',
+      // @ts-ignore
+      href: props.href || preset.href || undefined,
       // eslint-disable-next-line
       // @ts-ignore
       disabled: props.disabled || preset.disabled,

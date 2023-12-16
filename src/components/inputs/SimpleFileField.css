@@ -30,7 +30,8 @@
 .uix-simple-file-field__inner-field {
   display: flex;
   align-items: center;
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   position: relative;
   padding: var(--inner-field-padding, 0);
   border: var(--inner-field-border, none);
@@ -56,7 +57,7 @@
 
 .uix-simple-file-field__input {
   position: absolute;
-  visibility: none;
+  visibility: hidden;
   opacity: 0;
   pointer-events: none;
 }
@@ -72,10 +73,30 @@
   color: var(--placeholder-color-disabled, var(--placeholder-color, inherit));
 }
 
+.uix-simple-file-field__values-container {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.uix-simple-file-field__file-outer {
+  display: inline-flex;
+  align-items: center;
+  margin-left: var(--file-outer-margin-left, 0);
+}
+
+.uix-simple-file-field__file-outer:first-child {
+  margin-left: 0;
+}
+
 .uix-simple-file-field__file-icon {
   font-size: var(--file-icon-font-size, inherit);
   color: var(--file-icon-color, inherit);
   margin: var(--file-icon-margin, 0);
+}
+
+.uix-simple-file-field.uix--disabled .uix-simple-file-field__file-icon {
+  color: var(--file-icon-color-disabled, var(--file-icon-color, inherit));
 }
 
 .uix-simple-file-field__file-name {
@@ -86,18 +107,35 @@
   margin: var(--file-name-margin, 0);
 }
 
-.uix-simple-file-field__file-size {
+.uix-simple-file-field.uix--disabled .uix-simple-file-field__file-name {
+  color: var(--file-name-color-disabled, var(--file-name-color, inherit));
+}
+
+.uix-simple-file-field__file-size,
+.uix-simple-file-field__file-delimiter {
   font-family: var(--file-size-font-family, var(--file-name-font-family, inherit));
   font-size: var(--file-size-font-size, var(--file-name-font-size, inherit));
   font-weight: var(--file-size-font-weight, var(--file-name-font-weight, inherit));
   color: var(--file-size-color, var(--file-name-color, inherit));
-  margin: var(--file-size-margin, var(--file-name-margin, 0));
+}
+
+.uix-simple-file-field.uix--disabled .uix-simple-file-field__file-size,
+.uix-simple-file-field.uix--disabled .uix-simple-file-field__file-delimiter {
+  color: var(
+    --file-size-color-disabled,
+    var(--file-name-color-disabled, var(--file-size-color, var(--file-name-color, inherit)))
+  );
+}
+
+.uix-simple-file-field__file-delimiter {
+  margin-left: var(--file-delimiter-margin-left, 0);
 }
 
 .uix-simple-file-field__error-icon {
   margin-left: auto;
   font-size: var(--error-icon-font-size, inherit);
   color: var(--error-icon-color, inherit);
+  flex-shrink: 0;
 }
 
 .uix-simple-file-field__button {

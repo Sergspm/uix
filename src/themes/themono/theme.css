@@ -1,0 +1,41 @@
+:root {
+  --whiteColor: #ffffff;
+  --primaryColor: #fefefe;
+  --secondaryColor: #fafaff;
+  --mainColor: #fcfcfc;
+  --thirdlyColor: #f2f2f4;
+  --fourlyColor: #f7f7f7;
+
+  --6thColor: #ebbaa3;
+  --7thColor: #984f35;
+
+  --graySlaceColor: #262626;
+  --greenColor: #0f7a40;
+  --blackColor: #000000;
+  --darkColor: #151414;
+  --secondaryDarkColor: #333333;
+  --lightGraySearchColor: #9ca3af;
+  --numbrsColor: #999999;
+
+  --containerMaxlWidthXxl: 1460px;
+  --containerXPaddingsXxl: 10px;
+
+  --text-numbrs: #999;
+  --text-light-gray-signature: #666;
+  --text-light-gray-search: #9ca3af;
+  --text-secondary-dark: #333;
+  --text-dark: #000;
+  --text-white: #fff;
+  --background-secondary: #fafaff;
+  --background-main: #fcfcfc;
+  --background-thirdly: #f2f2f4;
+  --background-fourthly: #f7f7f7;
+  --service-red: #a41517;
+  --elements-deviders: #9ca3af33;
+  --service-green: #0f7a40;
+  --additional-8th: #42594f;
+  --additional-7th: #984f35;
+
+  --mobile-l: 768px;
+  --mobile-m: 425px;
+}

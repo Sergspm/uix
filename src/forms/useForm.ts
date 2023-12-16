@@ -9,7 +9,7 @@ import {
 import type { TFormControllers, TFormValidatorsBag, TFormValue, TFormValues } from './types';
 import { validateValue } from './validator';
 
-interface IUseFormProps {
+export interface IUseFormProps {
   defaultValues?: TFormValues;
   validators?: TFormValidatorsBag;
 }
@@ -88,5 +88,33 @@ export const useForm = (props: IUseFormProps = {}) => {
     setErrors({});
   }, []);
 
-  return { values, errors, controllers, setValue, setValues, setError, setApiErrors, resetErrors };
+  const resetForm = useCallback(() => {
+    setValuesInternal(props.defaultValues || {});
+  }, [props.defaultValues]);
+
+  return useMemo(
+    () => ({
+      values,
+      errors,
+      hasErrors: Object.keys(errors).length > 0,
+      controllers,
+      setValue,
+      setValues,
+      setError,
+      setApiErrors,
+      resetErrors,
+      resetForm
+    }),
+    [
+      values,
+      errors,
+      controllers,
+      setValue,
+      setValues,
+      setError,
+      setApiErrors,
+      resetErrors,
+      resetForm
+    ]
+  );
 };

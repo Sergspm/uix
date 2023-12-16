@@ -19,6 +19,17 @@
   background: var(--background-active, var(--background, none));
 }
 
+.uix-component-testimonial-testimonial-step.uix--disabled {
+  pointer-events: none;
+  border: var(--border-disabled, var(--border, none));
+  background: var(--background-disabled, var(--background, none));
+}
+
+.uix-component-testimonial-testimonial-step.uix--active.uix--disabled {
+  border: var(--border-active-disabled, var(--border, none));
+  background: var(--background-active-disabled, var(--background, none));
+}
+
 .uix-component-testimonial-testimonial-step__icon {
   display: flex;
   align-items: center;
@@ -35,8 +46,20 @@
 
 .uix-component-testimonial-testimonial-step.uix--active
   .uix-component-testimonial-testimonial-step__icon {
-  color: var(--icon-color-active, inherit);
-  background: var(--icon-background-active, inherit);
+  color: var(--icon-color-active, var(--icon-color, inherit));
+  background: var(--icon-background-active, var(--icon-background, inherit));
+}
+
+.uix-component-testimonial-testimonial-step.uix--disabled
+  .uix-component-testimonial-testimonial-step__icon {
+  color: var(--icon-color-disabled, var(--icon-color, inherit));
+  background: var(--icon-background-disabled, var(--icon-background, inherit));
+}
+
+.uix-component-testimonial-testimonial-step.uix--active.uix--disabled
+  .uix-component-testimonial-testimonial-step__icon {
+  color: var(--icon-color-active-disabled, var(--icon-color, inherit));
+  background: var(--icon-background-active-disabled, var(--icon-background, inherit));
 }
 
 .uix-component-testimonial-testimonial-step__content {
@@ -58,6 +81,16 @@
   color: var(--title-color-active, var(--title-color, inherit));
 }
 
+.uix-component-testimonial-testimonial-step.uix--disabled
+  .uix-component-testimonial-testimonial-step__title {
+  color: var(--title-color-disabled, var(--title-color, inherit));
+}
+
+.uix-component-testimonial-testimonial-step.uix--active.uix--disabled
+  .uix-component-testimonial-testimonial-step__title {
+  color: var(--title-color-active-disabled, var(--title-color, inherit));
+}
+
 .uix-component-testimonial-testimonial-step__description {
   display: block;
   font-size: var(--description-font-size, inherit);
@@ -70,4 +103,14 @@
 .uix-component-testimonial-testimonial-step.uix--active
   .uix-component-testimonial-testimonial-step__description {
   color: var(--description-color-active, var(--description-color, inherit));
+}
+
+.uix-component-testimonial-testimonial-step.uix--disabled
+  .uix-component-testimonial-testimonial-step__description {
+  color: var(--description-color-disabled, var(--description-color, inherit));
+}
+
+.uix-component-testimonial-testimonial-step.uix--active.uix--disabled
+  .uix-component-testimonial-testimonial-step__description {
+  color: var(--description-color-active-disabled, var(--description-color, inherit));
 }

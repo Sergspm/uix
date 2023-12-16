@@ -1,4 +1,4 @@
-export type TValidationMappedErrors = Record<string, string>;
+type TValidationMappedErrors = Record<string, string>;
 
 interface IBadRequestMessage {
   children: unknown[];
@@ -6,19 +6,10 @@ interface IBadRequestMessage {
   property: string;
 }
 
-export interface IRtkQueryError {
-  data: IBadRequest;
-  status: number;
-}
-
-export interface IBadRequest {
+interface IBadRequest {
   error: string;
   message: IBadRequestMessage[];
   statusCode: number;
-}
-
-export interface IStatusResponse {
-  success: boolean;
 }
 
 // eslint-disable-next-line

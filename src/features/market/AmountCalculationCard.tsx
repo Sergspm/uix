@@ -1,10 +1,8 @@
-import React, { FC, ReactNode, useEffect, useState } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 
 import { Button } from '../../components/buttons';
-import { TextField } from '../../components/inputs';
+import { TextField } from '../../components/inputs/TextField';
 import { Card } from '../../widgets/cards';
-
-import './AmountCalculationCard.css';
 
 type TSumFormat = 'USD' | 'EUR';
 

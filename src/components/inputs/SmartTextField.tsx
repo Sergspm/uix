@@ -1,10 +1,9 @@
-import React, { ChangeEvent, FC, ReactNode, SVGProps, createElement } from 'react';
+import { ChangeEvent, FC, ReactNode, SVGProps, createElement } from 'react';
 
 import type { TFormController, TValidator } from '../../forms/types';
 import { validateValue } from '../../forms/validator';
+import type { IError } from '../../utils/errors';
 import type { TTextFieldProps } from './TextField';
-
-import './SmartTextField.css';
 
 type TSmartTextFieldProps = Omit<TTextFieldProps, 'type'> & {
   controller?: TFormController | null;
@@ -15,8 +14,9 @@ type TSmartTextFieldProps = Omit<TTextFieldProps, 'type'> & {
   status?: 'error' | null;
   successIcon?: FC<SVGProps<SVGSVGElement>>;
   suffix?: ReactNode;
-  type?: 'text' | 'number' | 'password' | 'textarea';
+  type?: 'text' | 'number' | 'password' | 'textarea' | 'date';
   validators?: TValidator[];
+  error?: IError | null;
 };
 
 export const presetsSmartTextField: Record<string, Partial<TSmartTextFieldProps>> = {};
@@ -30,11 +30,13 @@ export const SmartTextField: FC<TSmartTextFieldProps> = (props) => {
   const hasError =
     props.status === 'error' ||
     preset.status === 'error' ||
-    Boolean(props.controller && props.controller.error);
+    Boolean(props.controller && props.controller.error) ||
+    Boolean(props.error);
   const helpText =
     props.helpText ||
     preset.helpText ||
-    (props.controller && props.controller.error ? props.controller.error.message : null);
+    (props.controller && props.controller.error ? props.controller.error.message : null) ||
+    (props.error ? props.error.message : null);
   const hasValidators = Boolean(
     props.validators || (props.controller && props.controller.hasValidators)
   );
@@ -47,8 +49,8 @@ export const SmartTextField: FC<TSmartTextFieldProps> = (props) => {
 
   let value = props.controller ? props.controller.value : props.value;
 
-  if (value === null) {
-    value = undefined;
+  if (value === null || value === undefined) {
+    value = '';
   } else if (typeof value === 'boolean') {
     value = `${value}`;
   }

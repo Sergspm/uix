@@ -63,7 +63,6 @@
 
 .uix-smart-text-field.uix--disabled .uix-smart-text-field__inner {
   border: var(--input-border-disabled, var(--input-border, none));
-  color: var(--input-color-disabled, var(--input-color, inherit));
   background: var(--input-background-disabled, var(--input-background, transparent));
 }
 
@@ -97,6 +96,10 @@
 
 .uix-smart-text-field.uix--disabled .uix-smart-text-field__input::placeholder {
   color: var(--input-placeholder-color-disabled, inherit);
+}
+
+.uix-smart-text-field.uix--disabled .uix-smart-text-field__input {
+  color: var(--input-color-disabled, var(--input-color, inherit));
 }
 
 .uix-smart-text-field.uix--without-arrows .uix-smart-text-field__input {
